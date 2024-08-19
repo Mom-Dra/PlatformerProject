@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IcicleTrigger : MonoBehaviour
+public class IcicleTrigger : MonoBehaviour 
 {
-    public ObstacleIcicle icicle;
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player") icicle.Falling();
-    }
+    public Rigidbody icicleRd;
 
-    private void Awake()
+    [SerializeField]
+    bool testFild = true;
+
+    private void OnTriggerEnter(Collider other)
     {
-        icicle = GetComponent<ObstacleIcicle>();
+        Debug.Log("°¨Áö");
+        if (other.gameObject.CompareTag("Player")) icicleRd.isKinematic = false;
+
     }
 }
