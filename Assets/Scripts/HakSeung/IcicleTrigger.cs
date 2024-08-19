@@ -6,13 +6,18 @@ public class IcicleTrigger : MonoBehaviour
 {
     public Rigidbody icicleRd;
 
-    [SerializeField]
-    bool testFild = true;
-
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("감지");
-        if (other.gameObject.CompareTag("Player")) icicleRd.isKinematic = false;
+        if (other.gameObject.CompareTag("Player") )
+        {
+            Debug.Log("떨어지는중");
 
+            icicleRd.isKinematic = false;
+        }
+    }
+
+    private void Awake()
+    {
+        icicleRd.isKinematic = true;
     }
 }

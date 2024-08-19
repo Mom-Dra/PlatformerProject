@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Bullet
+  - DynamicObstacle
+  - Platform
   layers:
   - Default
   - TransparentFX
