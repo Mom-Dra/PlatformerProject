@@ -29,15 +29,22 @@ namespace Player
         //[HideInInspector] public vThirdPersonCamera tpCamera;
         //[HideInInspector] public Camera cameraMain;
 
+        // UI
+        private UIManager uiManager;
+        private PiUI piUI;
+        private EquipUI equipUI;
 
 
 
         #endregion
-        
+
 
         protected virtual void InitilizeController() //초기 값 로드
         {
             cc = GetComponent<PlayerControl>();
+            uiManager = gameObject.GetComponentInChildren<UIManager>();
+            piUI = uiManager.GetComponentInChildren<PiUI>();
+            equipUI = uiManager.GetComponentInChildren<EquipUI>();
         }
 
         void Start()
@@ -65,18 +72,14 @@ namespace Player
         }
         void SlotChange()
         {
-            if (Input.GetKeyUp(slot1))
+            if (Input.GetMouseButtonUp(0))
             {
-                cc.slot = 1;
+                piUI.SelectItem();
+                cc.SlotCheck_Test(equipUI.currentItem);
             }
-            if (Input.GetKeyUp(slot2))
-            {
-                cc.slot = 2;
-            }
-            if (Input.GetKeyUp(slot3))
-            {
-                cc.slot = 3;
-            }
+
+            if (Input.GetKey(KeyCode.Tab))  uiManager.ShowPiUI(true);
+            else                            uiManager.ShowPiUI(false);
         }
 
         void JumpInput()

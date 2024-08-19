@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class TimeUI : MonoBehaviour
 {
-    private GameObject TimeUIPrefab;
     private TextMeshProUGUI thisText;
 
     private float elapsedTime;
@@ -14,8 +13,7 @@ public class TimeUI : MonoBehaviour
 
     void Start()
     {
-        TimeUIPrefab = GameObject.Find("TimeUI");
-        thisText = TimeUIPrefab.GetComponent<TextMeshProUGUI>();
+        thisText = GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()

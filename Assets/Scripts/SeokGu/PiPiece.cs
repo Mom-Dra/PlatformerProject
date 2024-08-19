@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static UIManager;
 
@@ -30,8 +31,7 @@ public class PiPiece : MonoBehaviour
         equipUI = equipUiPrefab.GetComponent<EquipUI>();
 
         itemPiece = itemPiecePrefab.GetComponent<ItemPiece>();
-        itemPiece = Instantiate(itemPiece);
-        itemPiece.transform.SetParent(transform);
+        itemPiece = Instantiate(itemPiece, transform);
     }
 
     public void SetData(PiData piData)

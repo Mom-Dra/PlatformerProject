@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using static UIManager;
 
 namespace Player
 {
@@ -82,35 +84,54 @@ namespace Player
             UpdateAnimator();
             HealthControl();
             RotationPlayer();
-            SlotCheck();
+            //SlotCheck();
             if (gun.gameObject.activeSelf)
                 gun.GunCheck();
         }
 
-        void SlotCheck()
+        public void SlotCheck_Test(ItemList inItem)
         {
-            if(slot != curslot)
+            SlotReset();
+            switch (inItem)
             {
-                SlotReset();
-                curslot = slot;
-                switch (slot)
-                {
-                    case 1:
-                        Debug.Log("1¹ø ½½·Ô!");
-                        break;
-                    case 2:
-                        Debug.Log("2¹ø ½½·Ô! ÃÑ ÀåÂø!");
-                        TakeGun(); break;
-                    case 3:
-                        Debug.Log("3¹ø ½½·Ô!");
-                        StoneSet();
-                        break;
-                    default:
-                        break;
-
-                }
-            }
+                case ItemList.None:
+                    Debug.Log("1¹ø ½½·Ô!");
+                    break;
+                case ItemList.Stone:
+                    Debug.Log("3¹ø ½½·Ô!");
+                    StoneSet();
+                    break;
+                case ItemList.Gun:
+                    Debug.Log("2¹ø ½½·Ô! ÃÑ ÀåÂø!");
+                    TakeGun();
+                    break;
+            }       
         }
+
+        //void SlotCheck()
+        //{
+        //    if(slot != curslot)
+        //    {
+        //        SlotReset();
+        //        curslot = slot;
+        //        switch (slot)
+        //        {
+        //            case 1:
+        //                Debug.Log("1¹ø ½½·Ô!");
+        //                break;
+        //            case 2:
+        //                Debug.Log("2¹ø ½½·Ô! ÃÑ ÀåÂø!");
+        //                TakeGun(); break;
+        //            case 3:
+        //                Debug.Log("3¹ø ½½·Ô!");
+        //                StoneSet();
+        //                break;
+        //            default:
+        //                break;
+
+        //        }
+        //    }
+        //}
         void RotationPlayer()
         {
             //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

@@ -88,3 +88,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b218cd70c7e6322418446a743472dec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonCount: 3
+  baseButton: {fileID: 8126777106989268074, guid: 7b1b1ba156717134f8ac6128b79c3984, type: 3}
+  menuData:
+    text:
+    - Main Menu
+    - Retry
+    - Return Game

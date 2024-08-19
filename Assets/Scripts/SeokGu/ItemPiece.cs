@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ItemPiece : MonoBehaviour
 {
+    [HideInInspector]
     public Image itemIcon;
     void Awake()
     {
@@ -12,6 +13,6 @@ public class ItemPiece : MonoBehaviour
     }
     public void Init()
     {
-        itemIcon = GetComponentInChildren<Image>();
+        itemIcon = GetComponent<Image>();
     }
 }

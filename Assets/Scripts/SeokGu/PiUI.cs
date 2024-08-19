@@ -21,10 +21,6 @@ public class PiUI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
-            SelectPiece(currentPieceNum);
-
-
         UpdateUIScale();
         for(int i = 0; i < piPieces.Count; i++)
         {
@@ -41,8 +37,7 @@ public class PiUI : MonoBehaviour
         {
             float z = 360.0f / pieceCount * i;
             PiPiece piece = piPiece.GetComponent<PiPiece>();
-            piece = Instantiate(piece);
-            piece.transform.SetParent(transform);
+            piece = Instantiate(piece, transform);
 
             piece.SetUIRotation(new Vector3(0, 0, z));
             piece.SetAngleRange(360.0f / pieceCount);
@@ -56,6 +51,11 @@ public class PiUI : MonoBehaviour
             else
                 piece.SetData(defaultData);
         }
+    }
+
+    public void SelectItem()
+    {
+        SelectPiece(currentPieceNum);
     }
 
     void UpdateUIScale()

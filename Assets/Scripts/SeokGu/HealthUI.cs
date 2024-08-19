@@ -14,13 +14,11 @@ public class HealthUI : MonoBehaviour
     private float maxHealth = 3;
     private List<HealthPiece> healthPieces = new List<HealthPiece>();
 
-    // Start is called before the first frame update
     void Start()
     {
         Init();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(bDebug == true)
@@ -33,8 +31,7 @@ public class HealthUI : MonoBehaviour
         {
             float z = 360.0f / pieceCount * i;
             HealthPiece piece = healthPiece.GetComponent<HealthPiece>();
-            piece = Instantiate(piece);
-            piece.transform.SetParent(transform);
+            piece = Instantiate(piece, transform);
             piece.SetUIPosition(new Vector3(distance * i, 0, 0));
             piece.SetImageFillAmount(1.0f);
 

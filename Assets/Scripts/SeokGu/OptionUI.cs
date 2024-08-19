@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,21 +8,19 @@ using static UIManager;
 
 public class OptionUI : MonoBehaviour
 {
-    private GameObject optionUIPrefab;
     private Image thisImage;
     private Button thisButton;
+    private GameObject menuUIPrefab;
 
     public PiData defaultData;
 
     void Awake()
     {
-        optionUIPrefab = GameObject.Find("OptionUI");
-
-        thisImage = optionUIPrefab.GetComponent<Image>();
+        thisImage = GetComponent<Image>();
         thisImage.sprite = defaultData.imageSprite;
         thisImage.color = defaultData.imageColor;
 
-        thisButton = optionUIPrefab.GetComponent<Button>();
+        thisButton = GetComponent<Button>();
         thisButton.onClick.AddListener(OnClicked);
 
         Navigation navi = new Navigation();
@@ -29,8 +28,13 @@ public class OptionUI : MonoBehaviour
         thisButton.navigation = navi;
     }
 
+    public void Init(GameObject inGameObject)
+    {
+        menuUIPrefab = inGameObject;
+    }
+
     void OnClicked()
     {
-        Debug.Log("OnClicked");
+        menuUIPrefab.SetActive(!menuUIPrefab.activeSelf);
     }
 }
