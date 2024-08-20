@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
 
-public class RandomPosition : ActionNode
+public class Test_Action : ActionNode
 {
-    public Vector2 min = Vector2.one * -10;
-    public Vector2 max = Vector2.one * 10;
-
     protected override void OnStart()
     {
+        Debug.Log("OnStart");
     }
 
     protected override void OnStop()
     {
+        Debug.Log("OnStop");
     }
 
     protected override State OnUpdate()
     {
-        blackboard.moveToPosition.x = Random.Range(min.x, max.x);
-        blackboard.moveToPosition.z = Random.Range(min.y, max.y);
+        Debug.Log("Kiaora");
+
         return State.Success;
     }
 }
