@@ -6,7 +6,6 @@ using UnityEngine.Pool;
 
 public class ObstacleIcicle : DynamicObstacle
 {
-
     protected override void OnCollisionEnter(Collision collision)
     {
         //플레이어에게 데미지 전달

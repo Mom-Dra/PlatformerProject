@@ -10,25 +10,27 @@ public class ObstaclePool : MonoBehaviour
     float ObstacleSpawnTimer;
     
     
-    Rigidbody rb;
     public void ObstacleActivation(GameObject obstacle) 
     {
         obstacle.SetActive(true);
-        //rb.isKinematic = true; 야매로 풀었으니까 다시 고치기 
     }
 
     public void ObstacleDeactivation(GameObject obstacle, float spawnTime, Vector3 setPos, Rigidbody obstacleRb)
     {
         obstacle.SetActive(false);
-        rb = obstacleRb;
-        //obstacleRb.isKinematic = true; -> 이걸 여기서 하면 인식 후에도 내려가는 문제가있음
         obstacle.transform.position = setPos;
-        StartCoroutine(ObstacleRespawn(obstacle, spawnTime));
+        StartCoroutine(ObstacleRespawn(obstacle, spawnTime, obstacleRb));
     }
 
-    IEnumerator ObstacleRespawn(GameObject obstacle, float spawnTime)
+    public void ObstacleDeactivation(GameObject obstacle)
+    {
+        obstacle.SetActive(false);
+    }
+
+    IEnumerator ObstacleRespawn(GameObject obstacle, float spawnTime, Rigidbody obstacleRb)
     {
         yield return new WaitForSeconds(spawnTime);
+        obstacleRb.isKinematic = true; //여기서 안하면 활성화 되면 바로 떨어진다.
         ObstacleActivation(obstacle);
     }
     private void Start()
