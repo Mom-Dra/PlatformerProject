@@ -25,6 +25,29 @@ MonoBehaviour:
   child: {fileID: 6439108869043439445}
   restartOnSuccess: 1
   restartOnFailure: 0
+--- !u!114 &-5376401275454826423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bbcff87445f36e4582938670d757ed5, type: 3}
+  m_Name: Succeed
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 89b049436a835844db7ae85c24a64b8d
+  position: {x: 0, y: 0}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    wayPoints: []
+    speed: 2
+  description: 
+  drawGizmos: 0
+  child: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +69,7 @@ MonoBehaviour:
   - {fileID: 264536473930016636}
   - {fileID: 4414920434801157703}
   - {fileID: 5564808899212846061}
+  - {fileID: -5376401275454826423}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     wayPoints:

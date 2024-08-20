@@ -34,7 +34,12 @@ public class PatrolAction : ActionNode
             waitCounter += Time.deltaTime;
             
             if(waitCounter >= waitTime)
+            {
                 waiting = false;
+                
+                // Animator 설정!
+                // Walking Set Bool True
+            }
         }
         else
         {
@@ -47,15 +52,16 @@ public class PatrolAction : ActionNode
                 waiting = true;
 
                 currentWayPointIndex = (currentWayPointIndex + 1) % blackboard.wayPoints.Length;
+                // Animator 설정!
+                // Walking Set Bool False
             }
             else
             {
+                // RigidBody로 못바꿀까?
                 transform.position = Vector3.MoveTowards(transform.position, wp.position, blackboard.speed * Time.deltaTime);
                 transform.LookAt(wp.position);
             }
-            
         }
-
 
         state = State.Running;
         return state;
