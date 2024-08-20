@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public GameObject menuUIPrefab;
     public GameObject exitUIPrefab;
+
+    [HideInInspector]
+    public OrderList currentOrder;
+
     private GameObject piUIPrefab;
     private GameObject optionUIPrefab;
-
     private MenuUI menuUI;
     private ExitUI exitUI;
 
@@ -35,6 +39,10 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape)) ShowMenuUI(!menuUIPrefab.activeSelf);
         if (Input.GetKeyDown(KeyCode.T)) ShowExitUI(!exitUIPrefab.activeSelf);
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        }
     }
 
     public void ShowPiUI(bool bActive)
@@ -45,6 +53,7 @@ public class UIManager : MonoBehaviour
     public void ShowMenuUI(bool bActive)
     {
         menuUIPrefab.SetActive(bActive);
+        menuUI.Show();
     }
 
     public void ShowExitUI(bool bActive)
@@ -61,6 +70,14 @@ public class UIManager : MonoBehaviour
         Gun
     }
 
+    public enum OrderList
+    {
+        MainMenu,
+        Retry,
+        NextStage,
+        ReturnGame
+    }
+
     [System.Serializable]
     public class PiData
     {
@@ -72,6 +89,7 @@ public class UIManager : MonoBehaviour
     [System.Serializable]
     public class ButtonData
     {
-        public string[] text;
+        public string text;
+        public OrderList order;
     }
 }

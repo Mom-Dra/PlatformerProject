@@ -91,7 +91,9 @@ MonoBehaviour:
   buttonCount: 3
   baseButton: {fileID: 8126777106989268074, guid: 7b1b1ba156717134f8ac6128b79c3984, type: 3}
   menuData:
-    text:
-    - Main Menu
-    - Retry
-    - Return Game
+  - text: Main Menu
+    order: 0
+  - text: Retry
+    order: 1
+  - text: Return Game
+    order: 3

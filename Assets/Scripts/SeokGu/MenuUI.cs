@@ -9,11 +9,16 @@ public class MenuUI : MonoBehaviour
 {
     public int buttonCount = 3;
     public GameObject baseButton;
-    public ButtonData menuData;
+    public ButtonData[] menuData;
 
     private List<Button> buttons = new List<Button>();
 
-    void Start()
+    private void Awake()
+    {
+        Init();
+    }
+
+    private void Init()
     {
         for (int i = 0; i < buttonCount; i++)
         {
@@ -36,11 +41,11 @@ public class MenuUI : MonoBehaviour
     {
         for (int i = 0; i < buttonCount; i++)
         {
-            if (i < menuData.text.Length)
+            if (i < menuData.Length)
             {
                 buttons[i].gameObject.SetActive(true);
-                TextMeshProUGUI text = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
-                text.text = menuData.text[i];
+                ButtonUI buttonUI = buttons[i].GetComponent<ButtonUI>();
+                buttonUI.SetData(menuData[i]);
             }
             else
             {

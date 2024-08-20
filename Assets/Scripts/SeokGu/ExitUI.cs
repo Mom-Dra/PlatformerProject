@@ -10,23 +10,24 @@ public class ExitUI : MonoBehaviour
 {
     public int buttonCount = 3;
     public GameObject baseButton;
-    public GameObject TimeUIPrefab;
-    public ButtonData clearData;
-    public ButtonData failedData;
+    public ButtonData[] clearData;
+    public ButtonData[] failedData;
 
+    private GameObject TimeUIPrefab;
     private TimeUI timeUI;
     private TextMeshProUGUI thisText;
     private List<Button> buttons = new List<Button>();
 
-    void Start()
+    private void Awake()
     {
         Init();
     }
 
     public void Init()
     {
+        TimeUIPrefab = GameObject.Find("TimeUI");
         timeUI = TimeUIPrefab.GetComponent<TimeUI>();
-        thisText = GetComponent<TextMeshProUGUI>();
+        thisText = GetComponentInChildren<TextMeshProUGUI>();
 
         for (int i = 0; i < buttonCount; i++)
         {
@@ -51,11 +52,11 @@ public class ExitUI : MonoBehaviour
         {
             for (int i = 0; i < buttonCount; i++)
             {
-                if(i < failedData.text.Length)
+                if(i < failedData.Length)
                 {
                     buttons[i].gameObject.SetActive(true);
-                    TextMeshProUGUI text = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
-                    text.text = failedData.text[i];
+                    ButtonUI buttonUI = buttons[i].GetComponent<ButtonUI>();
+                    buttonUI.SetData(failedData[i]);
                 }
                 else
                 {
@@ -67,12 +68,11 @@ public class ExitUI : MonoBehaviour
         {
             for (int i = 0; i < buttonCount; i++)
             {
-                if (i < clearData.text.Length)
+                if (i < clearData.Length)
                 {
-                    Debug.Log(buttons[i].gameObject);
                     buttons[i].gameObject.SetActive(true);
-                    TextMeshProUGUI text = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
-                    text.text = clearData.text[i];
+                    ButtonUI buttonUI = buttons[i].GetComponent<ButtonUI>();
+                    buttonUI.SetData(clearData[i]);
                 }
                 else
                 {
@@ -86,13 +86,7 @@ public class ExitUI : MonoBehaviour
 
     void SetTimeText()
     {
-        TextMeshProUGUI text = timeUI.GetComponent<TextMeshProUGUI>();
-        thisText.text = text.text;
-    }
-
-    public void SetData()
-    {
-        thisText.text = timeUI.GetEndTime();
+        thisText.text = string.Format("{0:00} : {1:00}", timeUI.minutes, timeUI.seconds);
     }
 }
 

@@ -9,7 +9,10 @@ public class TimeUI : MonoBehaviour
     private TextMeshProUGUI thisText;
 
     private float elapsedTime;
-    private string endTimeString;
+    [HideInInspector]
+    public int minutes;
+    [HideInInspector]
+    public int seconds;
 
     void Start()
     {
@@ -19,11 +22,8 @@ public class TimeUI : MonoBehaviour
     private void Update()
     {
         elapsedTime += Time.deltaTime;
-        int minutes = Mathf.FloorToInt(elapsedTime / 60);
-        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+        minutes = Mathf.FloorToInt(elapsedTime / 60);
+        seconds = Mathf.FloorToInt(elapsedTime % 60);
         thisText.text = string.Format("{0:00} : {1:00}", minutes, seconds);
-        endTimeString = thisText.text;
     }
-
-    public string GetEndTime() { return endTimeString; }
 }

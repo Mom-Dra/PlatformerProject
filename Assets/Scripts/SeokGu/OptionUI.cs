@@ -36,5 +36,7 @@ public class OptionUI : MonoBehaviour
     void OnClicked()
     {
         menuUIPrefab.SetActive(!menuUIPrefab.activeSelf);
+        MenuUI menuUI = menuUIPrefab.GetComponent<MenuUI>();
+        menuUI.Show();
     }
 }
