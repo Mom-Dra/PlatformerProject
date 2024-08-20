@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
+using System.Data;
 
 public class Test_Action : ActionNode
 {
@@ -18,6 +19,10 @@ public class Test_Action : ActionNode
     protected override State OnUpdate()
     {
         Debug.Log("Kiaora");
+
+        int a; 
+
+
 
         return State.Success;
     }

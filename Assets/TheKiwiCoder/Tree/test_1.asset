@@ -15,12 +15,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 29dddd1359f37034f99e30b986a25085
-  position: {x: -84, y: -22}
+  position: {x: 0.6666794, y: -298.57257}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
+    wayPoints: []
+    speed: 2
   description: 
   drawGizmos: 0
-  child: {fileID: 4414920434801157703}
+  child: {fileID: 6439108869043439445}
   restartOnSuccess: 1
   restartOnFailure: 0
 --- !u!114 &11400000
@@ -43,8 +45,13 @@ MonoBehaviour:
   - {fileID: -8811168222494687127}
   - {fileID: 264536473930016636}
   - {fileID: 4414920434801157703}
+  - {fileID: 5564808899212846061}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
+    wayPoints:
+    - {fileID: 5364834203900012931, guid: c560394e7f5837b4b802fb102e73d590, type: 3}
+    - {fileID: 5326268496535169086, guid: 043e4c376e5964442952263c64f6d28f, type: 3}
+    speed: 2
 --- !u!114 &264536473930016636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,12 +67,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b5324cb5c99953940b259d4351b42529
-  position: {x: 74, y: -19}
+  position: {x: 150.66669, y: 2.0000305}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
+    wayPoints: []
+    speed: 2
   description: 
   drawGizmos: 0
-  message: 
+  message: "\uD5E4\uC774"
 --- !u!114 &4414920434801157703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,9 +90,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: fe41380036704d4459e592e9c9256ba3
-  position: {x: -84, y: 90.96002}
+  position: {x: -200.18887, y: -30.666647}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
+    wayPoints: []
+    speed: 2
   description: 
   drawGizmos: 0
 --- !u!114 &5117446890815944294
@@ -101,12 +112,36 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0c70f3a176ce4c44abf9da8b55762e8d
-  position: {x: 0, y: -299}
+  position: {x: 0.58452606, y: -450.2218}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
+    wayPoints: []
+    speed: 2
   description: 
   drawGizmos: 0
-  child: {fileID: 6439108869043439445}
+  child: {fileID: -8811168222494687127}
+--- !u!114 &5564808899212846061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca6d462b7487a046bd113e5e630981b, type: 3}
+  m_Name: PatrolAction
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 64c0dcf08cb03924b9398e0dbcc95fa9
+  position: {x: -27.333344, y: 12.986694}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    wayPoints: []
+    speed: 2
+  description: 
+  drawGizmos: 0
 --- !u!114 &6439108869043439445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,11 +157,13 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9ec1964afbc9e864a8f0abd3742e7542
-  position: {x: -1.2399902, y: -160}
+  position: {x: 0.6666794, y: -152.58583}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
+    wayPoints: []
+    speed: 2
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -8811168222494687127}
+  - {fileID: 5564808899212846061}
   - {fileID: 264536473930016636}
