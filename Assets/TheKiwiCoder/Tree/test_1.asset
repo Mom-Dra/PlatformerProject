@@ -40,7 +40,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 89b049436a835844db7ae85c24a64b8d
-  position: {x: 0, y: 0}
+  position: {x: -251.93889, y: -273.72424}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     wayPoints: []
@@ -91,7 +91,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b5324cb5c99953940b259d4351b42529
-  position: {x: 150.66669, y: 2.0000305}
+  position: {x: 222.6812, y: 12.6667385}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     wayPoints: []
