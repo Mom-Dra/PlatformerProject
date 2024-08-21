@@ -6,6 +6,9 @@ using UnityEditor.Experimental.GraphView;
 
 public class PatrolAction : ActionNode
 {
+    [SerializeField]
+    private Transform[] wayPoints;
+
     private int currentWayPointIndex = 0;
     private Transform transform;
     private float waitTime = 1f;
@@ -23,7 +26,6 @@ public class PatrolAction : ActionNode
 
     protected override State OnUpdate()
     {
-        Debug.Log("Patrol Update");
         if(waiting)
         {
             waitCounter += Time.deltaTime;
@@ -31,14 +33,15 @@ public class PatrolAction : ActionNode
             if(waitCounter >= waitTime)
             {
                 waiting = false;
-                
+
                 // Animator 설정!
                 // Walking Set Bool True
+                context.animator?.SetBool("IsWalk", true);
             }
         }
         else
         {
-            Transform wp = blackboard.wayPoints[currentWayPointIndex];
+            Transform wp = wayPoints[currentWayPointIndex];
 
             if(Vector3.Distance(transform.position, wp.position) < 0.01f)
             {
@@ -46,9 +49,10 @@ public class PatrolAction : ActionNode
                 waitCounter = 0f;
                 waiting = true;
 
-                currentWayPointIndex = (currentWayPointIndex + 1) % blackboard.wayPoints.Length;
+                currentWayPointIndex = (currentWayPointIndex + 1) % wayPoints.Length;
                 // Animator 설정!
                 // Walking Set Bool False
+                context.animator?.SetBool("IsWalk", false);
             }
             else
             {

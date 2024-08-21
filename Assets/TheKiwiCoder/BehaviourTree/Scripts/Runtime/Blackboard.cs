@@ -13,7 +13,6 @@ namespace TheKiwiCoder
     {
         public Vector3 moveToPosition;
 
-        public Transform[] wayPoints;
         public float speed = 2f;
 
         

@@ -10,6 +10,7 @@ namespace TheKiwiCoder {
 
         protected override void OnStart()
         {
+            Debug.Log("Wait OnStart 호출되나용?");
             startTime = Time.time;
         }
 

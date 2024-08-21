@@ -5,6 +5,9 @@ using TheKiwiCoder;
 
 public class RotateTargetPosAction : ActionNode
 {
+    [SerializeField]
+    private float rotationSpeed;
+
     protected override void OnStart()
     {
     }
@@ -15,7 +18,16 @@ public class RotateTargetPosAction : ActionNode
 
     protected override State OnUpdate()
     {
-        context.transform.LookAt(blackboard.detectedTargetPos);
+        Quaternion currentRotation = context.transform.rotation;
+        Quaternion targetRotation = Quaternion.LookRotation(blackboard.detectedTargetPos - context.transform.position);
+
+        if (Quaternion.Angle(currentRotation, targetRotation) > 0.1f)
+        {
+            context.transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            return State.Running;
+        }
+
         return State.Success;
     }
 }

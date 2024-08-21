@@ -6,7 +6,6 @@ namespace TheKiwiCoder
 {
     public class BehaviourTreeRunner : MonoBehaviour
     {
-
         // The main behaviour tree asset
         public BehaviourTree tree;
 
