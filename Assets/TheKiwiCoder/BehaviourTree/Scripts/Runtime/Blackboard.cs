@@ -15,5 +15,10 @@ namespace TheKiwiCoder
 
         public Transform[] wayPoints;
         public float speed = 2f;
+
+        
+        public LayerMask targetLayerMask;
+        public Transform targetTransform;
+        public Vector3 detectedTargetPos;
     }
 }

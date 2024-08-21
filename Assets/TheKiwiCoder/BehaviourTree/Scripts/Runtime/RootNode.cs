@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace TheKiwiCoder
 {
-
     public class RootNode : Node
     {
         public Node child;

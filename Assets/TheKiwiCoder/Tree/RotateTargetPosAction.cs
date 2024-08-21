@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
 
-public class IfDecorator : DecoratorNode
+public class RotateTargetPosAction : ActionNode
 {
     protected override void OnStart()
     {
@@ -15,6 +15,7 @@ public class IfDecorator : DecoratorNode
 
     protected override State OnUpdate()
     {
-        return child.Update();
+        context.transform.LookAt(blackboard.detectedTargetPos);
+        return State.Success;
     }
 }

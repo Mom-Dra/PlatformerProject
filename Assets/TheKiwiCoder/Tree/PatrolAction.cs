@@ -12,12 +12,6 @@ public class PatrolAction : ActionNode
     private float waitCounter = 0f;
     private bool waiting = false;
 
-    //public PatrolAction(Transform transform, Transform[] wayPoints)
-    //{
-    //    this.transform = transform;
-    //    this.wayPoints = wayPoints;
-    //}
-
     protected override void OnStart()
     {
         transform = context.transform;
@@ -29,6 +23,7 @@ public class PatrolAction : ActionNode
 
     protected override State OnUpdate()
     {
+        Debug.Log("Patrol Update");
         if(waiting)
         {
             waitCounter += Time.deltaTime;
@@ -63,7 +58,7 @@ public class PatrolAction : ActionNode
             }
         }
 
-        state = State.Running;
-        return state;
+        // Running을 반환하면 안되는건가?
+        return State.Success;
     }
 }

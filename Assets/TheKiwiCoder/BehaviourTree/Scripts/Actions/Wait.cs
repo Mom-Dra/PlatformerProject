@@ -6,7 +6,7 @@ namespace TheKiwiCoder {
     public class Wait : ActionNode
     {
         public float duration = 1;
-        float startTime;
+        private float startTime;
 
         protected override void OnStart()
         {
@@ -23,6 +23,7 @@ namespace TheKiwiCoder {
             {
                 return State.Success;
             }
+
             return State.Running;
         }
     }
