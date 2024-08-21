@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class ObstacleSnowball : DynamicObstacle
 {
+    public Vector3 moveDir;
     Camera mainCamera;
     WaitForSeconds waitDeactivation;
 
     Vector3 screenPoint;
 
-    float deactiveTime = 3.0f;
-    //float spawnTime = 5.0f;
+
+    float deactiveTime = 5.0f;
     bool onScreen = false;
-    bool isOnSnowballCheck = false;
+    bool foundPlayer = false;
 
     public bool CheckObstacleIsInCamera(GameObject target)
     {
@@ -24,20 +25,13 @@ public class ObstacleSnowball : DynamicObstacle
         return onScreen;
     }
 
-    IEnumerator DeactivationTimer()
+    IEnumerator CheckSnowballOnPlayerScreen()
     {
-        Debug.Log("¿€µø DeactivationTimer");
-        yield return waitDeactivation;
-        obstaclePool.ObstacleDeactivation(this.gameObject);
-    }
-
-    IEnumerable CheckSnowballOnScreen()
-    {
-        yield return null;
         while (true)
         {
             Debug.Log("¿€µø CheckSnowballOnScreen" );
-            if (!onScreen) { DeactivationTimer(); break; }
+            yield return waitDeactivation;
+            if (!onScreen) { obstaclePool.ObstacleDeactivation(this.gameObject); break; }
         }
     }
 
@@ -46,17 +40,21 @@ public class ObstacleSnowball : DynamicObstacle
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         waitDeactivation = new WaitForSeconds(deactiveTime);
-        SetSpawnTime(spawnTime);
+        //SetSpawnTime(spawnTime);
     }
 
     private void Update()
     {
-        CheckObstacleIsInCamera(this.gameObject);
+        rb.AddForce(Vector3.down * 1000 * Time.deltaTime);
+        
 
-        if (onScreen && !isOnSnowballCheck){CheckSnowballOnScreen();}
-        if (onScreen) { isOnSnowballCheck = true; }
-    
-       //ø©±‚º≠ ∏ÿ√„
+        if (CheckObstacleIsInCamera(this.gameObject)) foundPlayer = true;
+
+        if(foundPlayer == true && !onScreen )
+        {
+            StartCoroutine(CheckSnowballOnPlayerScreen());
+            foundPlayer = false;
+        }
 
     }
 
