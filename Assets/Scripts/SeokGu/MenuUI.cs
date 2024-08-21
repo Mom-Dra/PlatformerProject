@@ -7,11 +7,11 @@ using static UIManager;
 
 public class MenuUI : MonoBehaviour
 {
+    private List<Button> buttons = new List<Button>();
+
     public int buttonCount = 3;
     public GameObject baseButton;
     public ButtonData[] menuData;
-
-    private List<Button> buttons = new List<Button>();
 
     private void Awake()
     {
@@ -52,5 +52,19 @@ public class MenuUI : MonoBehaviour
                 buttons[i].gameObject.SetActive(false);
             }
         }
+
+        Time.timeScale = 0.0f;
+        //SetTimeScale();
+    }
+
+    void SetTimeScale()
+    {
+        ExitUI exitUI = GetComponent<ExitUI>();
+        if (gameObject.activeSelf == false && exitUI.gameObject.activeSelf == false)
+        {
+            Time.timeScale = 1.0f;
+        }
+        else
+            Time.timeScale = 0.0f;
     }
 }

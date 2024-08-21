@@ -80,11 +80,13 @@ public class PiPiece : MonoBehaviour
             transform.localScale = new Vector3(2, 2, 1);
             bSelect = false;
         }
+        Debug.Log(bSelect);
     }
 
     public void OnClicked()
     {
         equipUI.ChangeIcon(thisData);
+        Debug.Log(thisData.imageSprite.name);
     }
 
     public bool IsSelected() { return bSelect; }

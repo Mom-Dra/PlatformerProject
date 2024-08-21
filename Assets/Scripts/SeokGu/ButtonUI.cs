@@ -11,6 +11,7 @@ public class ButtonUI : MonoBehaviour
     private Button button;
     private TextMeshProUGUI thisText;
     private OrderList thisOrder;
+    private Transform thisParent;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class ButtonUI : MonoBehaviour
         thisText = GetComponentInChildren<TextMeshProUGUI>();
 
         button.onClick.AddListener(OnClicked);
+        thisParent = transform.parent;
     }
 
     public void SetData(ButtonData buttonData)
@@ -29,9 +31,10 @@ public class ButtonUI : MonoBehaviour
     void OnClicked()
     {
         
-        UIManager uiManager = transform.parent.parent.GetComponent<UIManager>();
+        UIManager uiManager = thisParent.parent.GetComponent<UIManager>();
         uiManager.currentOrder = thisOrder;
         Debug.Log(uiManager.currentOrder);
-        transform.parent.gameObject.SetActive(false);
+        thisParent.gameObject.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 }

@@ -8,15 +8,15 @@ using static UIManager;
 
 public class ExitUI : MonoBehaviour
 {
-    public int buttonCount = 3;
-    public GameObject baseButton;
-    public ButtonData[] clearData;
-    public ButtonData[] failedData;
-
     private GameObject TimeUIPrefab;
     private TimeUI timeUI;
     private TextMeshProUGUI thisText;
     private List<Button> buttons = new List<Button>();
+
+    public int buttonCount = 3;
+    public GameObject baseButton;
+    public ButtonData[] clearData;
+    public ButtonData[] failedData;
 
     private void Awake()
     {
@@ -82,6 +82,20 @@ public class ExitUI : MonoBehaviour
         }
 
         SetTimeText();
+        Time.timeScale = 0.0f;
+        //SetTimeScale();
+    }
+
+    void SetTimeScale()
+    {
+        MenuUI menuUI = GetComponent<MenuUI>();
+        Debug.Log(menuUI);
+        if(gameObject.activeSelf == false && menuUI.gameObject.activeSelf == false)
+        {
+            Time.timeScale = 1.0f;
+        }
+        else
+            Time.timeScale = 0.0f;
     }
 
     void SetTimeText()

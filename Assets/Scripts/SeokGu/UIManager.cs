@@ -14,8 +14,10 @@ public class UIManager : MonoBehaviour
 
     private GameObject piUIPrefab;
     private GameObject optionUIPrefab;
+    private PiUI piUI;
     private MenuUI menuUI;
     private ExitUI exitUI;
+    private bool bDebug = true;
 
     void Start()
     {
@@ -26,6 +28,7 @@ public class UIManager : MonoBehaviour
         menuUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         exitUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
+        piUI = piUIPrefab.GetComponent<PiUI>();
         menuUI = menuUIPrefab.GetComponent<MenuUI>();
         exitUI = exitUIPrefab.GetComponent<ExitUI>();
 
@@ -37,11 +40,23 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) ShowMenuUI(!menuUIPrefab.activeSelf);
-        if (Input.GetKeyDown(KeyCode.T)) ShowExitUI(!exitUIPrefab.activeSelf);
-        if (Input.GetKeyDown(KeyCode.V))
+        if(bDebug == true)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            if (Input.GetMouseButtonUp(0))
+            {
+                if(piUIPrefab.activeSelf == true)
+                    piUI.SelectItem();
+            }
+
+            if (Input.GetKey(KeyCode.Tab)) ShowPiUI(true);
+            else ShowPiUI(false);
+
+            if (Input.GetKeyDown(KeyCode.Escape)) ShowMenuUI(!menuUIPrefab.activeSelf);
+            if (Input.GetKeyDown(KeyCode.T)) ShowExitUI(!exitUIPrefab.activeSelf);
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            }
         }
     }
 
@@ -61,7 +76,6 @@ public class UIManager : MonoBehaviour
         exitUIPrefab.SetActive(bActive);
         exitUI.Show(false);
     }
-
 
     public enum ItemList
     {

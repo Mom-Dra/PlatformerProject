@@ -9,10 +9,12 @@ public class PiUI : MonoBehaviour
     public int pieceCount = 4;
     public GameObject piPiece;
     private List<PiPiece> piPieces = new List<PiPiece>();
-    private int currentPieceNum = 0;
-
+    
     public PiData defaultData;
     public PiData[] piDatas;
+    
+    [HideInInspector]
+    public int currentPieceNum = 0;
 
     void Start()
     {
@@ -21,7 +23,6 @@ public class PiUI : MonoBehaviour
 
     void Update()
     {
-        UpdateUIScale();
         for(int i = 0; i < piPieces.Count; i++)
         {
             piPieces[i].MouserPosUpdate();
@@ -51,16 +52,13 @@ public class PiUI : MonoBehaviour
             else
                 piece.SetData(defaultData);
         }
+
+        transform.localScale = new Vector3(4, 4, 4);
     }
 
     public void SelectItem()
     {
         SelectPiece(currentPieceNum);
-    }
-
-    void UpdateUIScale()
-    {
-        this.transform.localScale = new Vector3((float)Screen.width / (1920 / 4), (float)Screen.height / (1080 / 4), 1);
     }
 
     void SelectPiece(int InPiPieceNum)
