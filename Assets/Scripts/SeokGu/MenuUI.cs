@@ -44,7 +44,7 @@ public class MenuUI : MonoBehaviour
             if (i < menuData.Length)
             {
                 buttons[i].gameObject.SetActive(true);
-                ButtonUI buttonUI = buttons[i].GetComponent<ButtonUI>();
+                MenuButtonUI buttonUI = buttons[i].GetComponent<MenuButtonUI>();
                 buttonUI.SetData(menuData[i]);
             }
             else
@@ -52,19 +52,5 @@ public class MenuUI : MonoBehaviour
                 buttons[i].gameObject.SetActive(false);
             }
         }
-
-        Time.timeScale = 0.0f;
-        //SetTimeScale();
-    }
-
-    void SetTimeScale()
-    {
-        ExitUI exitUI = GetComponent<ExitUI>();
-        if (gameObject.activeSelf == false && exitUI.gameObject.activeSelf == false)
-        {
-            Time.timeScale = 1.0f;
-        }
-        else
-            Time.timeScale = 0.0f;
     }
 }

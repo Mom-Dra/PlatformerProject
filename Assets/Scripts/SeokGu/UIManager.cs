@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Escape)) ShowMenuUI(!menuUIPrefab.activeSelf);
             if (Input.GetKeyDown(KeyCode.T)) ShowExitUI(!exitUIPrefab.activeSelf);
+            
             if (Input.GetKeyDown(KeyCode.V))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
@@ -62,19 +63,39 @@ public class UIManager : MonoBehaviour
 
     public void ShowPiUI(bool bActive)
     {
+        if (menuUIPrefab.activeSelf == true || exitUIPrefab.activeSelf == true) return;
+
         piUIPrefab.SetActive(bActive);
     }
 
     public void ShowMenuUI(bool bActive)
     {
+        if (exitUIPrefab.activeSelf == true) return;
+
+        ShowPiUI(false);
         menuUIPrefab.SetActive(bActive);
         menuUI.Show();
+        SetTimeScale();
     }
 
     public void ShowExitUI(bool bActive)
     {
+        if (menuUIPrefab.activeSelf == true) return;
+
+        ShowPiUI(false);
         exitUIPrefab.SetActive(bActive);
         exitUI.Show(false);
+        SetTimeScale();
+    }
+
+    void SetTimeScale()
+    {
+        if (exitUIPrefab.activeSelf == false && menuUIPrefab.activeSelf == false)
+        {
+            Time.timeScale = 1.0f;
+        }
+        else
+            Time.timeScale = 0.0f;
     }
 
     public enum ItemList

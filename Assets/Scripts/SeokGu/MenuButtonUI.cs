@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UIManager;
 
-public class ButtonUI : MonoBehaviour
+public class MenuButtonUI : MonoBehaviour
 {
     private Button button;
     private TextMeshProUGUI thisText;

@@ -11,6 +11,7 @@ public class OptionUI : MonoBehaviour
     private Image thisImage;
     private Button thisButton;
     private GameObject menuUIPrefab;
+    private UIManager uiManager;
 
     public PiData defaultData;
 
@@ -22,6 +23,8 @@ public class OptionUI : MonoBehaviour
 
         thisButton = GetComponent<Button>();
         thisButton.onClick.AddListener(OnClicked);
+
+        uiManager = transform.parent.GetComponent<UIManager>();
 
         Navigation navi = new Navigation();
         navi.mode = Navigation.Mode.None;
@@ -35,8 +38,6 @@ public class OptionUI : MonoBehaviour
 
     void OnClicked()
     {
-        menuUIPrefab.SetActive(!menuUIPrefab.activeSelf);
-        MenuUI menuUI = menuUIPrefab.GetComponent<MenuUI>();
-        menuUI.Show();
+        uiManager.ShowMenuUI(!menuUIPrefab.activeSelf);
     }
 }

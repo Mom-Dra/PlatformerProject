@@ -55,7 +55,7 @@ public class ExitUI : MonoBehaviour
                 if(i < failedData.Length)
                 {
                     buttons[i].gameObject.SetActive(true);
-                    ButtonUI buttonUI = buttons[i].GetComponent<ButtonUI>();
+                    MenuButtonUI buttonUI = buttons[i].GetComponent<MenuButtonUI>();
                     buttonUI.SetData(failedData[i]);
                 }
                 else
@@ -71,7 +71,7 @@ public class ExitUI : MonoBehaviour
                 if (i < clearData.Length)
                 {
                     buttons[i].gameObject.SetActive(true);
-                    ButtonUI buttonUI = buttons[i].GetComponent<ButtonUI>();
+                    MenuButtonUI buttonUI = buttons[i].GetComponent<MenuButtonUI>();
                     buttonUI.SetData(clearData[i]);
                 }
                 else
@@ -82,21 +82,9 @@ public class ExitUI : MonoBehaviour
         }
 
         SetTimeText();
-        Time.timeScale = 0.0f;
-        //SetTimeScale();
     }
 
-    void SetTimeScale()
-    {
-        MenuUI menuUI = GetComponent<MenuUI>();
-        Debug.Log(menuUI);
-        if(gameObject.activeSelf == false && menuUI.gameObject.activeSelf == false)
-        {
-            Time.timeScale = 1.0f;
-        }
-        else
-            Time.timeScale = 0.0f;
-    }
+    
 
     void SetTimeText()
     {
