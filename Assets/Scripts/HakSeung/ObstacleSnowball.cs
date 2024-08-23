@@ -45,7 +45,7 @@ public class ObstacleSnowball : DynamicObstacle
 
     private void Update()
     {
-        rb.AddForce(Vector3.down * 1000 * Time.deltaTime);
+        //rb.AddForce(Vector3.down * 1000 * Time.deltaTime);
         
 
         if (CheckObstacleIsInCamera(this.gameObject)) foundPlayer = true;
