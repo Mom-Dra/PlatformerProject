@@ -25,8 +25,8 @@ public class PlatformCollapsing : Platform
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collapsing√Êµπ!");
-        StartCoroutine(GetOnEvent());
+        if (collision.gameObject.CompareTag("Player"))
+            StartCoroutine(GetOnEvent());
     }
 
 

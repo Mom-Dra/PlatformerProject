@@ -25,12 +25,14 @@ public class PlatformWeightInfluenced : Platform
     {
         bool isReachedPos = false;
         isRunToGetOnEvent = true;
-
-        while (isGetOnPlatform && !isReachedPos)
+        //Vector3 vectorpos = new Vector3(transform.position.x, transform.position.y - maxFallYpos, transform.position.z);
+        while (isGetOnPlatform && !isReachedPos )
         {
+            Debug.Log("떨어진다");
             yield return null;
             if (transform.position.y <= InitPlatformPos.y - maxFallYpos) { isReachedPos = true;}
             transform.Translate(Vector3.down * Time.deltaTime * fallingSpeed);
+            //transform.position = Vector3.MoveTowards(transform.position, vectorpos, Time.deltaTime);
         }
         
         isReachedPos = false;
@@ -39,9 +41,12 @@ public class PlatformWeightInfluenced : Platform
 
         while (!isGetOnPlatform && !isReachedPos )
         {
+            Debug.Log("올라간다");
+
             yield return null;
             if (transform.position.y >= InitPlatformPos.y) { isReachedPos = true;}
             transform.Translate(Vector3.up * Time.deltaTime * fallingSpeed);
+            //transform.position = Vector3.MoveTowards(transform.position, InitPlatformPos, Time.deltaTime);
         }   
 
         isRunToGetOnEvent = false;
@@ -64,16 +69,23 @@ public class PlatformWeightInfluenced : Platform
 
     private void OnCollisionStay(Collision collision)
     {
-        isGetOnPlatform = true;
-        if (!isRunToGetOnEvent)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            ridingTime = 0;
-            StartCoroutine(GetOnEvent());
+            
+            isGetOnPlatform = true;
+            if (!isRunToGetOnEvent)
+            {
+                ridingTime = 0;
+                StartCoroutine(GetOnEvent());
+            }
         }
     }
     private void OnCollisionExit(Collision collision)
     {
-        isGetOnPlatform = false;
-        StartCoroutine(RidingTimer());
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isGetOnPlatform = false;
+            StartCoroutine(RidingTimer());
+        }
     }
 }
