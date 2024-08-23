@@ -90,8 +90,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceCount: 8
   piPiece: {fileID: 622333087966301266, guid: fe96adae61e07e748a8168621bdae294, type: 3}
+  defaultData:
+    imageSprite: {fileID: 0}
+    imageColor: {r: 1, g: 1, b: 1, a: 1}
+    item: 0
   piDatas:
-  - imageSprite: {fileID: 21300000, guid: 1200fd4c89ff9654483fdc0805358f5e, type: 3}
-  - imageSprite: {fileID: 21300000, guid: 10876d86c0d0c7948ab7c3f219be6325, type: 3}
+  - imageSprite: {fileID: 21300000, guid: 583675a75bcb2a941ac555b9ccd513a9, type: 3}
+    imageColor: {r: 1, g: 1, b: 1, a: 1}
+    item: 1
+  - imageSprite: {fileID: 21300000, guid: 8f908a0041a1aee4c8b02d9449ebd224, type: 3}
+    imageColor: {r: 1, g: 1, b: 1, a: 1}
+    item: 2
   - imageSprite: {fileID: 21300000, guid: 0edcb30428af9c34b9114c75ee984bf2, type: 3}
+    imageColor: {r: 1, g: 1, b: 1, a: 1}
+    item: 0
   - imageSprite: {fileID: 21300000, guid: 93b5b28db06f8d2439c780ec3aeb28d2, type: 3}
+    imageColor: {r: 1, g: 1, b: 1, a: 1}
+    item: 0

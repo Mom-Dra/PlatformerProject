@@ -1,22 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 20f; // ÃÑ¾ËÀÇ ¼Óµµ
-    public float lifetime = 5f; // ÃÑ¾ËÀÇ »ý¸í ½Ã°£
+    public float speed = 20f; // ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½Óµï¿½
+    public float lifetime = 5f; // ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+    public GameObject player;
 
     private void Start()
     {
-        // ÃÑ¾ËÀÌ ¹ß»çµÈ ÈÄ ÀÏÁ¤ ½Ã°£ÀÌ Áö³ª¸é »èÁ¦
+        // ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Destroy(gameObject, lifetime);
+        player = GameObject.Find("Guy");
     }
 
     private void Update()
     {
-        // ÃÑ¾ËÀ» ÇöÀç ¹æÇâÀ¸·Î ÀÌµ¿
+        // ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         transform.Translate(Vector3.right * speed * Time.deltaTime);
+        transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z);
     }
     private void OnCollisionEnter(Collision collision)
     {

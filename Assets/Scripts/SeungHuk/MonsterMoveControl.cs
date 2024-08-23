@@ -47,7 +47,7 @@ public class MonsterMoveControl : MonoBehaviour
     }
 
 
-    void Walk_Status() //°È´Â »óÅÂ
+    void Walk_Status() //ï¿½È´ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         //anim.SetInteger("AnimationPar", 1);
         if (!IsMonsterSeePlayer())
@@ -55,7 +55,7 @@ public class MonsterMoveControl : MonoBehaviour
         else
             status = 1;
     }
-    void Watching_Status() // ÇÃ·¹ÀÌ¾î°¡ Á¢±ÙÇÏ¿© ÁÖ½ÃÇÏ´Â »óÅÂ
+    void Watching_Status() // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         //anim.SetInteger("AnimationPar", 0);
         Looking_Location();
@@ -68,7 +68,7 @@ public class MonsterMoveControl : MonoBehaviour
             status = 2;
         }
     }
-    void Following_Status() //ÇÃ·¹ÀÌ¾î Ãß°Ý »óÅÂ
+    void Following_Status() //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         Get_Player_Position();
         //anim.SetInteger("AnimationPar", 1);
@@ -94,7 +94,7 @@ public class MonsterMoveControl : MonoBehaviour
             status = 1;
         }
     }
-    /*void Following_To_Player() //¸ó½ºÅÍ°¡ ÁÂ¿ì·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö -> ·¹ÀÌ¸¦ ¾Æ·¡·Î 2¸¸Å­ ½÷¼­ ³«»ç¹æÁö Àû¿ë
+    /*void Following_To_Player() //ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Â¿ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ -> ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ 2ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         move_to_ray = transform.position;
         move_to_ray.x = move_to_ray.x - (moveSpeed * 3);
@@ -110,19 +110,19 @@ public class MonsterMoveControl : MonoBehaviour
         }
     }*/
 
-    void Get_Player_Position() //ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¸¦ È®ÀÎÇÏ´Â ÇÔ¼ö
+    void Get_Player_Position() //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     {
         player_Position = player.transform.position;
     }
     
-    float CheckDistance() // ÇÃ·¹ÀÌ¾î¿ÍÀÇ °Å¸®¸¦ ¸®ÅÏÇÏ´Â ÇÔ¼ö
+    float CheckDistance() // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     {
         float x = transform.position.x - player_Position.x;
         float y = transform.position .y - player_Position.y;
         float dis = Mathf.Sqrt((x*x) + (y*y));
         return dis;
     }
-    bool IsMonsterSeePlayer() //¸÷ ½Ã¾ß°¢ ³» ÇÃ·¹ÀÌ¾î°¡ ÀÖÀ¸¸é True ¾øÀ¸¸é False¸¦ ¸®ÅÏÇÏ´Â ÇÔ¼ö
+    bool IsMonsterSeePlayer() //ï¿½ï¿½ ï¿½Ã¾ß°ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ True ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     {
         Get_Player_Position();
         if (CheckDistance() <= 10 && IsPlayerStandFront())
@@ -132,7 +132,7 @@ public class MonsterMoveControl : MonoBehaviour
         return false;
     }
 
-    void MonsterSearchingPlayer() //¸ó½ºÅÍ°¡ ÁÂ¿ì·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö -> ·¹ÀÌ¸¦ ¾Æ·¡·Î 0.1f¸¸Å­ ½÷¼­ ³«»ç¹æÁö Àû¿ë
+    void MonsterSearchingPlayer() //ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Â¿ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ -> ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ 0.1fï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         Looking_Location();
         if (!Physics.Raycast(move_to_ray, Vector3.down, 1f))
@@ -160,7 +160,7 @@ public class MonsterMoveControl : MonoBehaviour
         }
     }
 
-    bool IsPlayerStandFront() // ÇÃ·¹ÀÌ¾îÀÇ xÀÇ Â÷¿Í ÇöÀç ¸ó½ºÅÍ°¡ º¸´Â ¹æÇâÀ» ³ªÅ¸³»´Â Location º¯¼ö·Î ÇÃ·¹ÀÌ¾î°¡ ¸ó½ºÅÍ Á¤¸éÀÎÁö ÆÄ¾Ç
+    bool IsPlayerStandFront() // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ xï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ Location ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¾ï¿½
     {
         if ((player.transform.position.x - transform.position.x < 0 && location == 1)
             || (player.transform.position.x - transform.position.x >= 0 && location == -1))
@@ -170,11 +170,11 @@ public class MonsterMoveControl : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
-            player.gameObject.GetComponent<PlayerControl>().TakeDamage(0.5f);
+            player.gameObject.GetComponent<PlayerControl>().hp.TakeDamage(0.5f);
         else if (collision.gameObject.CompareTag("Bullet"))
         {
             health--;
-            Debug.Log("ÃÑ¸ÂÀ½");
+            Debug.Log("ï¿½Ñ¸ï¿½ï¿½ï¿½");
         }
     }
 }

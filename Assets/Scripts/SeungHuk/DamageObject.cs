@@ -13,8 +13,8 @@ public class DamageObject : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player = other.gameObject.GetComponent<PlayerControl>();
-            player.TakeDamage(damage);
-            // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®¸¦ ÆÄ±«
+            player.hp.TakeDamage(damage);
+            // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ä±ï¿½
             Destroy(this.gameObject);
         }
     }

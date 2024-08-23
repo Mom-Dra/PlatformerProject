@@ -14,9 +14,11 @@ namespace Player
         public KeyCode strafeInput = KeyCode.Tab;
         public KeyCode sprintInput = KeyCode.LeftShift;
         public KeyCode reloadGun = KeyCode.R;
+        public KeyCode rolling = KeyCode.C;
         public KeyCode slot1 = KeyCode.Alpha1;
         public KeyCode slot2 = KeyCode.Alpha2;
         public KeyCode slot3 = KeyCode.Alpha3;
+        public bool useUi;
         public BulletFireControl bullet;
         public CameraMoveControl cam;
         public GunController gun;
@@ -29,15 +31,21 @@ namespace Player
         //[HideInInspector] public vThirdPersonCamera tpCamera;
         //[HideInInspector] public Camera cameraMain;
 
-
+        // UI
+        private UIManager uiManager;
+        private PiUI piUI;
+        private EquipUI equipUI;
 
 
         #endregion
-        
 
-        protected virtual void InitilizeController() //ÃÊ±â °ª ·Îµå
+
+        protected virtual void InitilizeController() //ï¿½Ê±ï¿½ ï¿½ï¿½ ï¿½Îµï¿½
         {
             cc = GetComponent<PlayerControl>();
+            uiManager = gameObject.GetComponentInChildren<UIManager>();
+            piUI = uiManager.GetComponentInChildren<PiUI>();
+            equipUI = uiManager.GetComponentInChildren<EquipUI>();
         }
 
         void Start()
@@ -48,12 +56,12 @@ namespace Player
         {
             cc.UpdateControll();
         }
-        void Update() // Áö¼Ó ¾÷µ¥ÀÌÆ®
+        void Update() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         {
             InputHandle();
         }
 
-        void InputHandle() //¹Ù²î´Â ºÎºÐ
+        void InputHandle() //ï¿½Ù²ï¿½ï¿½ ï¿½Îºï¿½
         {
             MoveInput();
             SprintInput();
@@ -65,17 +73,21 @@ namespace Player
         }
         void SlotChange()
         {
-            if (Input.GetKeyUp(slot1))
+            if (Input.GetMouseButtonUp(0) && useUi)//ï¿½ï¿½Å¬ï¿½ï¿½
             {
-                cc.slot = 1;
+                piUI.SelectItem();
+                cc.SlotCheck(equipUI.currentItem);
             }
-            if (Input.GetKeyUp(slot2))
+
+            if (Input.GetKey(KeyCode.Tab))
             {
-                cc.slot = 2;
+                useUi = true;
+                uiManager.ShowPiUI(true);
             }
-            if (Input.GetKeyUp(slot3))
+            else
             {
-                cc.slot = 3;
+                useUi = false;
+                uiManager.ShowPiUI(false);
             }
         }
 
@@ -94,6 +106,11 @@ namespace Player
         {
             cc.input.x = Input.GetAxis(horizontalInput);
             cc.input.z = Input.GetAxis(verticallInput);
+            if (Input.GetKeyDown(rolling) && cc.isGround && !cc.isRolling)
+            {
+                cc.isRolling = true;
+                cc.isRollinga = true;
+            }
         }
         protected virtual void SprintInput()
         {
@@ -101,37 +118,37 @@ namespace Player
             {
                 cc.sprint = 3f;
                 cc.isSprinting = true;
-                //Debug.Log("´Þ¸®±â ¿Â");
+                //Debug.Log("ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½ï¿½");
             }
             else if (Input.GetKeyUp(sprintInput) || cc.isSprint == false)
             { 
                 cc.sprint = 0f;
                 cc.isSprinting = false;
-                //Debug.Log("´Þ¸®±â ¿ÀÇÁ");
+                //Debug.Log("ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
             }
         }
         void FireInput()
         {
-            // ÃÑ¾Ë ¹ß»ç
+            // ï¿½Ñ¾ï¿½ ï¿½ß»ï¿½
             if (Input.GetButtonDown("Fire1") && gun.gameObject.activeSelf)
             {
-                Debug.Log("¹ß»ç");
+                Debug.Log("ï¿½ß»ï¿½");
                 bullet.FireBullet();
             }
 
-            // µ¹ ´øÁö±â
-            if (Input.GetButtonDown("Fire1") && cc.slot == 3)
+            // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (Input.GetButtonDown("Fire1") && cc.handStone.gameObject.activeSelf)
             {
-                Debug.Log("µ¹ ´øÁö±â ½Ãµµ");
-                if(cc.handStone.gameObject.activeSelf)
-                    cc.ThrowStone();
+                Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½");
+
+                cc.ThrowStone();
             }
         }
         void GunReLoad()
         {
             if(Input.GetKeyDown(reloadGun) && gun.gameObject.activeSelf)
             {
-                Debug.Log("ÀåÀü");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½");
                 gun.maxBullet = 6;
             }
         }

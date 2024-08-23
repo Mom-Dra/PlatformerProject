@@ -14,9 +14,19 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Tab))  piUIPrefab.SetActive(true);
-        else                            piUIPrefab.SetActive(false);
 
+    }
+
+    public void ShowPiUI(bool bActive)
+    {
+        piUIPrefab.SetActive(bActive);
+    }
+
+    public enum ItemList
+    {
+        None,
+        Stone,
+        Gun
     }
 
     [System.Serializable]
@@ -24,5 +34,6 @@ public class UIManager : MonoBehaviour
     {
         public Sprite imageSprite;
         public Color imageColor = new Color(1, 1, 1, 1);
+        public ItemList item;
     }
 }

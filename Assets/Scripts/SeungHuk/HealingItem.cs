@@ -28,8 +28,8 @@ public class HealingItem : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player = other.gameObject.GetComponent<PlayerControl>();
-            player.Heal(heal);
-            // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®¸¦ ÆÄ±«
+            player.hp.Heal(heal);
+            // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ä±ï¿½
             Destroy(this.gameObject);
         }
     }
@@ -39,10 +39,10 @@ public class HealingItem : MonoBehaviour
         endTurn += 0.1f;
         if(endTurn == 180)
             endTurn = -180;
-        //ºù±Ûºù±Û µµ´Â ¿òÁ÷ÀÓ
+        //ï¿½ï¿½ï¿½Ûºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, endTurn, 0), turnspeed * Time.deltaTime);
 
-        //À§¾Æ·¡ ¿òÁ÷ÀÓ
+        //ï¿½ï¿½ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if(upSwitch)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + upSpeed, transform.position.z);

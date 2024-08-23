@@ -21,10 +21,6 @@ public class PiUI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
-            SelectPiece(currentPieceNum);
-
-
         UpdateUIScale();
         for(int i = 0; i < piPieces.Count; i++)
         {
@@ -34,7 +30,7 @@ public class PiUI : MonoBehaviour
         }
     }
 
-    // ½ÇÇà½Ã ¼³Á¤ÇÑ pieceCount¸¸Å­ UI PiPiece»ý¼º ¹× Instantiate½ÃÅ°°í PiUI¿¡ Child·Î Ãß°¡
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ pieceCountï¿½ï¿½Å­ UI PiPieceï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Instantiateï¿½ï¿½Å°ï¿½ï¿½ PiUIï¿½ï¿½ Childï¿½ï¿½ ï¿½ß°ï¿½
     void Init()
     {
         for (int i = 0; i < pieceCount; i++)
@@ -56,6 +52,11 @@ public class PiUI : MonoBehaviour
             else
                 piece.SetData(defaultData);
         }
+    }
+
+    public void SelectItem()
+    {
+        SelectPiece(currentPieceNum);
     }
 
     void UpdateUIScale()

@@ -9,6 +9,7 @@ public class EquipUI : MonoBehaviour
     private ItemPiece itemPiece;
 
     public PiData defaultData;
+    public ItemList currentItem;
 
     void Start()
     {
@@ -22,5 +23,6 @@ public class EquipUI : MonoBehaviour
     {
         itemPiece.itemIcon.sprite = piData.imageSprite;
         itemPiece.itemIcon.color = piData.imageColor;
+        currentItem = piData.item;
     }
 }

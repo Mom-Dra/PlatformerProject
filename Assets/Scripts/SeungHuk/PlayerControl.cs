@@ -1,33 +1,77 @@
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using static Player.PlayerControl;
+using static UIManager;
 
 namespace Player
 {
+    #region Health Class
+    public class Health
+    {
+        public float health;
+        public GameObject healthUIPrefab;
+        public HealthUI healthUI;
+        public PlayerControl player;
+        
+        public Health()
+        {
+            health = 3f;
+            healthUIPrefab = GameObject.Find("HealthUI");
+            healthUI = healthUIPrefab.GetComponent<HealthUI>();
+            healthUI.currentHealth = health;
+            player = GameObject.Find("Guy").GetComponent<PlayerControl>();
+            Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½");
+        }
+
+        public void Heal(float heal)
+        {
+            if (health < 3f)
+            {
+                health += heal;
+                healthUI.currentHealth = health;
+                Debug.Log("Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
+            }
+            else
+            {
+                Debug.Log("ï¿½Ì¹ï¿½ Ç®ï¿½Ç¾ï¿½!");
+            }
+        }
+        public void TakeDamage(float damage)
+        {
+            health -= damage;
+            healthUI.currentHealth = health;
+            Debug.Log("Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
+            if (health <= 0)
+            {
+                player.isDead = true;
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
+            }
+        }
+    }
     public class PlayerControl : PlayerAnimator
     {
-        #region º¯¼ö ¹× ÃÊ±âÈ­ ÇÔ¼ö  
 
-        private GameObject healthUIPrefab;
-        private HealthUI healthUI;
+        #endregion
+        #region ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ô¼ï¿½ 
 
-        public bool isGround;                   //¶¥¿¡ ÀÖ´ÂÁö?
-        public bool isSprint;                   //´Þ¸®´Â ÁßÀÎÁö?
-        public float speed;                     //±âº» ÀÌµ¿ ¼Óµµ
-        public float jumpPower;                 //ÇÃ·¹ÀÌ¾î Á¡ÇÁ Èû
-        private Rigidbody playerRigidBody;      //ÇÃ·¹ÀÌ¾î RigidBody ¿¬µ¿
-        public Vector3 input;                   //Å°º¸µå ÀÔ·Â WASD
-        //private Quaternion curRotation;         //ÇöÀç ¸öÀÇ °¢µµ
-        //float turnSpeed;                        //°í°³ µ¹¸®´Â ¼Óµµ
-        //private Quaternion endturn;             //ÇÃ·¹ÀÌ¾î°¡ °í°³¸¦ ¾îµð±îÁö µ¹¾Æ¾ßÇÏ´ÂÁö (¿ÞÂÊ 270µµ, ¿À¸¥Á· 90µµ µî)
-        public float sprint;                    //´Þ¸®±â½Ã Ãß°¡ ¼Óµµ
-        public float groundCheckSensitivity;    //¶¥ °¨Áö ¹Î°¨µµ
-        public float groundCheckCount;          //¶¥À» Á¦´ë·Î ¹â°í ÀÖ´ÂÁö (¹«ÀÛÁ¤ ¿¬Å¸½Ã °øÁß¿¡¼­ 1´ÜÁ¡ÇÁÃß°¡·Î °¡´ÉÇÏ¿© °øÁß Á¡ÇÁ ¸·±â ¿ë)
-        public bool doubleJump;                 //´õºíÁ¡ÇÁ ´É·Â º¸À¯ ¿©ºÎ
-        public bool isDoubleJump;               //´õºíÁ¡ÇÁÇß´ÂÁö ¿©ºÎ
-        public float health;                      //Ã¼·Â
-        public int invincibilityTime;           //¹«Àû ½Ã°£
-        public Quaternion rightRotation;           //¿À¸¥ÂÊ º¸´Â ¹æÇâ
-        public Quaternion leftRotation;            //¿ÞÂÊ º¸´Â ¹æÇâ
+        public bool isGround;                   //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½?
+        public bool isSprint;                   //ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
+        public float speed;                     //ï¿½âº» ï¿½Ìµï¿½ ï¿½Óµï¿½
+        public float jumpPower;                 //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+        private Rigidbody playerRigidBody;      //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ RigidBody ï¿½ï¿½ï¿½ï¿½
+        public Vector3 input;                   //Å°ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ WASD
+        //private Quaternion curRotation;         //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //float turnSpeed;                        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
+        //private Quaternion endturn;             //ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¾ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ 270ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 90ï¿½ï¿½ ï¿½ï¿½)
+        public float sprint;                    //ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½Óµï¿½
+        public float groundCheckSensitivity;    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î°ï¿½ï¿½ï¿½
+        public float groundCheckCount;          //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
+        public bool doubleJump;                 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        public bool isDoubleJump;               //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        public Health hp;                      //Ã¼ï¿½ï¿½
+        public int invincibilityTime;           //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+        public Quaternion rightRotation;           //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        public Quaternion leftRotation;            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         public int slot;
         public int curslot;
         public GunController gun;
@@ -36,13 +80,17 @@ namespace Player
         public int haveStoneCount;
         public ThrowStoneController throwStone;
         public float stoneThrowPower;
-        protected virtual void InitilizeController() //ÃÊ±â °ª ·Îµå
+        public bool isRolling;
+        float rollingTimer;
+        protected virtual void InitilizeController() //ï¿½Ê±ï¿½ ï¿½ï¿½ ï¿½Îµï¿½
         {
+            rollingTimer = 0f;
+            isRolling = false;
             stoneThrowPower = 10f;
             haveStoneCount = 10;
             slot = 1;
             curslot = 1;
-            health = 3;
+            //health = 3;
             isGround = true;
             isSprint = true;
             input = new Vector3(0, 0, 0);
@@ -53,13 +101,14 @@ namespace Player
             //turnSpeed = 600.0f;
             speed = 7f;
             sprint = 0f;
-            jumpPower = 15f;
+            jumpPower = 25f;
             playerRigidBody = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
-            animator.applyRootMotion = false; // ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Ä³¸¯ÅÍÀÇ À§Ä¡¿Í È¸ÀüÀ» º¯°æÇÏÁö ¾Êµµ·Ï ¼³Á¤
+            animator.applyRootMotion = false; // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             rightRotation = Quaternion.Euler(0, 90, 0);
             leftRotation = Quaternion.Euler(0, 270, 0);
             SlotReset();
+            hp = new Health();
         }
 
         #endregion 
@@ -71,44 +120,38 @@ namespace Player
 
         private void Start()
         {
-            healthUIPrefab = GameObject.Find("HealthUI");
-            healthUI = healthUIPrefab.GetComponent<HealthUI>();
         }
 
         public void UpdateControll()
         {
             CheckGround();
-            Move();
             UpdateAnimator();
-            HealthControl();
+            //HealthControl();
             RotationPlayer();
-            SlotCheck();
+            if (isRolling == true)
+                DoRolling();
+            else
+                Move();
             if (gun.gameObject.activeSelf)
                 gun.GunCheck();
         }
 
-        void SlotCheck()
+        public void SlotCheck(ItemList inItem)
         {
-            if(slot != curslot)
+            SlotReset();
+            switch (inItem)
             {
-                SlotReset();
-                curslot = slot;
-                switch (slot)
-                {
-                    case 1:
-                        Debug.Log("1¹ø ½½·Ô!");
-                        break;
-                    case 2:
-                        Debug.Log("2¹ø ½½·Ô! ÃÑ ÀåÂø!");
-                        TakeGun(); break;
-                    case 3:
-                        Debug.Log("3¹ø ½½·Ô!");
-                        StoneSet();
-                        break;
-                    default:
-                        break;
-
-                }
+                case ItemList.None:
+                    Debug.Log("1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
+                    break;
+                case ItemList.Stone:
+                    Debug.Log("3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
+                    StoneSet();
+                    break;
+                case ItemList.Gun:
+                    Debug.Log("2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
+                    TakeGun();
+                    break;
             }
         }
         void RotationPlayer()
@@ -146,14 +189,14 @@ namespace Player
         {
             if (isGround)
             {
-                //Debug.Log("±×³ÉÁ¡ÇÁ");
+                //Debug.Log("ï¿½×³ï¿½ï¿½ï¿½ï¿½ï¿½");
                 isGround = false;
                 isGrounded = false;
     }
             else
             {
                 this.playerRigidBody.velocity = new Vector3(this.playerRigidBody.velocity.x, 0, this.playerRigidBody.velocity.z);
-                //Debug.Log("´õºíÁ¡ÇÁ");
+                //Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 isDoubleJump = false;
                 isGrounded = false;
             }
@@ -162,7 +205,7 @@ namespace Player
         }
         public void AddGravity()
         {
-            playerRigidBody.AddForce(Vector3.down * 5f, ForceMode.Force);
+            playerRigidBody.AddForce(Vector3.down * 4f, ForceMode.Force);
         }
         void CheckGround()
         {
@@ -173,7 +216,7 @@ namespace Player
                 if (doubleJump)
                 {
                     isDoubleJump = true;
-                    //Debug.Log("´õºíÁ¡ÇÁ ÃæÀü");
+                    //Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                 }
             }
             else if (Mathf.Abs(this.playerRigidBody.velocity.y) >= groundCheckSensitivity)
@@ -188,24 +231,6 @@ namespace Player
             }
         }
 
-        void HealthControl()
-        {
-            if (health <= 0)
-                Debug.Log("°ÔÀÓ ¿À¹ö!");
-        }
-        public void TakeDamage(float damage)
-        {
-            health -= damage;
-            healthUI.currentHealth = health;
-            Debug.Log("Ã¼·Â °¨¼Ò!");
-        }
-
-        public void Heal(float heal)
-        {
-            health += heal;
-            healthUI.currentHealth = health;
-            Debug.Log("Ã¼·Â Áõ°¡!");
-        }
         public void SlotReset()
         {
             gun.Reset();
@@ -239,10 +264,23 @@ namespace Player
         public void ThrowStone()
         {
             haveStoneCount--;
-            //Throwcontroller¿¡ ÆÄ¿ö Àü´Þ
+            //Throwcontrollerï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½
             throwStone.Throw(stoneThrowPower, isPlayerSeeLeft);
             if (haveStoneCount == 0)
                 handStone.ResetStone(false);
+        }
+
+        public void DoRolling()
+        {
+            //Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+            rollingTimer += Time.deltaTime;
+            playerRigidBody.MovePosition(playerRigidBody.position + input * Time.deltaTime * 30f);
+            if (rollingTimer > 0.3f || !isGround)
+            {
+                isRollinga = false;
+                isRolling = false;
+                rollingTimer = 0f;
+            }
         }
     }
 }

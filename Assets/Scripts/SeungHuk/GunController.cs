@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    public float sensitivity; // ¸¶¿ì½º ÀÌµ¿¿¡ ´ëÇÑ ¹Î°¨µµ
-    public float minAngle; // ÃÑÀÇ ÃÖ¼Ò È¸Àü °¢µµ (À§·Î)
-    public float maxAngle;  // ÃÑÀÇ ÃÖ´ë È¸Àü °¢µµ (¾Æ·¡·Î)
-    public int maxBullet; //ÃÑ¾Ë °¹¼ö
+    public float sensitivity; // ï¿½ï¿½ï¿½ì½º ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î°ï¿½ï¿½ï¿½
+    public float minAngle; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)
+    public float maxAngle;  // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Æ·ï¿½ï¿½ï¿½)
+    public int maxBullet; //ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     public BulletFireControl Bullet;
     public GameObject gunBody;
@@ -19,28 +19,28 @@ public class GunController : MonoBehaviour
     {
         maxBullet = 6;
         //currentPitch = 0f;
-        maxAngle = -30f;
-        minAngle = -150f;
+        maxAngle = 30f;
+        minAngle = -180f;
         sensitivity = 500f;
 
-        mainCamera = Camera.main; // ¸ÞÀÎ Ä«¸Þ¶ó¸¦ °¡Á®¿É´Ï´Ù.
-        screenHeight = Screen.height; // È­¸é ³ôÀÌ¸¦ ÀúÀåÇÕ´Ï´Ù.
+        mainCamera = Camera.main; // ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
+        screenHeight = Screen.height; // È­ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
     }
     public void GunCheck()
     { 
-        // ¸¶¿ì½ºÀÇ Y À§Ä¡¸¦ °¡Á®¿É´Ï´Ù.
+        // ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ Y ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
         float mouseY = Input.mousePosition.y;
 
-        // ¸¶¿ì½ºÀÇ Y À§Ä¡¸¦ 0¿¡¼­ 1 »çÀÌÀÇ ºñÀ²·Î Á¤±ÔÈ­ÇÕ´Ï´Ù.
+        // ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ Y ï¿½ï¿½Ä¡ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½Õ´Ï´ï¿½.
         normalizedY = mouseY / screenHeight;
 
-        // Á¤±ÔÈ­µÈ °ªÀ» ±â¹ÝÀ¸·Î ÃÑÀÇ ÇÇÄ¡¸¦ Á¶ÀýÇÕ´Ï´Ù.
+        // ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         float targetPitch = Mathf.Lerp(minAngle, maxAngle, normalizedY);
 
-        // ÃÑÀÇ ÇöÀç È¸ÀüÀ» °è»êÇÕ´Ï´Ù.
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, targetPitch);
 
-        // ºÎµå·¯¿î ÀÌµ¿À» À§ÇØ ÃÑÀÇ È¸ÀüÀ» º¸°£ÇÕ´Ï´Ù.
+        // ï¿½Îµå·¯ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, Time.deltaTime * sensitivity);
 
 
