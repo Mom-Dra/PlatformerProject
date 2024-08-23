@@ -36,7 +36,10 @@ public class PatrolAction : ActionNode
 
                 // Animator 설정!
                 // Walking Set Bool True
-                context.animator?.SetBool("IsWalk", true);
+                if (context.animator != null)
+                {
+                    context.animator.SetBool("IsWalk", true);
+                }
             }
         }
         else
@@ -52,7 +55,11 @@ public class PatrolAction : ActionNode
                 currentWayPointIndex = (currentWayPointIndex + 1) % wayPoints.Length;
                 // Animator 설정!
                 // Walking Set Bool False
-                context.animator?.SetBool("IsWalk", false);
+
+                if (context.animator != null)
+                {
+                    context.animator.SetBool("IsWalk", false);
+                }
             }
             else
             {

@@ -8,8 +8,8 @@ using Unity.VisualScripting;
 public class CheckTargetInFOVRange : ActionNode
 {
     public float fovRange;
-    public static int maxColider = 10;
-    public static Collider[] colliders = new Collider[maxColider];
+    public const int maxColider = 10;
+    public Collider[] colliders = new Collider[maxColider];
 
 
     protected override void OnStart()
