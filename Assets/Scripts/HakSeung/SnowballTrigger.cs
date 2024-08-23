@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IcicleTrigger : MonoBehaviour 
+public class SnowballTrigger : MonoBehaviour
 {
     public Rigidbody icicleRd;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") )
+        if (other.gameObject.CompareTag("Player"))
         {
             icicleRd.isKinematic = false;
         }
