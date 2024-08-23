@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using static Player.PlayerControl;
@@ -154,6 +155,31 @@ namespace Player
                     break;
             }
         }
+
+        //void SlotCheck()
+        //{
+        //    if(slot != curslot)
+        //    {
+        //        SlotReset();
+        //        curslot = slot;
+        //        switch (slot)
+        //        {
+        //            case 1:
+        //                Debug.Log("1�� ����!");
+        //                break;
+        //            case 2:
+        //                Debug.Log("2�� ����! �� ����!");
+        //                TakeGun(); break;
+        //            case 3:
+        //                Debug.Log("3�� ����!");
+        //                StoneSet();
+        //                break;
+        //            default:
+        //                break;
+
+        //        }
+        //    }
+        //}
         void RotationPlayer()
         {
             //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

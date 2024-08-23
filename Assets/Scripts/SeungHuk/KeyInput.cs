@@ -89,6 +89,9 @@ namespace Player
                 useUi = false;
                 uiManager.ShowPiUI(false);
             }
+
+            if (Input.GetKey(KeyCode.Tab))  uiManager.ShowPiUI(true);
+            else                            uiManager.ShowPiUI(false);
         }
 
         void JumpInput()
