@@ -113,18 +113,6 @@ public class UIManager : MonoBehaviour
         ReturnGame
     }
 
-    public void ShowPiUI(bool bActive)
-    {
-        piUIPrefab.SetActive(bActive);
-    }
-
-    public enum ItemList
-    {
-        None,
-        Stone,
-        Gun
-    }
-
     [System.Serializable]
     public class PiData
     {
