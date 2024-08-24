@@ -1,19 +1,24 @@
 using System;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using System.Collections;
 using static Player.PlayerControl;
 using static UIManager;
+using Unity.VisualScripting;
 
 namespace Player
 {
     #region Health Class
-    public class Health
+    public class Health : MonoBehaviour
     {
         public float health;
         public GameObject healthUIPrefab;
         public HealthUI healthUI;
         public PlayerControl player;
-        
+        public float invincibilityDuration; // 무적 지속 시간
+        public bool isInvincible; // 무적 상태 플래그
+        public float invincibilityTimer; // 무적 타이머
+
         public Health()
         {
             health = 3f;
@@ -21,7 +26,10 @@ namespace Player
             healthUI = healthUIPrefab.GetComponent<HealthUI>();
             healthUI.currentHealth = health;
             player = GameObject.Find("Guy").GetComponent<PlayerControl>();
-            Debug.Log("�� ���� ��");
+            isInvincible = false;
+            invincibilityDuration = 1.0f;
+            invincibilityTimer = 1.0f;
+            Debug.Log("Health Setting Ok");
         }
 
         public void Heal(float heal)
@@ -30,30 +38,39 @@ namespace Player
             {
                 health += heal;
                 healthUI.currentHealth = health;
-                Debug.Log("ü�� ����!");
+                Debug.Log("Already Healty!");
             }
             else
             {
-                Debug.Log("�̹� Ǯ�Ǿ�!");
+                Debug.Log("Healing!");
             }
         }
         public void TakeDamage(float damage)
         {
+            if (isInvincible)
+                return;
+
+            // 무적 상태 설정
+            isInvincible = true;
+            invincibilityTimer = invincibilityDuration;
+            Debug.Log("Player is now invincible!");
+
             health -= damage;
             healthUI.currentHealth = health;
-            Debug.Log("ü�� ����!");
+            Debug.Log("Player Took Damage!");
+
             if (health <= 0)
             {
                 player.isDead = true;
-                Debug.Log("���� ����!");
+                Debug.Log("Good bye, World!");
             }
         }
     }
+    #endregion
     public class PlayerControl : PlayerAnimator
     {
 
-        #endregion
-        #region ���� �� �ʱ�ȭ �Լ� 
+        #region InitilizeSetting 
 
         public bool isGround;                   //���� �ִ���?
         public bool isSprint;                   //�޸��� ������?
@@ -82,7 +99,8 @@ namespace Player
         public ThrowStoneController throwStone;
         public float stoneThrowPower;
         public bool isRolling;
-        float rollingTimer;
+        private RaycastHit hit;
+        public float rollingTimer;
         protected virtual void InitilizeController() //�ʱ� �� �ε�
         {
             rollingTimer = 0f;
@@ -110,31 +128,32 @@ namespace Player
             leftRotation = Quaternion.Euler(0, 270, 0);
             SlotReset();
             hp = new Health();
+            Physics.gravity = new Vector3(0, -9.81f * 5f, 0);
         }
 
         #endregion 
 
-        private void Awake()
-        {
-            InitilizeController();
-        }
-
         private void Start()
         {
+            InitilizeController();
+            Debug.Log("들어옴");
         }
 
-        public void UpdateControll()
+        public void FixedUpdateControll()
         {
+            Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f);
             CheckGround();
             UpdateAnimator();
             //HealthControl();
             RotationPlayer();
-            if (isRolling == true)
+            if(isRolling)
+            {
                 DoRolling();
-            else
-                Move();
+            }
+            Move();
             if (gun.gameObject.activeSelf)
                 gun.GunCheck();
+            InvincibleControl();
         }
 
         public void SlotCheck(ItemList inItem)
@@ -143,48 +162,22 @@ namespace Player
             switch (inItem)
             {
                 case ItemList.None:
-                    Debug.Log("1�� ����!");
+                    Debug.Log("No.1 Slot Set!");
                     break;
                 case ItemList.Stone:
-                    Debug.Log("3�� ����!");
+                    Debug.Log("No.3 Slot Set!");
                     StoneSet();
                     break;
                 case ItemList.Gun:
-                    Debug.Log("2�� ����! �� ����!");
+                    Debug.Log("No.2 Slot Set! You have a gun Now!");
                     TakeGun();
                     break;
             }
         }
 
-        //void SlotCheck()
-        //{
-        //    if(slot != curslot)
-        //    {
-        //        SlotReset();
-        //        curslot = slot;
-        //        switch (slot)
-        //        {
-        //            case 1:
-        //                Debug.Log("1�� ����!");
-        //                break;
-        //            case 2:
-        //                Debug.Log("2�� ����! �� ����!");
-        //                TakeGun(); break;
-        //            case 3:
-        //                Debug.Log("3�� ����!");
-        //                StoneSet();
-        //                break;
-        //            default:
-        //                break;
-
-        //        }
-        //    }
-        //}
         void RotationPlayer()
         {
-            //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float mouseX = Input.mousePosition.x - 950;
-            //Debug.Log(mouseX);
             if (transform.position.x - mouseX >= 0)
             {
                 transform.rotation = leftRotation;
@@ -198,41 +191,39 @@ namespace Player
         }
         private void Move()
         {
-            //if (input.x > 0 ) endturn = Quaternion.Euler(0, 90, 0);
-            //if (input.x < 0) endturn = Quaternion.Euler(0, 270, 0);
-            //if (input.z > 0) endturn = Quaternion.Euler(0, 0, 0);
-            //if (input.z < 0) endturn = Quaternion.Euler(0, 180, 0);
 
             if (Vector3.zero == input) { isRunning = false; }
             else { isRunning = true; }
 
-            //curRotation = transform.rotation;
-            //transform.rotation = Quaternion.RotateTowards(curRotation, endturn, turnSpeed * Time.deltaTime);
-            playerRigidBody.MovePosition(playerRigidBody.position + input * Time.fixedDeltaTime * (speed+sprint));
+            Vector3 direction = input * Time.fixedDeltaTime * (speed + sprint);
+
+            direction = Vector3.ProjectOnPlane(direction, hit.normal);
+
+            playerRigidBody.MovePosition(playerRigidBody.position + /*input * Time.fixedDeltaTime * (speed+sprint)*/direction);
         }
 
         public void Jump()
         {
             if (isGround)
             {
-                //Debug.Log("�׳�����");
+                //Debug.Log("Normal Jump");
                 isGround = false;
                 isGrounded = false;
     }
             else
             {
                 this.playerRigidBody.velocity = new Vector3(this.playerRigidBody.velocity.x, 0, this.playerRigidBody.velocity.z);
-                //Debug.Log("��������");
+                //Debug.Log("Double Jump");
                 isDoubleJump = false;
                 isGrounded = false;
             }
             groundCheckCount+=2;
             playerRigidBody.AddForce(Vector3.up * jumpPower + (input * Time.fixedDeltaTime * (speed + sprint)), ForceMode.Impulse);
         }
-        public void AddGravity()
-        {
-            playerRigidBody.AddForce(Vector3.down * 4f, ForceMode.Force);
-        }
+        //public void AddGravity()
+        //{
+            //playerRigidBody.AddForce(Vector3.down * 4f, ForceMode.Force);
+        //}
         void CheckGround()
         {
             if (Mathf.Abs(this.playerRigidBody.velocity.y) <= groundCheckSensitivity && groundCheckCount == 0)
@@ -242,7 +233,7 @@ namespace Player
                 if (doubleJump)
                 {
                     isDoubleJump = true;
-                    //Debug.Log("�������� ����");
+                    //Debug.Log("You Can Use Double Jump Now");
                 }
             }
             else if (Mathf.Abs(this.playerRigidBody.velocity.y) >= groundCheckSensitivity)
@@ -290,7 +281,6 @@ namespace Player
         public void ThrowStone()
         {
             haveStoneCount--;
-            //Throwcontroller�� �Ŀ� ����
             throwStone.Throw(stoneThrowPower, isPlayerSeeLeft);
             if (haveStoneCount == 0)
                 handStone.ResetStone(false);
@@ -298,14 +288,31 @@ namespace Player
 
         public void DoRolling()
         {
-            //Debug.Log("������");
+            Debug.Log("Rolling!");
             rollingTimer += Time.deltaTime;
-            playerRigidBody.MovePosition(playerRigidBody.position + input * Time.deltaTime * 30f);
-            if (rollingTimer > 0.3f || !isGround)
+            Vector3 direction = input * Time.deltaTime * 20f;
+
+            direction = Vector3.ProjectOnPlane(direction, hit.normal);
+
+            playerRigidBody.MovePosition(playerRigidBody.position + direction);
+            if (rollingTimer > 0.4f || !isGround)
             {
                 isRollinga = false;
                 isRolling = false;
                 rollingTimer = 0f;
+            }
+        }
+
+        private void InvincibleControl()
+        {
+            if(hp.isInvincible)
+            {
+                hp.invincibilityTimer -= Time.deltaTime;
+                if (hp.invincibilityTimer <= 0)
+                {
+                    hp.isInvincible = false;
+                    Debug.Log("Player is no longer invincible.");
+                }
             }
         }
     }

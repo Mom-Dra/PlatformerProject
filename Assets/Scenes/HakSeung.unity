@@ -1101,7 +1101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2884889561d8df4684f5e6cd8c0affe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -45
+      value: -43.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2884889561d8df4684f5e6cd8c0affe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1815,6 +1815,8 @@ MonoBehaviour:
   isGrounded: 0
   isRunning: 0
   IsEquipedGun: 0
+  isRollinga: 0
+  isDead: 0
   isGround: 0
   isSprint: 0
   speed: 0
@@ -1825,7 +1827,7 @@ MonoBehaviour:
   groundCheckCount: 0
   doubleJump: 0
   isDoubleJump: 0
-  health: 0
+  hp: {fileID: 0}
   invincibilityTime: 0
   rightRotation: {x: 0, y: 0, z: 0, w: 0}
   leftRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -1837,6 +1839,7 @@ MonoBehaviour:
   haveStoneCount: 0
   throwStone: {fileID: 1587973273}
   stoneThrowPower: 0
+  isRolling: 0
 --- !u!114 &1798777480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1855,9 +1858,11 @@ MonoBehaviour:
   strafeInput: 9
   sprintInput: 304
   reloadGun: 114
+  rolling: 99
   slot1: 49
   slot2: 50
   slot3: 51
+  useUi: 0
   bullet: {fileID: 2116029950}
   cam: {fileID: 0}
   gun: {fileID: 293143960}

@@ -40,7 +40,7 @@ namespace Player
         #endregion
 
 
-        protected virtual void InitilizeController() //�ʱ� �� �ε�
+        protected virtual void InitilizeController() 
         {
             cc = GetComponent<PlayerControl>();
             uiManager = gameObject.GetComponentInChildren<UIManager>();
@@ -54,14 +54,14 @@ namespace Player
         }
         private void FixedUpdate()
         {
-            cc.UpdateControll();
+            cc.FixedUpdateControll();
         }
-        void Update() // ���� ������Ʈ
+        void Update() 
         {
             InputHandle();
         }
 
-        void InputHandle() //�ٲ�� �κ�
+        void InputHandle() 
         {
             MoveInput();
             SprintInput();
@@ -73,7 +73,7 @@ namespace Player
         }
         void SlotChange()
         {
-            if (Input.GetMouseButtonUp(0) && useUi)//��Ŭ��
+            if (Input.GetMouseButtonUp(0) && useUi)
             {
                 piUI.SelectItem();
                 cc.SlotCheck(equipUI.currentItem);
@@ -100,10 +100,10 @@ namespace Player
             {
                 cc.Jump();
             }
-            else
-            {
-                cc.AddGravity();
-            }
+            //else
+            //{
+            //    cc.AddGravity();
+            //}
         }
         public virtual void MoveInput()
         {
@@ -121,28 +121,26 @@ namespace Player
             {
                 cc.sprint = 3f;
                 cc.isSprinting = true;
-                //Debug.Log("�޸��� ��");
+                //Debug.Log("Sprint Start");
             }
             else if (Input.GetKeyUp(sprintInput) || cc.isSprint == false)
             { 
                 cc.sprint = 0f;
                 cc.isSprinting = false;
-                //Debug.Log("�޸��� ����");
+                //Debug.Log("Sprint End");
             }
         }
         void FireInput()
         {
-            // �Ѿ� �߻�
             if (Input.GetButtonDown("Fire1") && gun.gameObject.activeSelf)
             {
-                Debug.Log("�߻�");
+                Debug.Log("Try Shot");
                 bullet.FireBullet();
             }
 
-            // �� ������
             if (Input.GetButtonDown("Fire1") && cc.handStone.gameObject.activeSelf)
             {
-                Debug.Log("�� ������ �õ�");
+                Debug.Log("Throw Stone");
 
                 cc.ThrowStone();
             }
@@ -151,7 +149,7 @@ namespace Player
         {
             if(Input.GetKeyDown(reloadGun) && gun.gameObject.activeSelf)
             {
-                Debug.Log("����");
+                Debug.Log("Bullets Reloading....");
                 gun.maxBullet = 6;
             }
         }
