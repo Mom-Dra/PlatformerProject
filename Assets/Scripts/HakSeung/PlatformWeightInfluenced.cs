@@ -7,12 +7,13 @@ using UnityEngine.UIElements;
 
 public class PlatformWeightInfluenced : Platform
 {
+    WaitUntil ridingTimeOver;
+    WaitForFixedUpdate WaitForFixedUD;
+    
     [Header("WeightInflueneced")]
     const float maxFallYpos = 5.0f;
     const float fallingSpeed = 3.0f;
     const float minRidingTime = 0.5f;
-
-    WaitUntil ridingTimeOver;
 
     [SerializeField]
     float ridingTime;
@@ -20,19 +21,20 @@ public class PlatformWeightInfluenced : Platform
     bool isGetOnPlatform = false;
     [SerializeField]
     bool isRunToGetOnEvent = false;
+    [SerializeField]
+    Vector3 maxFallPos;
 
     protected override IEnumerator GetOnEvent()
     {
         bool isReachedPos = false;
         isRunToGetOnEvent = true;
-        //Vector3 vectorpos = new Vector3(transform.position.x, transform.position.y - maxFallYpos, transform.position.z);
         while (isGetOnPlatform && !isReachedPos )
         {
-            Debug.Log("떨어진다");
-            yield return null;
+            Debug.Log("Down");
+            yield return WaitForFixedUD;
             if (transform.position.y <= InitPlatformPos.y - maxFallYpos) { isReachedPos = true;}
-            transform.Translate(Vector3.down * Time.deltaTime * fallingSpeed);
-            //transform.position = Vector3.MoveTowards(transform.position, vectorpos, Time.deltaTime);
+            //transform.Translate(Vector3.down * Time.deltaTime * fallingSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, maxFallPos, Time.deltaTime * fallingSpeed);
         }
         
         isReachedPos = false;
@@ -41,12 +43,12 @@ public class PlatformWeightInfluenced : Platform
 
         while (!isGetOnPlatform && !isReachedPos )
         {
-            Debug.Log("올라간다");
+            Debug.Log("Up");
 
-            yield return null;
+            yield return WaitForFixedUD;
             if (transform.position.y >= InitPlatformPos.y) { isReachedPos = true;}
-            transform.Translate(Vector3.up * Time.deltaTime * fallingSpeed);
-            //transform.position = Vector3.MoveTowards(transform.position, InitPlatformPos, Time.deltaTime);
+            //transform.Translate(Vector3.up * Time.deltaTime * fallingSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, InitPlatformPos, Time.deltaTime * fallingSpeed);
         }   
 
         isRunToGetOnEvent = false;
@@ -64,14 +66,16 @@ public class PlatformWeightInfluenced : Platform
     protected override void Awake()
     {
         base.Awake();
+        maxFallPos = new Vector3(InitPlatformPos.x, InitPlatformPos.y - maxFallYpos, InitPlatformPos.z);
         ridingTimeOver = new WaitUntil(() => ridingTime > minRidingTime);
+        WaitForFixedUD = new WaitForFixedUpdate();
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            
+            Debug.Log("rideIn");       
             isGetOnPlatform = true;
             if (!isRunToGetOnEvent)
             {
@@ -84,6 +88,8 @@ public class PlatformWeightInfluenced : Platform
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Debug.Log("rideOut");
+
             isGetOnPlatform = false;
             StartCoroutine(RidingTimer());
         }

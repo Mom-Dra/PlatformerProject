@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlatformMoving : Platform
 {
     WaitForSeconds WaitForTrable;
-
+    WaitForFixedUpdate WaitForFixedUD;
     [Header("Moving")]
     public Vector3 trablePos; //이동 위치
 
@@ -20,9 +20,9 @@ public class PlatformMoving : Platform
 
         while (true)
         {
-            yield return null;
+            yield return WaitForFixedUD;
 
-            if(increase)
+            if (increase)
             {
                 ratio += trableSpeed * Time.deltaTime;
                 if (ratio >= 1f) { increase = false; yield return WaitForTrable; } 
@@ -55,6 +55,7 @@ public class PlatformMoving : Platform
     {
         base.Awake();
         WaitForTrable = new WaitForSeconds(trableWatingTime);
+        WaitForFixedUD = new WaitForFixedUpdate(); 
     }
 
     private void Start()

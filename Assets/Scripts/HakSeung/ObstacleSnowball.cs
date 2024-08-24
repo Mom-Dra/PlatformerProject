@@ -7,56 +7,55 @@ public class ObstacleSnowball : DynamicObstacle
 {
     public Vector3 moveDir;
     Camera mainCamera;
-    WaitForSeconds waitDeactivation;
-
     Vector3 screenPoint;
 
-
-    float deactiveTime = 5.0f;
+    [SerializeField]
+    float deactiveTime =5.0f;
+    [SerializeField]
+    float activetimer = 0;
+    [SerializeField]
     bool onScreen = false;
+    [SerializeField]
     bool foundPlayer = false;
 
-    public bool CheckObstacleIsInCamera(GameObject target)
+    public IEnumerator CheckObstacleIsInCamera()
     {
-        screenPoint = mainCamera.WorldToViewportPoint(target.transform.position);
-        onScreen = screenPoint.y > 0 && screenPoint.x > 0 && 
-            screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
-        
-        return onScreen;
-    }
-
-    IEnumerator CheckSnowballOnPlayerScreen()
-    {
-        while (true)
+        while (activetimer >= 0)
         {
-            Debug.Log("ÀÛµ¿ CheckSnowballOnScreen" );
-            yield return waitDeactivation;
-            if (!onScreen) { obstaclePool.ObstacleDeactivation(this.gameObject); break; }
+            screenPoint = mainCamera.WorldToViewportPoint(this.transform.position);
+            onScreen = screenPoint.y > 0 && screenPoint.x > 0 &&
+                screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+            if(onScreen) foundPlayer = true;
+            yield return null;
         }
     }
 
+    public IEnumerator CheckSnowballOnPlayerScreen()
+    {
+        activetimer = deactiveTime;
+        while (true)
+        {
+            yield return null;
+            while (!onScreen && foundPlayer)
+            {
+                yield return null;
+                activetimer -= Time.deltaTime;
+                if (activetimer < 0)
+                {
+                    Debug.Log("ActiveFalseSnowball");
+                    obstaclePool.ObstacleDeactivation(this.gameObject);
+                    yield break;
+                }
+            }
+            activetimer = deactiveTime;
+        }
+    }
 
     private void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        waitDeactivation = new WaitForSeconds(deactiveTime);
-        //SetSpawnTime(spawnTime);
     }
 
-    private void Update()
-    {
-        //rb.AddForce(Vector3.down * 1000 * Time.deltaTime);
-        
-
-        if (CheckObstacleIsInCamera(this.gameObject)) foundPlayer = true;
-
-        if(foundPlayer == true && !onScreen )
-        {
-            StartCoroutine(CheckSnowballOnPlayerScreen());
-            foundPlayer = false;
-        }
-
-    }
 
 
 
