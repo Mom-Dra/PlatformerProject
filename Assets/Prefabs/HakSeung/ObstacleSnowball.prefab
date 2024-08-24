@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: eff9bd1fc3971e7499e63b512110dfef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,6 +147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: 0, y: 0, z: 0}
+  deactiveTime: 5
+  activetimer: 0
+  onScreen: 0
+  foundPlayer: 0
 --- !u!1 &8751161307956399880
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,4 +218,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50d44a75595d58448df98b2db8f5498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icicleRd: {fileID: 5795870289718675634}
+  snowballRb: {fileID: 5795870289718675634}
+  snowball: {fileID: 1412349168974936164}

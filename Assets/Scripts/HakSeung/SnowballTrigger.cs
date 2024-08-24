@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class SnowballTrigger : MonoBehaviour
 {
-    public Rigidbody icicleRd;
-
+    public Rigidbody snowballRb;
+    public ObstacleSnowball snowball;
+    private bool isOnTrigger = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !isOnTrigger)
         {
-            icicleRd.isKinematic = false;
+            isOnTrigger = true; 
+            snowballRb.isKinematic = false;
+            StartCoroutine(snowball.CheckObstacleIsInCamera());
+            StartCoroutine(snowball.CheckSnowballOnPlayerScreen());
         }
     }
 
     private void Awake()
     {
-        icicleRd.isKinematic = true;
+        snowballRb.isKinematic = true;
     }
 }
