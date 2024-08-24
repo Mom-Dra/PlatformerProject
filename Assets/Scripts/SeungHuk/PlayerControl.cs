@@ -72,24 +72,25 @@ namespace Player
 
         #region InitilizeSetting 
 
-        public bool isGround;                   //���� �ִ���?
-        public bool isSprint;                   //�޸��� ������?
-        public float speed;                     //�⺻ �̵� �ӵ�
-        public float jumpPower;                 //�÷��̾� ���� ��
-        private Rigidbody playerRigidBody;      //�÷��̾� RigidBody ����
-        public Vector3 input;                   //Ű���� �Է� WASD
-        //private Quaternion curRotation;         //���� ���� ����
-        //float turnSpeed;                        //���� ������ �ӵ�
-        //private Quaternion endturn;             //�÷��̾ ������ ������ ���ƾ��ϴ��� (���� 270��, ������ 90�� ��)
-        public float sprint;                    //�޸���� �߰� �ӵ�
-        public float groundCheckSensitivity;    //�� ���� �ΰ���
-        public float groundCheckCount;          //���� ����� ��� �ִ��� (������ ��Ÿ�� ���߿��� 1�������߰��� �����Ͽ� ���� ���� ���� ��)
-        public bool doubleJump;                 //�������� �ɷ� ���� ����
-        public bool isDoubleJump;               //���������ߴ��� ����
-        public Health hp;                      //ü��
-        public int invincibilityTime;           //���� �ð�
-        public Quaternion rightRotation;           //������ ���� ����
-        public Quaternion leftRotation;            //���� ���� ����
+        bool needTest;
+        public bool isGround;                  
+        public bool isSprint;                  
+        public float speed;                   
+        public float jumpPower;                
+        private Rigidbody playerRigidBody;     
+        public Vector3 input;                 
+        //private Quaternion curRotation;       
+        //float turnSpeed;                      
+        //private Quaternion endturn;            
+        public float sprint;                   
+        public float groundCheckSensitivity; 
+        public float groundCheckCount;        
+        public bool doubleJump;         
+        public bool isDoubleJump;            
+        public Health hp; 
+        public int invincibilityTime; 
+        public Quaternion rightRotation;
+        public Quaternion leftRotation;
         public int slot;
         public int curslot;
         public GunController gun;
@@ -123,7 +124,7 @@ namespace Player
             jumpPower = 25f;
             playerRigidBody = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
-            animator.applyRootMotion = false; // �ִϸ��̼��� ĳ������ ��ġ�� ȸ���� �������� �ʵ��� ����
+            animator.applyRootMotion = false;
             rightRotation = Quaternion.Euler(0, 90, 0);
             leftRotation = Quaternion.Euler(0, 270, 0);
             SlotReset();
@@ -206,7 +207,7 @@ namespace Player
         {
             if (isGround)
             {
-                //Debug.Log("Normal Jump");
+                //Debug.Log("Normal Jump!");
                 isGround = false;
                 isGrounded = false;
     }
