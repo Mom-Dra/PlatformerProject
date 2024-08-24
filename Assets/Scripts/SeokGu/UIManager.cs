@@ -122,7 +122,7 @@ public class UIManager : MonoBehaviour
     }
 
     [System.Serializable]
-    public class ButtonData
+    public class MenuButtonData
     {
         public string text;
         public OrderList order;

@@ -22,7 +22,7 @@ public class MenuButtonUI : MonoBehaviour
         thisParent = transform.parent;
     }
 
-    public void SetData(ButtonData buttonData)
+    public void SetData(MenuButtonData buttonData)
     {
         thisText.text = buttonData.text;
         thisOrder = buttonData.order;

@@ -11,7 +11,7 @@ public class MenuUI : MonoBehaviour
 
     public int buttonCount = 3;
     public GameObject baseButton;
-    public ButtonData[] menuData;
+    public MenuButtonData[] menuData;
 
     private void Awake()
     {

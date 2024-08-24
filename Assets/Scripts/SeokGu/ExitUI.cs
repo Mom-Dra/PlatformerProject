@@ -15,8 +15,8 @@ public class ExitUI : MonoBehaviour
 
     public int buttonCount = 3;
     public GameObject baseButton;
-    public ButtonData[] clearData;
-    public ButtonData[] failedData;
+    public MenuButtonData[] clearData;
+    public MenuButtonData[] failedData;
 
     private void Awake()
     {

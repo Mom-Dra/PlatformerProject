@@ -1,42 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using UnityEngine.UI;
 using static UIManager;
 
 public class StageUI : MonoBehaviour
 {
-    private int pieceNum = 3;
-    private List<StagePiece> stagePieces = new List<StagePiece>();
+    private int currentPiece = 0;
+    private StagePiece stagePiece;
+    private GameObject nextButton;
+    private GameObject prevButton;
 
-    public GameObject stagePiecePrefab;
+    public StageData[] stageDatas;
+    public ChangeButtonData nextButtonData;
+    public ChangeButtonData prevButtonData;
+    private void Awake()
+    {
+        
+    }
 
-    void Start()
+    private void Start()
     {
         Init();
     }
 
     void Init()
     {
-        for (int i = 0; i < pieceNum; i++)
+        stagePiece = GetComponentInChildren<StagePiece>();
+        nextButton = GameObject.Find("NextBtn");
+        prevButton = GameObject.Find("PrevBtn");
+        
+        stagePiece.SetData(stageDatas[currentPiece]);
+        ChangeButtonUI[] button = GetComponents<ChangeButtonUI>();
+        
+        for(int i =0;i< button.Length;i++)
         {
-            stagePiecePrefab = Instantiate(stagePiecePrefab, transform);
-            Vector3 pos = new Vector3(1500 * (i - 1), 0, 0);
-            stagePiecePrefab.transform.SetLocalPositionAndRotation(pos, Quaternion.identity);
-
-            StagePiece piece = stagePiecePrefab.GetComponent<StagePiece>();
-            stagePieces.Add(piece);
-            
-
-
-            //if (i < piDatas.Length)
-            //    piece.SetData(piDatas[i]);
-            //else
-            //    piece.SetData(defaultData);
+            button[i].SetData(nextButtonData);
+            button[i] = prevButton.GetComponent<ChangeButtonUI>();
+            button[i].SetData(prevButtonData);
         }
     }
 
     void Update()
     {
         
+    }
+
+    [System.Serializable]
+    public class StageData
+    {
+        public Sprite stageImageSprite;
+        public Color imageColor = new Color(1, 1, 1, 1);
+        public string stageName;
+    }
+
+    [System.Serializable]
+    public class ChangeButtonData
+    {
+        public Sprite imageSprite;
+        public Color imageColor = new Color(1, 1, 1, 1);
+        public ButtonDirection direction;
+    }
+
+    public enum ButtonDirection
+    {
+        NEXT,
+        PREV
     }
 }
