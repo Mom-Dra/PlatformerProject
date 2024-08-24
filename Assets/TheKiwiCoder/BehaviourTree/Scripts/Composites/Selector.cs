@@ -10,7 +10,6 @@ namespace TheKiwiCoder
 
         protected override void OnStart()
         {
-            Debug.Log("Selector: OnStart");
             current = 0;
         }
 

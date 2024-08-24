@@ -7,7 +7,7 @@ public class FollowingTargetAction : ActionNode
 {
     public float detectDistance;
     public float attackDistance;
-    public float distance;
+    public float speed;
 
     protected override void OnStart()
     {
@@ -29,6 +29,7 @@ public class FollowingTargetAction : ActionNode
         }
         else if(contextToTargetDistance > detectDistance)
         {
+            Debug.Log("탐지 길이보다 멀다! 실패!!!!");
             return State.Failure;
         }
 
@@ -38,14 +39,20 @@ public class FollowingTargetAction : ActionNode
         direction.y = 0f;
         direction = direction.normalized;
         direction.y = Mathf.Sin(Mathf.Deg2Rad * 60f);
-        attackPos = direction.normalized * attackDistance;
+        attackPos = direction.normalized * attackDistance + blackboard.targetTransform.position;
 
         // 공격 위치까지 context를 움직인다
         // 공격 위치까지 충분히 가깝다면 Success를 반환한다
+        context.transform.position = Vector3.MoveTowards(context.transform.position, attackPos, speed * Time.deltaTime);
+        context.transform.LookAt(attackPos);
 
-        
+        if(Vector3.Distance(context.transform.position, attackPos) < float.Epsilon)
+        {
+            Debug.Log("이동 중이다!! 성공!!!");
+            return State.Success;
+        }
 
-
-        return State.Success;
+        Debug.Log("이동 중이다!! Running!!!");
+        return State.Running;
     }
 }

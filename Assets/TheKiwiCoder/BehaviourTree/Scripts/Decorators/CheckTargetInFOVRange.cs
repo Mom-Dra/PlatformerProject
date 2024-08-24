@@ -23,16 +23,10 @@ public class CheckTargetInFOVRange : ActionNode
 
     protected override State OnUpdate()
     {
-        Debug.Log("OnUpdate, Gizmo");
-
         int detectedCount = Physics.OverlapSphereNonAlloc(context.transform.position, fovRange, colliders, blackboard.targetLayerMask);
-
-        Debug.Log(detectedCount);
 
         if(detectedCount > 0)
         {
-            Debug.Log($"감지된 거{colliders[0].gameObject.name}");
-
             blackboard.targetTransform = colliders[0].transform;
             blackboard.detectedTargetPos = colliders[0].transform.position;
 
