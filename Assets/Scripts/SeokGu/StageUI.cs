@@ -7,20 +7,16 @@ using static UIManager;
 
 public class StageUI : MonoBehaviour
 {
-    private int currentPiece = 0;
     private StagePiece stagePiece;
-    private GameObject nextButton;
-    private GameObject prevButton;
 
     public StageData[] stageDatas;
     public ChangeButtonData nextButtonData;
     public ChangeButtonData prevButtonData;
-    private void Awake()
-    {
-        
-    }
 
-    private void Start()
+    [HideInInspector]
+    public int currentPiece = 0;
+    
+    private void Awake()
     {
         Init();
     }
@@ -28,23 +24,18 @@ public class StageUI : MonoBehaviour
     void Init()
     {
         stagePiece = GetComponentInChildren<StagePiece>();
-        nextButton = GameObject.Find("NextBtn");
-        prevButton = GameObject.Find("PrevBtn");
         
         stagePiece.SetData(stageDatas[currentPiece]);
-        ChangeButtonUI[] button = GetComponents<ChangeButtonUI>();
-        
-        for(int i =0;i< button.Length;i++)
-        {
-            button[i].SetData(nextButtonData);
-            button[i] = prevButton.GetComponent<ChangeButtonUI>();
-            button[i].SetData(prevButtonData);
-        }
+
+        ChangeButtonUI[] button = GetComponentsInChildren<ChangeButtonUI>();
+
+        button[0].SetData(nextButtonData);
+        button[1].SetData(prevButtonData);
     }
 
-    void Update()
+    public void UpdateStage()
     {
-        
+        stagePiece.SetData(stageDatas[currentPiece]);
     }
 
     [System.Serializable]
@@ -53,6 +44,7 @@ public class StageUI : MonoBehaviour
         public Sprite stageImageSprite;
         public Color imageColor = new Color(1, 1, 1, 1);
         public string stageName;
+        public StageList stage;
     }
 
     [System.Serializable]
@@ -61,6 +53,13 @@ public class StageUI : MonoBehaviour
         public Sprite imageSprite;
         public Color imageColor = new Color(1, 1, 1, 1);
         public ButtonDirection direction;
+    }
+
+    public enum StageList
+    {
+        Stage1,
+        Stage2,
+        Stage3
     }
 
     public enum ButtonDirection

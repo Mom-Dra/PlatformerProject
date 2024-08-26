@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using UnityEditor.Experimental.GraphView;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using static StageUI;
@@ -9,16 +11,17 @@ public class ChangeButtonUI : MonoBehaviour
 {
     private Button thisButton;
     private Image thisImage;
+    private StageUI stageUI;
     private ButtonDirection buttonDir;
 
-    void Start()
+    private void Awake()
     {
-        
         Init();
     }
 
     void Init()
     {
+        stageUI = GetComponentInParent<StageUI>();
         thisButton = GetComponent<Button>();
         thisImage = GetComponent<Image>();
 
@@ -31,7 +34,26 @@ public class ChangeButtonUI : MonoBehaviour
 
     void OnClicked()
     {
-        Debug.Log(buttonDir);
+        switch(buttonDir)
+        {
+            case ButtonDirection.NEXT:
+                {
+                    if (stageUI.currentPiece > stageUI.stageDatas.Length - 2) break;
+
+                    stageUI.currentPiece++;
+                    stageUI.UpdateStage();
+                    break;
+                }
+            case ButtonDirection.PREV:
+                {
+                    if (stageUI.currentPiece < 1) break;
+
+                    stageUI.currentPiece--;
+                    stageUI.UpdateStage();
+                    break;
+                }
+            default: break;
+        }
     }
 
     public void SetData(ChangeButtonData inData)

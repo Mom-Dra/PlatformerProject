@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     private PiUI piUI;
     private MenuUI menuUI;
     private ExitUI exitUI;
-    private bool bDebug = true;
+    private bool bDebug = false;
 
     void Start()
     {

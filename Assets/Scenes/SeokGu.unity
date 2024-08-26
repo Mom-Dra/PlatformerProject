@@ -190,23 +190,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &476889098 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2998968265068021732, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
-  m_PrefabInstance: {fileID: 4263522607230255446}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &476889103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 476889098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe904793d9f9de4f9e9649d84fc37e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +535,7 @@ PrefabInstance:
       objectReference: {fileID: 3023258903264035794, guid: 8132b8cf9c0caa74a9bfcfa040eb1175, type: 3}
     - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
       propertyPath: stageDatas.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
       propertyPath: prevButtonData.direction
@@ -599,8 +582,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[1].stage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[2].stage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
       propertyPath: stageDatas.Array.data[0].stageName
-      value: Stage Test
+      value: Stage 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[1].stageName
+      value: Stage 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[2].stageName
+      value: Stage 3
       objectReference: {fileID: 0}
     - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
       propertyPath: stageDatas.Array.data[0].imageColor.a
@@ -619,9 +618,49 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[1].imageColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[1].imageColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[1].imageColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[1].imageColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[2].imageColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[2].imageColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[2].imageColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[2].imageColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
       propertyPath: stageDatas.Array.data[0].stageImageSprite
       value: 
       objectReference: {fileID: 21300000, guid: fe5f259a11272b048beb3070540f0229, type: 3}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[1].stageImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 93b5b28db06f8d2439c780ec3aeb28d2, type: 3}
+    - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
+      propertyPath: stageDatas.Array.data[2].stageImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 68fba0368e8dc8842ad10756647eee14, type: 3}
     - target: {fileID: 3512088657877651294, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
       propertyPath: m_SizeDelta.x
       value: 800
@@ -741,10 +780,7 @@ PrefabInstance:
     - {fileID: 7865325035124297789, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
     - {fileID: 5093809106679047009, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2998968265068021732, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 476889103}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
