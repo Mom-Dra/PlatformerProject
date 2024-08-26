@@ -29,6 +29,11 @@ public class PlatformCollapsing : Platform
             StartCoroutine(GetOnEvent());
     }
 
+    protected override void OnCollisionStay(Collision collision)
+    {
+        
+    }
+
 
     protected override void Awake()
     {
