@@ -2022,6 +2022,8 @@ MonoBehaviour:
   IsEquipedGun: 0
   isRollinga: 0
   isDead: 0
+  moveMod: 0
+  jumpKingPower: 0
   isGround: 0
   isSprint: 0
   speed: 0
@@ -2032,7 +2034,6 @@ MonoBehaviour:
   groundCheckCount: 0
   doubleJump: 0
   isDoubleJump: 0
-  hp: {fileID: 0}
   invincibilityTime: 0
   rightRotation: {x: 0, y: 0, z: 0, w: 0}
   leftRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -2045,6 +2046,7 @@ MonoBehaviour:
   throwStone: {fileID: 8891199}
   stoneThrowPower: 0
   isRolling: 0
+  rollingTimer: 0
 --- !u!114 &1698989562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2064,6 +2066,7 @@ MonoBehaviour:
   sprintInput: 304
   reloadGun: 114
   rolling: 99
+  JumpKing: 112
   slot1: 49
   slot2: 50
   slot3: 51
@@ -2126,7 +2129,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!4 &1698989567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a2884889561d8df4684f5e6cd8c0affe, type: 3}

@@ -9,7 +9,7 @@ using Unity.VisualScripting;
 namespace Player
 {
     #region Health Class
-    public class Health : MonoBehaviour
+    public class Health
     {
         public float health;
         public GameObject healthUIPrefab;
@@ -72,7 +72,8 @@ namespace Player
 
         #region InitilizeSetting 
 
-        bool needTest;
+        public int moveMod;
+        public float jumpKingPower;
         public bool isGround;                  
         public bool isSprint;                  
         public float speed;                   
@@ -102,8 +103,10 @@ namespace Player
         public bool isRolling;
         private RaycastHit hit;
         public float rollingTimer;
-        protected virtual void InitilizeController() //�ʱ� �� �ε�
+        protected virtual void InitilizeController() 
         {
+            jumpKingPower = 0f;
+            moveMod = 0;
             rollingTimer = 0f;
             isRolling = false;
             stoneThrowPower = 10f;
@@ -151,10 +154,33 @@ namespace Player
             {
                 DoRolling();
             }
-            Move();
+            if (moveMod == 0)
+                Move();
+            else
+                JumpKing();
             if (gun.gameObject.activeSelf)
                 gun.GunCheck();
             InvincibleControl();
+        }
+
+        public void JumpKing()
+        {
+            if (isGround && jumpKingPower == 0)
+                Move();
+
+            if (jumpKingPower > 1000f)
+                jumpKingPower = 1000f;
+        }
+        public void JumpKingJump()
+        {
+            if (isGround)
+            {
+                //Debug.Log("JumpKingJump!");
+                isGround = false;
+                isGrounded = false;
+                playerRigidBody.AddForce(Vector3.up * jumpKingPower + (input * (speed + sprint)), ForceMode.Impulse);
+            }
+            jumpKingPower = 0;
         }
 
         public void SlotCheck(ItemList inItem)
@@ -210,7 +236,7 @@ namespace Player
                 //Debug.Log("Normal Jump!");
                 isGround = false;
                 isGrounded = false;
-    }
+            }
             else
             {
                 this.playerRigidBody.velocity = new Vector3(this.playerRigidBody.velocity.x, 0, this.playerRigidBody.velocity.z);
