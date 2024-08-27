@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Player
@@ -15,6 +14,7 @@ namespace Player
         public KeyCode sprintInput = KeyCode.LeftShift;
         public KeyCode reloadGun = KeyCode.R;
         public KeyCode rolling = KeyCode.C;
+        public KeyCode JumpKing = KeyCode.P;
         public KeyCode slot1 = KeyCode.Alpha1;
         public KeyCode slot2 = KeyCode.Alpha2;
         public KeyCode slot3 = KeyCode.Alpha3;
@@ -70,6 +70,14 @@ namespace Player
             cam.CameraMove();
             GunReLoad();
             SlotChange();
+            JumpKingMode();
+        }
+        void JumpKingMode()
+        {
+            if (Input.GetKeyDown(JumpKing))
+            {
+                cc.moveMod = cc.moveMod == 1 ? 0 : 1;
+            }
         }
         void SlotChange()
         {
@@ -96,9 +104,18 @@ namespace Player
 
         void JumpInput()
         {
-            if (Input.GetKeyDown(jumpInput) && (cc.isGround || cc.isDoubleJump))
+            if (Input.GetKeyDown(jumpInput) && (cc.isGround || cc.isDoubleJump) && cc.moveMod == 0)
             {
                 cc.Jump();
+            }
+            else if(Input.GetKey(jumpInput) && cc.isGround && cc.moveMod == 1)
+            {
+                cc.jumpKingPower += 0.1f;
+            }
+
+            if(Input.GetKeyUp(jumpInput) && cc.jumpKingPower != 0 && cc.moveMod != 0)
+            {
+                cc.JumpKingJump();
             }
             //else
             //{
@@ -150,7 +167,7 @@ namespace Player
             if(Input.GetKeyDown(reloadGun) && gun.gameObject.activeSelf)
             {
                 Debug.Log("Bullets Reloading....");
-                gun.maxBullet = 6;
+                bullet.Reload();
             }
         }
     }

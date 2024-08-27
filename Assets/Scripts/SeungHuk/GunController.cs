@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
     public float sensitivity; 
     public float minAngle;
-    public float maxAngle; 
+    public float maxAngle;
     public int maxBullet;
+    public int curBullet;
 
     public BulletFireControl Bullet;
     public GameObject gunBody;
@@ -17,6 +16,7 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         maxBullet = 6;
+        curBullet = 6;
         //currentPitch = 0f;
         maxAngle = 30f;
         minAngle = -180f;
