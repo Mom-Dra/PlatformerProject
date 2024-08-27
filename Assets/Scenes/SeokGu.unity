@@ -591,15 +591,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
       propertyPath: stageDatas.Array.data[0].stageName
-      value: Stage 1
+      value: Stage1
       objectReference: {fileID: 0}
     - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
       propertyPath: stageDatas.Array.data[1].stageName
-      value: Stage 2
+      value: Stage2
       objectReference: {fileID: 0}
     - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
       propertyPath: stageDatas.Array.data[2].stageName
-      value: Stage 3
+      value: Stage3
       objectReference: {fileID: 0}
     - target: {fileID: 3129107018031003592, guid: b7b2d56759feb3c4dba833144461be00, type: 3}
       propertyPath: stageDatas.Array.data[0].imageColor.a

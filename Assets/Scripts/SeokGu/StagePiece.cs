@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static StageUI;
 
@@ -28,7 +27,7 @@ public class StagePiece : MonoBehaviour
 
     void OnClicked()
     {
-        Debug.Log(thisStage);
+        
     }
 
     public void SetData(StageData inStageData)
