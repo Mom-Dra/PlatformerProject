@@ -1,43 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using Player;
 using UnityEngine;
 
 public class BulletFireControl : MonoBehaviour
 {
-    public GameObject bulletPrefab; // �Ѿ� ������
+    public GameObject bulletPrefab; 
     public PlayerControl player;
     public GunController gun;
+    public AmmoUI ammo;
 
+    private void Start()
+    {
+        ammo = GameObject.Find("AmmoUI").GetComponent<AmmoUI>();
+    }
     public void FireBullet()
     {
-        if (bulletPrefab && gun.maxBullet != 0)
+        if (bulletPrefab && gun.curBullet != 0)
         {
-            gun.maxBullet--;
-            Debug.Log("�߻�Ϸ�");
+            gun.curBullet--;
+            ammo.currentAmmo--;
+            ammo.UpdateAmmo();
+            Debug.Log("Shot!");
             Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            // �Ѿ��� �߻��� ��ġ���� �Ѿ��� �����մϴ�.
             GameObject bullet = Instantiate(bulletPrefab, pos, transform.rotation);
 
-            // �Ѿ��� Rigidbody�� ��� ������ �����մϴ�.
             Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
             if (bulletRb != null)
             {
-                // �÷��̾ �������� �и� ������ �ָ� ��.
-
-                // Rigid ���� ��ư �÷��̾�� �޾Ƽ� ��� ������ �������� ���¿� ���� �����ϰ� �÷��̾ ������ ������Ѿ� ��.
-
-                // �÷��̾����� �¿� ���Ⱚ�� �ְ�, ������ �ݵ� ���� ��.
-                // �ݵ� ���� ���ݿ� ���� �ٸ��� �����Ű��
-                // �¿� ���� ���� ������ �и��� �������� �� ( ���߿� ������ ���ư��鼭 ���� ���� ���� ���� �� �ֱ� ���� )
-                // ����� ���� ũ�⸦ ���� �÷��̾�� ���� �ִµ�, �� ������ x, y�����θ� ������Ѽ� Rigid�� �����Ű��
-                // Z������ Ƣ�� ���� ���� ��?
-
                 player.Rebound(10f);
-                Vector3 direction = transform.right * 20f; // �ӵ� ����
+                Vector3 direction = transform.right * 20f; 
                 bulletRb.velocity = direction;
 
             }
         }
+    }
+    public void Reload()
+    {
+        gun.curBullet = gun.maxBullet;
+        ammo.currentAmmo = gun.maxBullet;
+        ammo.UpdateAmmo();
     }
 }

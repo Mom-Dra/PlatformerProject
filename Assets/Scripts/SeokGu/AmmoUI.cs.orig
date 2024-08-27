@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+using System.Collections;
+using System.Collections.Generic;
+using Player;
+>>>>>>> origin/feature_SeungHuk_v3
 using TMPro;
 using UnityEngine;
 

@@ -6,6 +6,7 @@ public abstract class Platform :MonoBehaviour
 {
     protected Rigidbody PlatformRb { get; set; }
     protected Collider PlatformCollider { get; set; }
+    bool onPlayer;
 
     [Header("DefaultPlatform")]
     [SerializeField]
@@ -18,6 +19,7 @@ public abstract class Platform :MonoBehaviour
 
     protected virtual void Awake()
     {
+        onPlayer = false;
         PlatformRb = GetComponent<Rigidbody>();
         PlatformCollider = GetComponent<Collider>();
         initPlatformPos = this.transform.position;
@@ -26,6 +28,7 @@ public abstract class Platform :MonoBehaviour
 
     protected virtual void OnCollisionStay(Collision collision)
     {
+        
         if(collision.transform.CompareTag("Player"))
         {
             collision.transform.parent = transform;
@@ -34,6 +37,7 @@ public abstract class Platform :MonoBehaviour
 
     protected virtual void OnCollisionExit(Collision collision)
     {
+       
         if (collision.transform.CompareTag("Player"))
         {
             collision.transform.parent = null;

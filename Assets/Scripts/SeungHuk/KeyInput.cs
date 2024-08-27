@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Player
@@ -15,6 +14,7 @@ namespace Player
         public KeyCode sprintInput = KeyCode.LeftShift;
         public KeyCode reloadGun = KeyCode.R;
         public KeyCode rolling = KeyCode.C;
+        public KeyCode JumpKing = KeyCode.P;
         public KeyCode slot1 = KeyCode.Alpha1;
         public KeyCode slot2 = KeyCode.Alpha2;
         public KeyCode slot3 = KeyCode.Alpha3;
@@ -40,7 +40,7 @@ namespace Player
         #endregion
 
 
-        protected virtual void InitilizeController() //�ʱ� �� �ε�
+        protected virtual void InitilizeController() 
         {
             cc = GetComponent<PlayerControl>();
             uiManager = gameObject.GetComponentInChildren<UIManager>();
@@ -54,14 +54,14 @@ namespace Player
         }
         private void FixedUpdate()
         {
-            cc.UpdateControll();
+            cc.FixedUpdateControll();
         }
-        void Update() // ���� ������Ʈ
+        void Update() 
         {
             InputHandle();
         }
 
-        void InputHandle() //�ٲ�� �κ�
+        void InputHandle() 
         {
             MoveInput();
             SprintInput();
@@ -70,10 +70,18 @@ namespace Player
             cam.CameraMove();
             GunReLoad();
             SlotChange();
+            JumpKingMode();
+        }
+        void JumpKingMode()
+        {
+            if (Input.GetKeyDown(JumpKing))
+            {
+                cc.moveMod = cc.moveMod == 1 ? 0 : 1;
+            }
         }
         void SlotChange()
         {
-            if (Input.GetMouseButtonUp(0) && useUi)//��Ŭ��
+            if (Input.GetMouseButtonUp(0) && useUi)
             {
                 piUI.SelectItem();
                 cc.SlotCheck(equipUI.currentItem);
@@ -96,14 +104,23 @@ namespace Player
 
         void JumpInput()
         {
-            if (Input.GetKeyDown(jumpInput) && (cc.isGround || cc.isDoubleJump))
+            if (Input.GetKeyDown(jumpInput) && (cc.isGround || cc.isDoubleJump) && cc.moveMod == 0)
             {
                 cc.Jump();
             }
-            else
+            else if(Input.GetKey(jumpInput) && cc.isGround && cc.moveMod == 1)
             {
-                cc.AddGravity();
+                cc.jumpKingPower += 0.1f;
             }
+
+            if(Input.GetKeyUp(jumpInput) && cc.jumpKingPower != 0 && cc.moveMod != 0)
+            {
+                cc.JumpKingJump();
+            }
+            //else
+            //{
+            //    cc.AddGravity();
+            //}
         }
         public virtual void MoveInput()
         {
@@ -121,28 +138,26 @@ namespace Player
             {
                 cc.sprint = 3f;
                 cc.isSprinting = true;
-                //Debug.Log("�޸��� ��");
+                //Debug.Log("Sprint Start");
             }
             else if (Input.GetKeyUp(sprintInput) || cc.isSprint == false)
             { 
                 cc.sprint = 0f;
                 cc.isSprinting = false;
-                //Debug.Log("�޸��� ����");
+                //Debug.Log("Sprint End");
             }
         }
         void FireInput()
         {
-            // �Ѿ� �߻�
             if (Input.GetButtonDown("Fire1") && gun.gameObject.activeSelf)
             {
-                Debug.Log("�߻�");
+                Debug.Log("Try Shot");
                 bullet.FireBullet();
             }
 
-            // �� ������
             if (Input.GetButtonDown("Fire1") && cc.handStone.gameObject.activeSelf)
             {
-                Debug.Log("�� ������ �õ�");
+                Debug.Log("Throw Stone");
 
                 cc.ThrowStone();
             }
@@ -151,8 +166,8 @@ namespace Player
         {
             if(Input.GetKeyDown(reloadGun) && gun.gameObject.activeSelf)
             {
-                Debug.Log("����");
-                gun.maxBullet = 6;
+                Debug.Log("Bullets Reloading....");
+                bullet.Reload();
             }
         }
     }
