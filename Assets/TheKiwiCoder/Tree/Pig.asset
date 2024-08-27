@@ -54,6 +54,17 @@ MonoBehaviour:
   description: 
   drawGizmos: 1
   fovRange: 3
+  colliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &-6348700207911320991
 MonoBehaviour:
   m_ObjectHideFlags: 0

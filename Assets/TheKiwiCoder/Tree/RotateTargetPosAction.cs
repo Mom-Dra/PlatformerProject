@@ -19,7 +19,10 @@ public class RotateTargetPosAction : ActionNode
     protected override State OnUpdate()
     {
         Quaternion currentRotation = context.transform.rotation;
-        Quaternion targetRotation = Quaternion.LookRotation(blackboard.detectedTargetPos - context.transform.position);
+        Vector3 detectedPos = blackboard.detectedTargetPos;
+        detectedPos.y = context.transform.position.y;
+
+        Quaternion targetRotation = Quaternion.LookRotation(detectedPos - context.transform.position);
 
         if (Quaternion.Angle(currentRotation, targetRotation) > 0.1f)
         {

@@ -100,7 +100,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a4b299423d00685469316d2086ddd81d
-  position: {x: -219.45415, y: 447.8269}
+  position: {x: -151, y: 730}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -111,7 +111,9 @@ MonoBehaviour:
     detectedTargetPos: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
-  distance: 0
+  detectDistance: 10
+  attackDistance: 5
+  speed: 3
 --- !u!114 &-3523379941985503468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +152,61 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &-3501510994767192915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460be9e34c566ea45b9e282b1adcb028, type: 3}
+  m_Name: Selector
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 762e246f9a5fb3941907a0c41313bd5f
+  position: {x: -260, y: 569}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    speed: 2
+    targetLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    targetTransform: {fileID: 0}
+    detectedTargetPos: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 7157613074054297930}
+  - {fileID: -4763888040982220774}
+--- !u!114 &-2929766070677285712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e875c916f8ab765409872e0ffbff609a, type: 3}
+  m_Name: AttackTargetAction
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 590da77fdfad49e4590dfbe4dab69ce4
+  position: {x: -21, y: 452}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    speed: 2
+    targetLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    targetTransform: {fileID: 0}
+    detectedTargetPos: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
 --- !u!114 &-2153281557942735845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +264,9 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -3523379941985503468}
-  - {fileID: -4763888040982220774}
+  - {fileID: -3501510994767192915}
+  - {fileID: -2929766070677285712}
+  - {fileID: 996145346439386579}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +289,34 @@ MonoBehaviour:
   - {fileID: -450646680513072307}
   - {fileID: -3523379941985503468}
   - {fileID: -4763888040982220774}
+  - {fileID: 996145346439386579}
+  - {fileID: -2929766070677285712}
+  - {fileID: -3501510994767192915}
+  - {fileID: 7157613074054297930}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    speed: 2
+    targetLayerMask:
+      serializedVersion: 2
+      m_Bits: 64
+    targetTransform: {fileID: 0}
+    detectedTargetPos: {x: 0, y: 0, z: 0}
+--- !u!114 &996145346439386579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5134d9de14153468b48928d3e7359a, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 9046fd390abc68c4caae522c80915646
+  position: {x: 170.27914, y: 449.45328}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -238,3 +325,33 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  duration: 1
+--- !u!114 &7157613074054297930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891b6f4047175af429073c760d7a85da, type: 3}
+  m_Name: CheckAttackRange
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 081243609a62f5344a20369bda447284
+  position: {x: -360, y: 731.24}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    speed: 2
+    targetLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    targetTransform: {fileID: 0}
+    detectedTargetPos: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  attackDistance: 5

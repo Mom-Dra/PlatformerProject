@@ -17,10 +17,13 @@ public class RushAction : ActionNode
 
     protected override State OnUpdate()
     {
-        if (Vector3.Distance(context.transform.position, blackboard.detectedTargetPos) > 0.01f)
+        Vector3 detectedPos = blackboard.detectedTargetPos;
+        detectedPos.y = context.transform.position.y;
+
+        if (Vector3.Distance(context.transform.position, detectedPos) > 0.01f)
         {
-            context.transform.position = Vector3.MoveTowards(context.transform.position, blackboard.detectedTargetPos, rushSpeed * Time.deltaTime);
-            context.transform.LookAt(blackboard.detectedTargetPos);
+            context.transform.position = Vector3.MoveTowards(context.transform.position, detectedPos, rushSpeed * Time.deltaTime);
+            context.transform.LookAt(detectedPos);
 
             return State.Running;
         }
