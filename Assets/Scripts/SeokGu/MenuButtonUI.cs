@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UIManager;
 
@@ -22,7 +19,7 @@ public class MenuButtonUI : MonoBehaviour
         thisParent = transform.parent;
     }
 
-    public void SetData(ButtonData buttonData)
+    public void SetData(MenuButtonData buttonData)
     {
         thisText.text = buttonData.text;
         thisOrder = buttonData.order;

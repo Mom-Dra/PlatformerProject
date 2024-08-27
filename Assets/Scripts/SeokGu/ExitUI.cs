@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using static UIManager;
@@ -15,8 +13,8 @@ public class ExitUI : MonoBehaviour
 
     public int buttonCount = 3;
     public GameObject baseButton;
-    public ButtonData[] clearData;
-    public ButtonData[] failedData;
+    public MenuButtonData[] clearData;
+    public MenuButtonData[] failedData;
 
     private void Awake()
     {

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +14,7 @@ public class UIManager : MonoBehaviour
     private PiUI piUI;
     private MenuUI menuUI;
     private ExitUI exitUI;
-    private bool bDebug = true;
+    private bool bDebug = false;
 
     void Start()
     {
@@ -122,7 +119,7 @@ public class UIManager : MonoBehaviour
     }
 
     [System.Serializable]
-    public class ButtonData
+    public class MenuButtonData
     {
         public string text;
         public OrderList order;

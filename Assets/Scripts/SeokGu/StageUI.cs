@@ -1,42 +1,65 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UIManager;
 
 public class StageUI : MonoBehaviour
 {
-    private int pieceNum = 3;
-    private List<StagePiece> stagePieces = new List<StagePiece>();
+    private StagePiece stagePiece;
 
-    public GameObject stagePiecePrefab;
+    public StageData[] stageDatas;
+    public ChangeButtonData nextButtonData;
+    public ChangeButtonData prevButtonData;
 
-    void Start()
+    [HideInInspector]
+    public int currentPiece = 0;
+    
+    private void Awake()
     {
         Init();
     }
 
     void Init()
     {
-        for (int i = 0; i < pieceNum; i++)
-        {
-            stagePiecePrefab = Instantiate(stagePiecePrefab, transform);
-            Vector3 pos = new Vector3(1500 * (i - 1), 0, 0);
-            stagePiecePrefab.transform.SetLocalPositionAndRotation(pos, Quaternion.identity);
+        stagePiece = GetComponentInChildren<StagePiece>();
+        
+        stagePiece.SetData(stageDatas[currentPiece]);
 
-            StagePiece piece = stagePiecePrefab.GetComponent<StagePiece>();
-            stagePieces.Add(piece);
-            
+        ChangeButtonUI[] button = GetComponentsInChildren<ChangeButtonUI>();
 
-
-            //if (i < piDatas.Length)
-            //    piece.SetData(piDatas[i]);
-            //else
-            //    piece.SetData(defaultData);
-        }
+        button[0].SetData(nextButtonData);
+        button[1].SetData(prevButtonData);
     }
 
-    void Update()
+    public void UpdateStage()
     {
-        
+        stagePiece.SetData(stageDatas[currentPiece]);
+    }
+
+    [System.Serializable]
+    public class StageData
+    {
+        public Sprite stageImageSprite;
+        public Color imageColor = new Color(1, 1, 1, 1);
+        public string stageName;
+        public StageList stage;
+    }
+
+    [System.Serializable]
+    public class ChangeButtonData
+    {
+        public Sprite imageSprite;
+        public Color imageColor = new Color(1, 1, 1, 1);
+        public ButtonDirection direction;
+    }
+
+    public enum StageList
+    {
+        Stage1,
+        Stage2,
+        Stage3
+    }
+
+    public enum ButtonDirection
+    {
+        NEXT,
+        PREV
     }
 }
