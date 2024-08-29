@@ -88,6 +88,13 @@ public class PlatformWeightInfluenced : Platform
                 ridingTime = 0;
                 
                 StartCoroutine(GetOnEvent());
+<<<<<<< HEAD
+
+                Debug.Log("Hello WOlrd");
+
+                //collision.transform.parent = transform;
+=======
+>>>>>>> origin/feature/HakSeung_v4
             }
         }
     }
