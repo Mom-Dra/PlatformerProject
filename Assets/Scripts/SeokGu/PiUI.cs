@@ -29,7 +29,6 @@ public class PiUI : MonoBehaviour
         }
     }
 
-    // ����� ������ pieceCount��ŭ UI PiPiece���� �� Instantiate��Ű�� PiUI�� Child�� �߰�
     void Init()
     {
         for (int i = 0; i < pieceCount; i++)

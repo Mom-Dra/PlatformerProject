@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,7 +28,8 @@ public class StagePiece : MonoBehaviour
 
     void OnClicked()
     {
-        
+        //if (SceneManager.GetSceneAt((int)thisStage) != null)
+        //    SceneManager.LoadScene((int)thisStage);
     }
 
     public void SetData(StageData inStageData)

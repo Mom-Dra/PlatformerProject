@@ -3,96 +3,43 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject menuUIPrefab;
-    public GameObject exitUIPrefab;
-
     [HideInInspector]
     public OrderList currentOrder;
 
-    private GameObject piUIPrefab;
-    private GameObject optionUIPrefab;
-    private PiUI piUI;
-    private MenuUI menuUI;
-    private ExitUI exitUI;
-    private bool bDebug = false;
-
     void Start()
     {
-        piUIPrefab = GameObject.Find("PiUI");
-        optionUIPrefab = GameObject.Find("OptionUI");
-        menuUIPrefab = Instantiate(menuUIPrefab, transform);
-        exitUIPrefab = Instantiate(exitUIPrefab, transform);
-        menuUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        exitUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
-        piUI = piUIPrefab.GetComponent<PiUI>();
-        menuUI = menuUIPrefab.GetComponent<MenuUI>();
-        exitUI = exitUIPrefab.GetComponent<ExitUI>();
-
-        menuUIPrefab.SetActive(false);
-        exitUIPrefab.SetActive(false);
-        OptionUI optionUI = optionUIPrefab.GetComponent<OptionUI>();
-        optionUI.Init(menuUIPrefab);
     }
 
     void Update()
     {
-        if(bDebug == true)
+        
+    }
+
+    public void LoadSceneToOrder(OrderList inOrder)
+    {
+        currentOrder = inOrder;
+        switch (inOrder)
         {
-            if (Input.GetMouseButtonUp(0))
-            {
-                if(piUIPrefab.activeSelf == true)
-                    piUI.SelectItem();
-            }
-
-            if (Input.GetKey(KeyCode.Tab)) ShowPiUI(true);
-            else ShowPiUI(false);
-
-            if (Input.GetKeyDown(KeyCode.Escape)) ShowMenuUI(!menuUIPrefab.activeSelf);
-            if (Input.GetKeyDown(KeyCode.T)) ShowExitUI(!exitUIPrefab.activeSelf);
-            
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
-            }
+            case OrderList.MainMenu:
+                {
+                    break;
+                }
+            case OrderList.Retry:
+                {
+                    SceneManager.LoadScene(0);
+                    break;
+                }
+            case OrderList.NextStage:
+                {
+                    // 현재 Stage정보 가져와서 처리
+                    break;
+                }
+            case OrderList.ReturnGame:
+                {
+                    break;
+                }
         }
-    }
-
-    public void ShowPiUI(bool bActive)
-    {
-        if (menuUIPrefab.activeSelf == true || exitUIPrefab.activeSelf == true) return;
-
-        piUIPrefab.SetActive(bActive);
-    }
-
-    public void ShowMenuUI(bool bActive)
-    {
-        if (exitUIPrefab.activeSelf == true) return;
-
-        ShowPiUI(false);
-        menuUIPrefab.SetActive(bActive);
-        menuUI.Show();
-        SetTimeScale();
-    }
-
-    public void ShowExitUI(bool bActive)
-    {
-        if (menuUIPrefab.activeSelf == true) return;
-
-        ShowPiUI(false);
-        exitUIPrefab.SetActive(bActive);
-        exitUI.Show(false);
-        SetTimeScale();
-    }
-
-    void SetTimeScale()
-    {
-        if (exitUIPrefab.activeSelf == false && menuUIPrefab.activeSelf == false)
-        {
-            Time.timeScale = 1.0f;
-        }
-        else
-            Time.timeScale = 0.0f;
     }
 
     public enum ItemList

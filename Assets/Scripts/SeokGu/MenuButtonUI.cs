@@ -27,10 +27,8 @@ public class MenuButtonUI : MonoBehaviour
 
     void OnClicked()
     {
-        
         UIManager uiManager = thisParent.parent.GetComponent<UIManager>();
-        uiManager.currentOrder = thisOrder;
-        Debug.Log(uiManager.currentOrder);
+        uiManager.LoadSceneToOrder(thisOrder);
         thisParent.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
     }

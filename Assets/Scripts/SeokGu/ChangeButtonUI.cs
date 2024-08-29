@@ -29,7 +29,7 @@ public class ChangeButtonUI : MonoBehaviour
 
     void OnClicked()
     {
-        switch(buttonDir)
+        switch (buttonDir)
         {
             case ButtonDirection.NEXT:
                 {

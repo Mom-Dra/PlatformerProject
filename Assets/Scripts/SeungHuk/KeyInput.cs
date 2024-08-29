@@ -1,5 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
-using UnityEditor.Compilation;
 using UnityEngine;
 
 namespace Player
@@ -34,7 +32,7 @@ namespace Player
         //[HideInInspector] public Camera cameraMain;
 
         // UI
-        private UIManager uiManager;
+        private InGameUI inGameUI;
         private PiUI piUI;
         private EquipUI equipUI;
 
@@ -45,9 +43,9 @@ namespace Player
         protected virtual void InitilizeController() 
         {
             cc = GetComponent<PlayerControl>();
-            uiManager = gameObject.GetComponentInChildren<UIManager>();
-            piUI = uiManager.GetComponentInChildren<PiUI>();
-            equipUI = uiManager.GetComponentInChildren<EquipUI>();
+            inGameUI = gameObject.GetComponentInChildren<InGameUI>();
+            piUI = inGameUI.GetComponentInChildren<PiUI>();
+            equipUI = inGameUI.GetComponentInChildren<EquipUI>();
         }
 
         void Start()
@@ -92,16 +90,16 @@ namespace Player
             if (Input.GetKey(KeyCode.Tab))
             {
                 useUi = true;
-                uiManager.ShowPiUI(true);
+                inGameUI.ShowPiUI(true);
             }
             else
             {
                 useUi = false;
-                uiManager.ShowPiUI(false);
+                inGameUI.ShowPiUI(false);
             }
 
-            if (Input.GetKey(KeyCode.Tab))  uiManager.ShowPiUI(true);
-            else                            uiManager.ShowPiUI(false);
+            if (Input.GetKey(KeyCode.Tab)) inGameUI.ShowPiUI(true);
+            else inGameUI.ShowPiUI(false);
         }
 
         void JumpInput()
