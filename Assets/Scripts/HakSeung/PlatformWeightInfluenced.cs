@@ -32,8 +32,7 @@ public class PlatformWeightInfluenced : Platform
 
         do
         {
-            Debug.Log(ridingTime);
-            while (isGetOnPlatform)
+            while (isGetOnPlatform )
             {
                 Debug.Log("Down");
                 yield return WaitForFixedUD;
@@ -43,27 +42,29 @@ public class PlatformWeightInfluenced : Platform
                     transform.position = Vector3.MoveTowards(transform.position, maxFallPos, Time.fixedDeltaTime * fallingSpeed);
                 else
                     ridingTime += Time.fixedDeltaTime;
+
+               
             }
             ridingTime = 0;
 
-            while (!isGetOnPlatform )
+            while (!isGetOnPlatform)
             {
                 Debug.Log("Up");
                 yield return WaitForFixedUD;
-                if (transform.position.y >= InitPlatformPos.y) { yield return new WaitUntil(() => isGetOnPlatform); }
-                
-                if(ridingTime > minRidingTime)
-                     transform.position = Vector3.MoveTowards(transform.position, InitPlatformPos, Time.fixedDeltaTime * fallingSpeed);
+                if (transform.position.y >= InitPlatformPos.y) { break; }
+
+                if (ridingTime > minRidingTime)
+                    transform.position = Vector3.MoveTowards(transform.position, InitPlatformPos, Time.fixedDeltaTime * fallingSpeed);
                 else
                     ridingTime += Time.fixedDeltaTime;
+                
             }
             ridingTime = 0;
 
-            Debug.Log("DoWhile!");
-
+            Debug.Log(ridingTime);
             yield return WaitForFixedUD;
 
-        } while (isGetOnPlatform);
+        } while (transform.position != InitPlatformPos);
 
         Debug.Log("³¡");
 
@@ -85,22 +86,19 @@ public class PlatformWeightInfluenced : Platform
             if (!isRunToGetOnEvent)
             {
                 ridingTime = 0;
+                
                 StartCoroutine(GetOnEvent());
-
-                Debug.Log("Hello WOlrd");
-
-                collision.transform.parent = transform;
             }
         }
     }
 
-    protected override void OnCollisionExit(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
-        base.OnCollisionExit(collision);
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            isGetOnPlatform = false;
+            if(isRunToGetOnEvent)
+                isGetOnPlatform = false;
         }
     }
 }

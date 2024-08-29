@@ -26,21 +26,5 @@ public abstract class Platform :MonoBehaviour
     }
     protected abstract IEnumerator GetOnEvent();
 
-    protected virtual void OnCollisionStay(Collision collision)
-    {
-        
-        if(collision.transform.CompareTag("Player"))
-        {
-            collision.transform.parent = transform;
-        }
-    }
-
-    protected virtual void OnCollisionExit(Collision collision)
-    {
-       
-        if (collision.transform.CompareTag("Player"))
-        {
-            collision.transform.parent = null;
-        }
-    }
+ 
 }

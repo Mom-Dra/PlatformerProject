@@ -8,6 +8,7 @@ public class ObstacleSnowball : DynamicObstacle
     public Vector3 moveDir;
     Camera mainCamera;
     Vector3 screenPoint;
+    
 
     [SerializeField]
     float deactiveTime =5.0f;
@@ -17,7 +18,10 @@ public class ObstacleSnowball : DynamicObstacle
     bool onScreen = false;
     [SerializeField]
     bool foundPlayer = false;
-
+    [SerializeField]
+    float attackForce = 5f;
+    [SerializeField]
+    float waitTime = 1f;
     public IEnumerator CheckObstacleIsInCamera()
     {
         while (activetimer >= 0)
@@ -50,6 +54,16 @@ public class ObstacleSnowball : DynamicObstacle
             activetimer = deactiveTime;
         }
     }
+
+    public IEnumerator InvisibleTrap()
+    {
+        yield return new WaitForSeconds(waitTime);
+        rb.velocity = Vector3.forward * -1 * 100;
+    }
+    /*public void InvisibleTrap()
+    {
+        rb.AddForce(Vector3.forward * attackForce);
+    }*/
 
     private void Start()
     {
