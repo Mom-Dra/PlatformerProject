@@ -9,6 +9,6 @@ public abstract class Obstacle : MonoBehaviour
     protected virtual void OnCollisionEnter(Collision collision)
     {
         //플레이어에게 데미지를 전달한다.
-        if (collision.gameObject.tag == "Player") Debug.Log("플레이어를 공격했다.");
+        if (collision.gameObject.CompareTag( "Player")) Debug.Log("플레이어를 공격했다.");
     }
 }

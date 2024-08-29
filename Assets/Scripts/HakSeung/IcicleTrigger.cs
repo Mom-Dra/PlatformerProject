@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class IcicleTrigger : MonoBehaviour 
 {
-    public Rigidbody icicleRd;
-
+    public ObstacleIceLance ObstacleIceLance;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") )
         {
-            icicleRd.isKinematic = false;
+            ObstacleIceLance.Attack();
         }
-    }
-
-    private void Awake()
-    {
-        icicleRd.isKinematic = true;
     }
 }
