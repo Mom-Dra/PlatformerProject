@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -55,7 +56,7 @@ public class PlatformMoving : Platform
     {
         base.Awake();
         WaitForTrable = new WaitForSeconds(trableWatingTime);
-        WaitForFixedUD = new WaitForFixedUpdate(); 
+        WaitForFixedUD = new WaitForFixedUpdate();
     }
 
     private void Start()

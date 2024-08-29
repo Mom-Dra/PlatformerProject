@@ -202,6 +202,7 @@ MonoBehaviour:
   isSprint: 0
   speed: 0
   jumpPower: 0
+  playerRigidBody: {fileID: 0}
   input: {x: 0, y: 0, z: 0}
   sprint: 0
   groundCheckSensitivity: 0
@@ -221,6 +222,9 @@ MonoBehaviour:
   stoneThrowPower: 0
   isRolling: 0
   rollingTimer: 0
+  onPlatform: 0
+  platformDis: 0
+  platform: {fileID: 0}
 --- !u!114 &144054156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +540,7 @@ GameObject:
   - component: {fileID: 484758948}
   m_Layer: 0
   m_Name: Moving
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1033,7 +1037,7 @@ GameObject:
   - component: {fileID: 850649618}
   m_Layer: 0
   m_Name: WeightInfluenced
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1486,15 +1490,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a2884889561d8df4684f5e6cd8c0affe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.2
+      value: -35.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2884889561d8df4684f5e6cd8c0affe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2884889561d8df4684f5e6cd8c0affe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2884889561d8df4684f5e6cd8c0affe, type: 3}
       propertyPath: m_LocalRotation.w

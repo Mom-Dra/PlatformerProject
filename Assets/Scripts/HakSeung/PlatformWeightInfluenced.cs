@@ -89,7 +89,7 @@ public class PlatformWeightInfluenced : Platform
 
                 Debug.Log("Hello WOlrd");
 
-                collision.transform.parent = transform;
+                //collision.transform.parent = transform;
             }
         }
     }

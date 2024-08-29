@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+using UnityEditor.Compilation;
 using UnityEngine;
 
 namespace Player
@@ -107,6 +109,7 @@ namespace Player
             if (Input.GetKeyDown(jumpInput) && (cc.isGround || cc.isDoubleJump) && cc.moveMod == 0)
             {
                 cc.Jump();
+                cc.onPlatform = false;
             }
             else if(Input.GetKey(jumpInput) && cc.isGround && cc.moveMod == 1)
             {

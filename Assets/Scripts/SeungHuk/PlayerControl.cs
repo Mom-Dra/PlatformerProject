@@ -73,7 +73,7 @@ namespace Player
         public bool isSprint;                  
         public float speed;                   
         public float jumpPower;                
-        private Rigidbody playerRigidBody;     
+        public Rigidbody playerRigidBody;     
         public Vector3 input;                 
         //private Quaternion curRotation;       
         //float turnSpeed;                      
@@ -98,6 +98,9 @@ namespace Player
         public bool isRolling;
         private RaycastHit hit;
         public float rollingTimer;
+        public bool onPlatform;
+        public float platformDis;
+        public Platform platform;
         protected virtual void InitilizeController() 
         {
             jumpKingPower = 0f;
@@ -221,8 +224,35 @@ namespace Player
             Vector3 direction = input * Time.fixedDeltaTime * (speed + sprint);
 
             direction = Vector3.ProjectOnPlane(direction, hit.normal);
+            if(onPlatform)
+            {
+                //platformDis = platform.transform.position.y + (transform.position.y - platform.transform.position.y)-0.08f;
+                playerRigidBody.MovePosition(new Vector3(playerRigidBody.position.x + direction.x, platform.transform.position.y + 0.5f, playerRigidBody.position.z + direction.z));
+            }
+            else
+            {
+                playerRigidBody.MovePosition(playerRigidBody.position + direction);
+            }
+        }
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.transform.CompareTag("Platform"))
+            {
+                platform = collision.transform.GetComponent<PlatformMoving>();
+                if (platform == null)
+                    platform = collision.transform.GetComponent<PlatformWeightInfluenced>();
+                if(platform != null)
+                    onPlatform = true;
+            }
+        }
 
-            playerRigidBody.MovePosition(playerRigidBody.position + /*input * Time.fixedDeltaTime * (speed+sprint)*/direction);
+        private void OnCollisionExit(Collision collision)
+        {
+            if (collision.transform.CompareTag("Platform"))
+            {
+                onPlatform = false;
+                platform = null;
+            }
         }
 
         public void Jump()
