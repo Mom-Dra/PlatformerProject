@@ -33,13 +33,10 @@ public class FollowingTargetAction : ActionNode
             return State.Failure;
         }
 
-        // y좌표: AttackDistance x Sin(60도)
-        Vector3 attackPos;
-        Vector3 direction = (context.transform.position - blackboard.targetTransform.position);
-        direction.y = 0f;
-        direction = direction.normalized;
-        direction.y = Mathf.Sin(Mathf.Deg2Rad * 60f);
-        attackPos = direction.normalized * attackDistance + blackboard.targetTransform.position;
+        Vector3 attackPos = CalculateAttackPos();
+        
+        if(context.animator != null)
+            context.animator.SetBool("IsWalk", true);
 
         // 공격 위치까지 context를 움직인다
         // 공격 위치까지 충분히 가깝다면 Success를 반환한다
@@ -54,5 +51,10 @@ public class FollowingTargetAction : ActionNode
 
         Debug.Log("이동 중이다!! Running!!!");
         return State.Running;
+    }
+
+    protected virtual Vector3 CalculateAttackPos()
+    {
+        return blackboard.targetTransform.position;
     }
 }

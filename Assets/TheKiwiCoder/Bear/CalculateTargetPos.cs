@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
 
-public class AttackTargetAction : ActionNode
+public class CalculateTargetPos : ActionNode
 {
     protected override void OnStart()
     {
@@ -15,13 +15,6 @@ public class AttackTargetAction : ActionNode
 
     protected override State OnUpdate()
     {
-        Attack();
-
         return State.Success;
-    }
-
-    protected virtual void Attack()
-    {
-        context.animator.SetTrigger("Attack");
     }
 }
