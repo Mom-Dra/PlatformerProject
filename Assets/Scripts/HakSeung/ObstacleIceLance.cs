@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,12 +16,13 @@ public class ObstacleIceLance : Obstacle
     
     private void OnParticleCollision(GameObject other)
     {
-       
-        if(other.gameObject.CompareTag("Player"))
+
+        //플레이어에게 데미지를 전달한다.
+        if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("플레이어를 공격했다.");
+            other.gameObject.GetComponent<PlayerControl>().hp.TakeDamage(1f);
         }
 
-        
+
     }
 }

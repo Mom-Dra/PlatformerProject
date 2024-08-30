@@ -9,7 +9,7 @@ public class IcicleTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") )
         {
-            ObstacleIceLance.Attack();
+            ObstacleIceLance.OnDrop();
         }
     }
 }
