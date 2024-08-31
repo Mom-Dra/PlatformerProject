@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using static UIManager;
 
 namespace Player
@@ -23,7 +24,6 @@ namespace Player
             player = GameObject.Find("Guy").GetComponent<PlayerControl>();
             isInvincible = false;
             invincibilityDuration = 1.0f;
-            invincibilityTimer = 1.0f;
             Debug.Log("Health Setting Ok");
         }
 
@@ -44,7 +44,7 @@ namespace Player
         {
             if (isInvincible)
                 return;
-
+            Physics.IgnoreLayerCollision(6, 7, true); // 6 : Player, 7 : Trap -> Layer
             // 무적 상태 설정
             isInvincible = true;
             invincibilityTimer = invincibilityDuration;
@@ -364,6 +364,7 @@ namespace Player
                 if (hp.invincibilityTimer <= 0)
                 {
                     hp.isInvincible = false;
+                    Physics.IgnoreLayerCollision(6, 7, false);
                     Debug.Log("Player is no longer invincible.");
                 }
             }
