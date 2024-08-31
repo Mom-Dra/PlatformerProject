@@ -1,203 +1,232 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEditor;
-//using UnityEngine;
-//using UnityEngine.UIElements;
-//using UnityEditor.Experimental.GraphView;
-//using System;
-//using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEditor.Experimental.GraphView;
+using System;
+using System.Linq;
 
-//namespace TheKiwiCoder {
-//    public class BehaviourTreeView : GraphView {
+namespace TheKiwiCoder
+{
+    public class BehaviourTreeView : GraphView
+    {
 
-//        public Action<NodeView> OnNodeSelected;
-//        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
-//        BehaviourTree tree;
-//        BehaviourTreeSettings settings;
+        public Action<NodeView> OnNodeSelected;
+        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
+        BehaviourTree tree;
+        BehaviourTreeSettings settings;
 
-//        public struct ScriptTemplate {
-//            public TextAsset templateFile;
-//            public string defaultFileName;
-//            public string subFolder;
-//        }
+        public struct ScriptTemplate
+        {
+            public TextAsset templateFile;
+            public string defaultFileName;
+            public string subFolder;
+        }
 
-//        public ScriptTemplate[] scriptFileAssets = {
-            
-//            new ScriptTemplate{ templateFile=BehaviourTreeSettings.GetOrCreateSettings().scriptTemplateActionNode, defaultFileName="NewActionNode.cs", subFolder="Actions" },
-//            new ScriptTemplate{ templateFile=BehaviourTreeSettings.GetOrCreateSettings().scriptTemplateCompositeNode, defaultFileName="NewCompositeNode.cs", subFolder="Composites" },
-//            new ScriptTemplate{ templateFile=BehaviourTreeSettings.GetOrCreateSettings().scriptTemplateDecoratorNode, defaultFileName="NewDecoratorNode.cs", subFolder="Decorators" },
-//        };
+        public ScriptTemplate[] scriptFileAssets = {
 
-//        public BehaviourTreeView() {
-//            settings = BehaviourTreeSettings.GetOrCreateSettings();
+            new ScriptTemplate{ templateFile=BehaviourTreeSettings.GetOrCreateSettings().scriptTemplateActionNode, defaultFileName="NewActionNode.cs", subFolder="Actions" },
+            new ScriptTemplate{ templateFile=BehaviourTreeSettings.GetOrCreateSettings().scriptTemplateCompositeNode, defaultFileName="NewCompositeNode.cs", subFolder="Composites" },
+            new ScriptTemplate{ templateFile=BehaviourTreeSettings.GetOrCreateSettings().scriptTemplateDecoratorNode, defaultFileName="NewDecoratorNode.cs", subFolder="Decorators" },
+        };
 
-//            Insert(0, new GridBackground());
+        public BehaviourTreeView()
+        {
+            settings = BehaviourTreeSettings.GetOrCreateSettings();
 
-//            this.AddManipulator(new ContentZoomer());
-//            this.AddManipulator(new ContentDragger());
-//            this.AddManipulator(new DoubleClickSelection());
-//            this.AddManipulator(new SelectionDragger());
-//            this.AddManipulator(new RectangleSelector());
+            Insert(0, new GridBackground());
 
-//            var styleSheet = settings.behaviourTreeStyle;
-//            styleSheets.Add(styleSheet);
+            this.AddManipulator(new ContentZoomer());
+            this.AddManipulator(new ContentDragger());
+            this.AddManipulator(new DoubleClickSelection());
+            this.AddManipulator(new SelectionDragger());
+            this.AddManipulator(new RectangleSelector());
 
-//            Undo.undoRedoPerformed += OnUndoRedo;
-//        }
+            var styleSheet = settings.behaviourTreeStyle;
+            styleSheets.Add(styleSheet);
 
-//        private void OnUndoRedo() {
-//            PopulateView(tree);
-//            AssetDatabase.SaveAssets();
-//        }
+            Undo.undoRedoPerformed += OnUndoRedo;
+        }
 
-//        public NodeView FindNodeView(Node node) {
-//            return GetNodeByGuid(node.guid) as NodeView;
-//        }
+        private void OnUndoRedo()
+        {
+            PopulateView(tree);
+            AssetDatabase.SaveAssets();
+        }
 
-//        internal void PopulateView(BehaviourTree tree) {
-//            this.tree = tree;
+        public NodeView FindNodeView(Node node)
+        {
+            return GetNodeByGuid(node.guid) as NodeView;
+        }
 
-//            graphViewChanged -= OnGraphViewChanged;
-//            DeleteElements(graphElements.ToList());
-//            graphViewChanged += OnGraphViewChanged;
+        internal void PopulateView(BehaviourTree tree)
+        {
+            this.tree = tree;
 
-//            if (tree.rootNode == null) {
-//                tree.rootNode = tree.CreateNode(typeof(RootNode)) as RootNode;
-//                EditorUtility.SetDirty(tree);
-//                AssetDatabase.SaveAssets();
-//            }
+            graphViewChanged -= OnGraphViewChanged;
+            DeleteElements(graphElements.ToList());
+            graphViewChanged += OnGraphViewChanged;
 
-//            // Creates node view
-//            tree.nodes.ForEach(n => CreateNodeView(n));
+            if (tree.rootNode == null)
+            {
+                tree.rootNode = tree.CreateNode(typeof(RootNode)) as RootNode;
+                EditorUtility.SetDirty(tree);
+                AssetDatabase.SaveAssets();
+            }
 
-//            // Create edges
-//            tree.nodes.ForEach(n => {
-//                var children = BehaviourTree.GetChildren(n);
-//                children.ForEach(c => {
-//                    NodeView parentView = FindNodeView(n);
-//                    NodeView childView = FindNodeView(c);
+            // Creates node view
+            tree.nodes.ForEach(n => CreateNodeView(n));
 
-//                    Edge edge = parentView.output.ConnectTo(childView.input);
-//                    AddElement(edge);
-//                });
-//            });
-//        }
+            // Create edges
+            tree.nodes.ForEach(n =>
+            {
+                var children = BehaviourTree.GetChildren(n);
+                children.ForEach(c =>
+                {
+                    NodeView parentView = FindNodeView(n);
+                    NodeView childView = FindNodeView(c);
 
-//        public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter) {
-//            return ports.ToList().Where(endPort =>
-//            endPort.direction != startPort.direction &&
-//            endPort.node != startPort.node).ToList();
-//        }
+                    Edge edge = parentView.output.ConnectTo(childView.input);
+                    AddElement(edge);
+                });
+            });
+        }
 
-//        private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange) {
-//            if (graphViewChange.elementsToRemove != null) {
-//                graphViewChange.elementsToRemove.ForEach(elem => {
-//                    NodeView nodeView = elem as NodeView;
-//                    if (nodeView != null) {
-//                        tree.DeleteNode(nodeView.node);
-//                    }
+        public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+        {
+            return ports.ToList().Where(endPort =>
+            endPort.direction != startPort.direction &&
+            endPort.node != startPort.node).ToList();
+        }
 
-//                    Edge edge = elem as Edge;
-//                    if (edge != null) {
-//                        NodeView parentView = edge.output.node as NodeView;
-//                        NodeView childView = edge.input.node as NodeView;
-//                        tree.RemoveChild(parentView.node, childView.node);
-//                    }
-//                });
-//            }
+        private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
+        {
+            if (graphViewChange.elementsToRemove != null)
+            {
+                graphViewChange.elementsToRemove.ForEach(elem =>
+                {
+                    NodeView nodeView = elem as NodeView;
+                    if (nodeView != null)
+                    {
+                        tree.DeleteNode(nodeView.node);
+                    }
 
-//            if (graphViewChange.edgesToCreate != null) {
-//                graphViewChange.edgesToCreate.ForEach(edge => {
-//                    NodeView parentView = edge.output.node as NodeView;
-//                    NodeView childView = edge.input.node as NodeView;
-//                    tree.AddChild(parentView.node, childView.node);
-//                });
-//            }
+                    Edge edge = elem as Edge;
+                    if (edge != null)
+                    {
+                        NodeView parentView = edge.output.node as NodeView;
+                        NodeView childView = edge.input.node as NodeView;
+                        tree.RemoveChild(parentView.node, childView.node);
+                    }
+                });
+            }
 
-//            nodes.ForEach((n) => {
-//                NodeView view = n as NodeView;
-//                view.SortChildren();
-//            });
+            if (graphViewChange.edgesToCreate != null)
+            {
+                graphViewChange.edgesToCreate.ForEach(edge =>
+                {
+                    NodeView parentView = edge.output.node as NodeView;
+                    NodeView childView = edge.input.node as NodeView;
+                    tree.AddChild(parentView.node, childView.node);
+                });
+            }
 
-//            return graphViewChange;
-//        }
+            nodes.ForEach((n) =>
+            {
+                NodeView view = n as NodeView;
+                view.SortChildren();
+            });
 
-//        public override void BuildContextualMenu(ContextualMenuPopulateEvent evt) {
+            return graphViewChange;
+        }
 
-//            //base.BuildContextualMenu(evt);
+        public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
+        {
 
-//            // New script functions
-//            evt.menu.AppendAction($"Create Script.../New Action Node", (a) => CreateNewScript(scriptFileAssets[0]));
-//            evt.menu.AppendAction($"Create Script.../New Composite Node", (a) => CreateNewScript(scriptFileAssets[1]));
-//            evt.menu.AppendAction($"Create Script.../New Decorator Node", (a) => CreateNewScript(scriptFileAssets[2]));
-//            evt.menu.AppendSeparator();
+            //base.BuildContextualMenu(evt);
 
-//            Vector2 nodePosition = this.ChangeCoordinatesTo(contentViewContainer, evt.localMousePosition);
-//            {
+            // New script functions
+            evt.menu.AppendAction($"Create Script.../New Action Node", (a) => CreateNewScript(scriptFileAssets[0]));
+            evt.menu.AppendAction($"Create Script.../New Composite Node", (a) => CreateNewScript(scriptFileAssets[1]));
+            evt.menu.AppendAction($"Create Script.../New Decorator Node", (a) => CreateNewScript(scriptFileAssets[2]));
+            evt.menu.AppendSeparator();
 
-//                var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
-//                foreach (var type in types) {
-//                    evt.menu.AppendAction($"[Action]/{type.Name}", (a) => CreateNode(type, nodePosition));
-//                }
-//            }
+            Vector2 nodePosition = this.ChangeCoordinatesTo(contentViewContainer, evt.localMousePosition);
+            {
 
-//            {
-//                var types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
-//                foreach (var type in types) {
-//                    evt.menu.AppendAction($"[Composite]/{type.Name}", (a) => CreateNode(type, nodePosition));
-//                }
-//            }
+                var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
+                foreach (var type in types)
+                {
+                    evt.menu.AppendAction($"[Action]/{type.Name}", (a) => CreateNode(type, nodePosition));
+                }
+            }
 
-//            {
-//                var types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
-//                foreach (var type in types) {
-//                    evt.menu.AppendAction($"[Decorator]/{type.Name}", (a) => CreateNode(type, nodePosition));
-//                }
-//            }
-//        }
+            {
+                var types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
+                foreach (var type in types)
+                {
+                    evt.menu.AppendAction($"[Composite]/{type.Name}", (a) => CreateNode(type, nodePosition));
+                }
+            }
 
-//        void SelectFolder(string path) {
-//            // https://forum.unity.com/threads/selecting-a-folder-in-the-project-via-button-in-editor-window.355357/
-//            // Check the path has no '/' at the end, if it does remove it,
-//            // Obviously in this example it doesn't but it might
-//            // if your getting the path some other way.
+            {
+                var types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
+                foreach (var type in types)
+                {
+                    evt.menu.AppendAction($"[Decorator]/{type.Name}", (a) => CreateNode(type, nodePosition));
+                }
+            }
+        }
 
-//            if (path[path.Length - 1] == '/')
-//                path = path.Substring(0, path.Length - 1);
+        void SelectFolder(string path)
+        {
+            // https://forum.unity.com/threads/selecting-a-folder-in-the-project-via-button-in-editor-window.355357/
+            // Check the path has no '/' at the end, if it does remove it,
+            // Obviously in this example it doesn't but it might
+            // if your getting the path some other way.
 
-//            // Load object
-//            UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath(path, typeof(UnityEngine.Object));
+            if (path[path.Length - 1] == '/')
+                path = path.Substring(0, path.Length - 1);
 
-//            // Select the object in the project folder
-//            Selection.activeObject = obj;
+            // Load object
+            UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath(path, typeof(UnityEngine.Object));
 
-//            // Also flash the folder yellow to highlight it
-//            EditorGUIUtility.PingObject(obj);
-//        }
+            // Select the object in the project folder
+            Selection.activeObject = obj;
 
-//        void CreateNewScript(ScriptTemplate template) {
-//            SelectFolder($"{settings.newNodeBasePath}/{template.subFolder}");
-//            var templatePath = AssetDatabase.GetAssetPath(template.templateFile);
-//            ProjectWindowUtil.CreateScriptAssetFromTemplateFile(templatePath, template.defaultFileName);
-//        }
+            // Also flash the folder yellow to highlight it
+            EditorGUIUtility.PingObject(obj);
+        }
 
-//        void CreateNode(System.Type type, Vector2 position) {
-//            Node node = tree.CreateNode(type);
-//            node.position = position;
-//            CreateNodeView(node);
-//        }
+        void CreateNewScript(ScriptTemplate template)
+        {
+            SelectFolder($"{settings.newNodeBasePath}/{template.subFolder}");
+            var templatePath = AssetDatabase.GetAssetPath(template.templateFile);
+            ProjectWindowUtil.CreateScriptAssetFromTemplateFile(templatePath, template.defaultFileName);
+        }
 
-//        void CreateNodeView(Node node) {
-//            NodeView nodeView = new NodeView(node);
-//            nodeView.OnNodeSelected = OnNodeSelected;
-//            AddElement(nodeView);
-//        }
+        void CreateNode(System.Type type, Vector2 position)
+        {
+            Node node = tree.CreateNode(type);
+            node.position = position;
+            CreateNodeView(node);
+        }
 
-//        public void UpdateNodeStates() {
-//            nodes.ForEach(n => {
-//                NodeView view = n as NodeView;
-//                view.UpdateState();
-//            });
-//        }
-//    }
-//}
+        void CreateNodeView(Node node)
+        {
+            NodeView nodeView = new NodeView(node);
+            nodeView.OnNodeSelected = OnNodeSelected;
+            AddElement(nodeView);
+        }
+
+        public void UpdateNodeStates()
+        {
+            nodes.ForEach(n =>
+            {
+                NodeView view = n as NodeView;
+                view.UpdateState();
+            });
+        }
+    }
+}
