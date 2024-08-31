@@ -19,5 +19,6 @@ namespace TheKiwiCoder
         public LayerMask targetLayerMask;
         public Transform targetTransform;
         public Vector3 detectedTargetPos;
+        public GameObject attackParticle;
     }
 }

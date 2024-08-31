@@ -8,19 +8,25 @@ public class CheckAttackRange_Bear : CheckAttackRange
     {
         Vector3 attackPos = CalcuateAttackPos();
         float contextToAttackPosDistance = Vector3.Distance(context.transform.position, attackPos);
+        float contextToTargetDistance = Vector3.Distance(context.transform.position, blackboard.targetTransform.position);
 
-        if (contextToAttackPosDistance <= float.Epsilon)
+        //Debug.Log($"{contextToTargetDistance} ,   {attackDistance}");
+
+        if(contextToTargetDistance <= attackDistance)
         {
-            Debug.Log("Here We Go!");
+            if (contextToAttackPosDistance <= float.Epsilon)
+            {
+                Vector3 lookPos = blackboard.targetTransform.position;
+                lookPos.y = context.transform.position.y;
+                context.transform.LookAt(lookPos);
 
-            Vector3 lookPos = blackboard.targetTransform.position;
-            lookPos.y = context.transform.position.y;
-            context.transform.LookAt(lookPos);
+                if (context.animator != null)
+                    context.animator.SetBool("IsWalk", false);
 
-            if (context.animator != null)
-                context.animator.SetBool("IsWalk", false);
+                return State.Success;
+            }
 
-            return State.Success;
+            return State.Failure;
         }
         else
         {

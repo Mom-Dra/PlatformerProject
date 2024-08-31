@@ -24,6 +24,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   child: {fileID: -6722339562523266358}
@@ -53,6 +54,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   fovRange: 10
@@ -91,6 +93,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   duration: 1
@@ -118,6 +121,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   children:
@@ -147,9 +151,10 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
-  attackDistance: 3
+  attackDistance: 4
 --- !u!114 &-2375262768433735788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +179,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   child: {fileID: -7671983626702964732}
@@ -211,6 +217,7 @@ MonoBehaviour:
       m_Bits: 64
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
 --- !u!114 &818450964710836882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +242,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   children:
@@ -264,6 +272,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   children:
@@ -295,10 +304,11 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   detectDistance: 10
-  attackDistance: 3
+  attackDistance: 4
   speed: 2
 --- !u!114 &2725049765367720041
 MonoBehaviour:
@@ -324,6 +334,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
 --- !u!114 &2874159349105810202
@@ -350,6 +361,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   wayPoints:

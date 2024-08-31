@@ -29,7 +29,7 @@ public class FollowingTargetAction : ActionNode
         }
         else if(contextToTargetDistance > detectDistance)
         {
-            Debug.Log("탐지 길이보다 멀다! 실패!!!!");
+            Debug.Log("탐지 길이보다 멀다! Fail!!!!");
             return State.Failure;
         }
 
@@ -45,7 +45,17 @@ public class FollowingTargetAction : ActionNode
 
         if(Vector3.Distance(context.transform.position, attackPos) < float.Epsilon)
         {
-            Debug.Log("이동 중이다!! Success!!!");
+            Debug.Log("이동 완료!! Success!!!");
+
+            
+            if (contextToTargetDistance > attackDistance)
+            {
+                Debug.Log("공격 위치까지 왔지만 사거리가 되지 않음");
+                context.animator.SetBool("IsWalk", false);
+                return State.Running;
+            }
+                
+
             return State.Success;
         }
 

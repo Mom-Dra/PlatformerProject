@@ -11,7 +11,7 @@ public class FollowingTargetAction_Bear : FollowingTargetAction
         Vector3 attackPos;
         Vector3 direction = (context.transform.position - blackboard.targetTransform.position);
         direction.y = 0f;
-        attackPos = direction.normalized * attackDistance + blackboard.targetTransform.position;
+        attackPos = direction.normalized * (attackDistance - 1) + blackboard.targetTransform.position;
 
         // °õÀÇ Y ÁÂÇ¥ À¯Áö.
         attackPos.y = context.transform.position.y;

@@ -11,7 +11,7 @@ public class FollowingTargetAction_Bird : FollowingTargetAction
         direction.y = 0f;
         direction = direction.normalized;
         direction.y = Mathf.Sin(Mathf.Deg2Rad * 60f);
-        attackPos = direction.normalized * attackDistance + blackboard.targetTransform.position;
+        attackPos = direction.normalized * (attackDistance - 1) + blackboard.targetTransform.position;
 
         return attackPos;
     }

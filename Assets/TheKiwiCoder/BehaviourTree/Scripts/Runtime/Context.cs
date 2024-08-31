@@ -36,7 +36,6 @@ namespace TheKiwiCoder
             context.boxCollider = gameObject.GetComponent<BoxCollider>();
             context.capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
             context.characterController = gameObject.GetComponent<CharacterController>();
-
             // Add whatever else you need here...
 
             return context;
