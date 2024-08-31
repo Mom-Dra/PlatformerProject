@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8775937417938214655}
   - component: {fileID: 4664471538628975310}
-  - component: {fileID: 1018495260258347222}
+  - component: {fileID: 4723797355586628942}
   m_Layer: 0
   m_Name: ObstacleInvisibleSnowball
   m_TagString: Untagged
@@ -57,7 +57,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 20, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1018495260258347222
+--- !u!114 &4723797355586628942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,13 +66,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 219976691985253276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b50d44a75595d58448df98b2db8f5498, type: 3}
+  m_Script: {fileID: 11500000, guid: 22a80c36ef443c445be1fdb3dee8000b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInvisibleBall: 1
-  snowballRb: {fileID: 5964151604477830288}
-  snowball: {fileID: 4691847966634988171}
-  isOnTrigger: 0
+  obstacle: {fileID: 4691847966634988171}
 --- !u!1 &736839376022879473
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,13 +321,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad609c2bec450c4ba9244512bc4bf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDir: {x: 0, y: 0, z: 0}
+  isInvisibleBall: 1
   deactiveTime: 5
   activetimer: 0
   onScreen: 0
   foundPlayer: 0
-  attackForce: 1000
+  attackSpeed: 100
   waitTime: 1
+  isOnTrigger: 0
 --- !u!1 &8279442114225958328
 GameObject:
   m_ObjectHideFlags: 0

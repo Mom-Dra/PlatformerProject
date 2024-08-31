@@ -100,7 +100,8 @@ namespace Player
         public float rollingTimer;
         public bool onPlatform;
         public float platformDis;
-        public Platform platform;
+        //public Platform platform;
+        public PlatformCollisionEvent platform;
         protected virtual void InitilizeController() 
         {
             jumpKingPower = 0f;
@@ -227,7 +228,7 @@ namespace Player
             if(onPlatform)
             {
                 //platformDis = platform.transform.position.y + (transform.position.y - platform.transform.position.y)-0.08f;
-                playerRigidBody.MovePosition(new Vector3(playerRigidBody.position.x + direction.x, platform.transform.position.y + 0.5f, playerRigidBody.position.z + direction.z));
+                playerRigidBody.MovePosition(new Vector3(playerRigidBody.position.x + direction.x, platform.transform.position.y, playerRigidBody.position.z + direction.z));
             }
             else
             {
@@ -238,10 +239,8 @@ namespace Player
         {
             if (collision.transform.CompareTag("Platform"))
             {
-                platform = collision.transform.GetComponent<PlatformMoving>();
-                if (platform == null)
-                    platform = collision.transform.GetComponent<PlatformWeightInfluenced>();
-                if(platform != null)
+                platform = collision.transform.GetComponent<PlatformCollisionEvent>();
+                if (platform != null)
                     onPlatform = true;
             }
         }
