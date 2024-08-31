@@ -1,31 +1,31 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UIElements;
-using UnityEditor;
+//using System;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine.UIElements;
+//using UnityEditor;
 
-namespace TheKiwiCoder {
-    public class InspectorView : VisualElement {
-        public new class UxmlFactory : UxmlFactory<InspectorView, VisualElement.UxmlTraits> { }
+//namespace TheKiwiCoder {
+//    public class InspectorView : VisualElement {
+//        public new class UxmlFactory : UxmlFactory<InspectorView, VisualElement.UxmlTraits> { }
 
-        Editor editor;
+//        Editor editor;
 
-        public InspectorView() {
+//        public InspectorView() {
 
-        }
+//        }
 
-        internal void UpdateSelection(NodeView nodeView) {
-            Clear();
+//        internal void UpdateSelection(NodeView nodeView) {
+//            Clear();
 
-            UnityEngine.Object.DestroyImmediate(editor);
+//            UnityEngine.Object.DestroyImmediate(editor);
 
-            editor = Editor.CreateEditor(nodeView.node);
-            IMGUIContainer container = new IMGUIContainer(() => {
-                if (editor && editor.target) {
-                    editor.OnInspectorGUI();
-                }
-            });
-            Add(container);
-        }
-    }
-}
+//            editor = Editor.CreateEditor(nodeView.node);
+//            IMGUIContainer container = new IMGUIContainer(() => {
+//                if (editor && editor.target) {
+//                    editor.OnInspectorGUI();
+//                }
+//            });
+//            Add(container);
+//        }
+//    }
+//}

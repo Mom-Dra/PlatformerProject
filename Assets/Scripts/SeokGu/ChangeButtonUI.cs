@@ -1,6 +1,8 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using static StageUI;
+using static UIManager;
 
 public class ChangeButtonUI : MonoBehaviour
 {
@@ -29,11 +31,11 @@ public class ChangeButtonUI : MonoBehaviour
 
     void OnClicked()
     {
-        switch(buttonDir)
+        switch (buttonDir)
         {
             case ButtonDirection.NEXT:
                 {
-                    if (stageUI.currentPiece > stageUI.stageDatas.Length - 2) break;
+                    if (stageUI.currentPiece > stageUI.maxPiece - 2) break;
 
                     stageUI.currentPiece++;
                     stageUI.UpdateStage();

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 87767567934954198}
   - component: {fileID: 7617315662030217735}
   - component: {fileID: 4493973157917370225}
-  - component: {fileID: 3675335252963860749}
   m_Layer: 5
   m_Name: SelectStageUI
   m_TagString: Untagged
@@ -103,18 +102,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3675335252963860749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5469258611039169002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c25be207d704519418cdc5897eb6a51f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6157362972088441008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123,6 +110,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6083552715689095452}
     m_Modifications:
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_text
+      value: Clear
+      objectReference: {fileID: 0}
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.8057229
+      objectReference: {fileID: 0}
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278242815
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341885306545243971, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_text
+      value: Stage Name
+      objectReference: {fileID: 0}
     - target: {fileID: 1998322915884617903, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
       propertyPath: m_Name
       value: StageUI

@@ -3,96 +3,66 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject menuUIPrefab;
-    public GameObject exitUIPrefab;
+    private Scene gameManager;
 
-    [HideInInspector]
-    public OrderList currentOrder;
+    public StageData[] stageDatas;
 
-    private GameObject piUIPrefab;
-    private GameObject optionUIPrefab;
-    private PiUI piUI;
-    private MenuUI menuUI;
-    private ExitUI exitUI;
-    private bool bDebug = false;
-
-    void Start()
+    private void Awake()
     {
-        piUIPrefab = GameObject.Find("PiUI");
-        optionUIPrefab = GameObject.Find("OptionUI");
-        menuUIPrefab = Instantiate(menuUIPrefab, transform);
-        exitUIPrefab = Instantiate(exitUIPrefab, transform);
-        menuUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        exitUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-
-        piUI = piUIPrefab.GetComponent<PiUI>();
-        menuUI = menuUIPrefab.GetComponent<MenuUI>();
-        exitUI = exitUIPrefab.GetComponent<ExitUI>();
-
-        menuUIPrefab.SetActive(false);
-        exitUIPrefab.SetActive(false);
-        OptionUI optionUI = optionUIPrefab.GetComponent<OptionUI>();
-        optionUI.Init(menuUIPrefab);
+        gameManager = SceneManager.GetSceneByBuildIndex(0);
     }
 
-    void Update()
+    private void Start()
     {
-        if(bDebug == true)
+        Init();
+    }
+
+    void Init()
+    {
+        GameObject[] managers = gameManager.GetRootGameObjects();
+        for (int i = 0; i < managers.Length; i++)
         {
-            if (Input.GetMouseButtonUp(0))
+            UIManager uiManager = managers[i].GetComponent<UIManager>();
+            if (uiManager != null)
             {
-                if(piUIPrefab.activeSelf == true)
-                    piUI.SelectItem();
-            }
-
-            if (Input.GetKey(KeyCode.Tab)) ShowPiUI(true);
-            else ShowPiUI(false);
-
-            if (Input.GetKeyDown(KeyCode.Escape)) ShowMenuUI(!menuUIPrefab.activeSelf);
-            if (Input.GetKeyDown(KeyCode.T)) ShowExitUI(!exitUIPrefab.activeSelf);
-            
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+                stageDatas = uiManager.stageDatas;
             }
         }
     }
 
-    public void ShowPiUI(bool bActive)
+    public void LoadSceneToOrder(OrderList inOrder, Scene currentScene)
     {
-        if (menuUIPrefab.activeSelf == true || exitUIPrefab.activeSelf == true) return;
+        int sceneNum = currentScene.buildIndex;
 
-        piUIPrefab.SetActive(bActive);
-    }
-
-    public void ShowMenuUI(bool bActive)
-    {
-        if (exitUIPrefab.activeSelf == true) return;
-
-        ShowPiUI(false);
-        menuUIPrefab.SetActive(bActive);
-        menuUI.Show();
-        SetTimeScale();
-    }
-
-    public void ShowExitUI(bool bActive)
-    {
-        if (menuUIPrefab.activeSelf == true) return;
-
-        ShowPiUI(false);
-        exitUIPrefab.SetActive(bActive);
-        exitUI.Show(false);
-        SetTimeScale();
-    }
-
-    void SetTimeScale()
-    {
-        if (exitUIPrefab.activeSelf == false && menuUIPrefab.activeSelf == false)
+        switch (inOrder)
         {
-            Time.timeScale = 1.0f;
+            case OrderList.MainMenu:
+                {
+                    SceneManager.UnloadSceneAsync(currentScene);
+                    SceneManager.LoadScene(1, LoadSceneMode.Additive);
+                    break;
+                }
+            case OrderList.Retry:
+                {
+                    SceneManager.UnloadSceneAsync(currentScene);
+                    SceneManager.LoadScene(sceneNum, LoadSceneMode.Additive);
+                    break;
+                }
+            case OrderList.NextStage:
+                {
+                    if(currentScene.buildIndex - 2 < stageDatas.Length)
+                    {
+                        SceneManager.UnloadSceneAsync(currentScene);
+                        SceneManager.LoadScene(sceneNum + 1, LoadSceneMode.Additive);
+                    }
+                    break;
+                }
+            case OrderList.ReturnGame:
+                {
+                    break;
+                }
         }
-        else
-            Time.timeScale = 0.0f;
+        Time.timeScale = 1.0f;
     }
 
     public enum ItemList
@@ -108,6 +78,32 @@ public class UIManager : MonoBehaviour
         Retry,
         NextStage,
         ReturnGame
+    }
+    
+    public enum StageList
+    {
+        Stage1,
+        Stage2,
+        Stage3
+    }
+
+    [System.Serializable]
+    public class UITransform
+    {
+        public float Width;
+        public float Height;
+        public Vector3 Pos;
+    }
+
+    [System.Serializable]
+    public class StageData
+    {
+        public Sprite stageImageSprite;
+        public Color imageColor = new Color(1, 1, 1, 1);
+        public string stageName;
+        public StageList stage;
+        public bool isActive = false;
+        public bool isClear = false;
     }
 
     [System.Serializable]
