@@ -45,7 +45,7 @@ public class FollowingTargetAction : ActionNode
 
         if(Vector3.Distance(context.transform.position, attackPos) < float.Epsilon)
         {
-            Debug.Log("이동 중이다!! 성공!!!");
+            Debug.Log("이동 중이다!! Success!!!");
             return State.Success;
         }
 

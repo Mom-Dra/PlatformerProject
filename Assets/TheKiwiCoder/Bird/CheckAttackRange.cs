@@ -21,9 +21,14 @@ public class CheckAttackRange : ActionNode
 
         if (contextToTargetDistance <= attackDistance)
         {
+            Debug.Log($"distance: {contextToTargetDistance}");
+
             Vector3 lookPos = blackboard.targetTransform.position;
             lookPos.y = context.transform.position.y;
             context.transform.LookAt(lookPos);
+
+            if (context.animator != null)
+                context.animator.SetBool("IsWalk", false);
 
             return State.Success;
         }

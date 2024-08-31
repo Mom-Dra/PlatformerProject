@@ -31,7 +31,7 @@ MonoBehaviour:
   - {fileID: -3148656627072182746}
   - {fileID: 8347328560628933144}
   - {fileID: -5863909806113138407}
---- !u!114 &-6480019392734537880
+--- !u!114 &-8464498505712977067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,13 +40,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 891b6f4047175af429073c760d7a85da, type: 3}
-  m_Name: CheckAttackRange
+  m_Script: {fileID: 11500000, guid: d24ddd4b85bbe2f47ab8d0090aba7c29, type: 3}
+  m_Name: CheckAttackRange_Bear
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 5aca35fc90401764a8bed8092de720e0
-  position: {x: -457, y: 818.49396}
+  guid: 4842778aa55523c47b50402a6e3571f9
+  position: {x: -437, y: 846}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -84,7 +84,7 @@ MonoBehaviour:
     detectedTargetPos: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
-  duration: 2
+  duration: 1
 --- !u!114 &-3148656627072182746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -6480019392734537880}
+  - {fileID: -8464498505712977067}
   - {fileID: 2089690016158118037}
 --- !u!114 &-2122431664422899356
 MonoBehaviour:
@@ -192,10 +192,10 @@ MonoBehaviour:
   - {fileID: 8418326731917729202}
   - {fileID: -3148656627072182746}
   - {fileID: 2089690016158118037}
-  - {fileID: -6480019392734537880}
   - {fileID: 7809938792237904716}
   - {fileID: 8347328560628933144}
   - {fileID: -5863909806113138407}
+  - {fileID: -8464498505712977067}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -219,7 +219,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: adf111b6985b4bc439fd69f08c0c500c
-  position: {x: -199.74904, y: 817.4367}
+  position: {x: -147.99982, y: 836.0835}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
