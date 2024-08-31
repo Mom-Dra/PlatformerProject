@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class AmmoUI : MonoBehaviour
 {
-    private int maxAmmo = 6;
-    public int currentAmmo = 6;
     private TextMeshProUGUI thisText;
+    
+    public int maxAmmo = 6;
+    [HideInInspector]
+    public int currentAmmo = -1;
+    
     void Start()
     {
         thisText = GetComponentInChildren<TextMeshProUGUI>();
+        currentAmmo = maxAmmo;
         UpdateAmmo();
     }
 

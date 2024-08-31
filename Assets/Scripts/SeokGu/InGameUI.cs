@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UIManager;
@@ -8,11 +6,12 @@ public class InGameUI : MonoBehaviour
 {
     public GameObject menuUIPrefab;
     public GameObject exitUIPrefab;
-
     [HideInInspector]
     public OrderList currentOrder;
+    [HideInInspector]
+    public StageList thisStage;
 
-    private GameObject piUIPrefab;
+    //private GameObject piUIPrefab;
     private GameObject optionUIPrefab;
     private PiUI piUI;
     private MenuUI menuUI;
@@ -21,22 +20,7 @@ public class InGameUI : MonoBehaviour
 
     void Start()
     {
-        piUIPrefab = GameObject.Find("PiUI");
-        optionUIPrefab = GameObject.Find("OptionUI");
-        menuUIPrefab = Instantiate(menuUIPrefab, transform);
-        exitUIPrefab = Instantiate(exitUIPrefab, transform);
-        menuUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        exitUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-
-        piUI = piUIPrefab.GetComponent<PiUI>();
-        menuUI = menuUIPrefab.GetComponent<MenuUI>();
-        exitUI = exitUIPrefab.GetComponent<ExitUI>();
-
-        piUIPrefab.SetActive(false);
-        menuUIPrefab.SetActive(false);
-        exitUIPrefab.SetActive(false);
-        OptionUI optionUI = optionUIPrefab.GetComponent<OptionUI>();
-        optionUI.Init(menuUIPrefab);
+        Init();
     }
 
     void Update()
@@ -45,7 +29,7 @@ public class InGameUI : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0))
             {
-                if (piUIPrefab.activeSelf == true)
+                if (piUI.gameObject.activeSelf == true)
                     piUI.SelectItem();
             }
 
@@ -62,11 +46,31 @@ public class InGameUI : MonoBehaviour
         }
     }
 
+    void Init()
+    {
+        //piUIPrefab = GameObject.Find("PiUI");
+        optionUIPrefab = GameObject.Find("OptionUI");
+        menuUIPrefab = Instantiate(menuUIPrefab, transform);
+        exitUIPrefab = Instantiate(exitUIPrefab, transform);
+        menuUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        exitUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        piUI = GetComponentInChildren<PiUI>();
+        menuUI = menuUIPrefab.GetComponent<MenuUI>();
+        exitUI = exitUIPrefab.GetComponent<ExitUI>();
+
+        piUI.gameObject.SetActive(false);
+        menuUIPrefab.SetActive(false);
+        exitUIPrefab.SetActive(false);
+        OptionUI optionUI = optionUIPrefab.GetComponent<OptionUI>();
+        optionUI.Init(menuUIPrefab);
+    }
+
     public void ShowPiUI(bool bActive)
     {
         if (menuUIPrefab.activeSelf == true || exitUIPrefab.activeSelf == true) return;
 
-        piUIPrefab.SetActive(bActive);
+        piUI.gameObject.SetActive(bActive);
     }
 
     public void ShowMenuUI(bool bActive)

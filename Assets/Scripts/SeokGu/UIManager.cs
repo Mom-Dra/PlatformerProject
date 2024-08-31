@@ -3,36 +3,58 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    [HideInInspector]
-    public OrderList currentOrder;
+    private Scene gameManager;
 
-    void Start()
+    public StageData[] stageDatas;
+
+    private void Awake()
     {
-
+        gameManager = SceneManager.GetSceneByBuildIndex(0);
     }
 
-    void Update()
+    private void Start()
     {
-        
+        Init();
     }
 
-    public void LoadSceneToOrder(OrderList inOrder)
+    void Init()
     {
-        currentOrder = inOrder;
+        GameObject[] managers = gameManager.GetRootGameObjects();
+        for (int i = 0; i < managers.Length; i++)
+        {
+            UIManager uiManager = managers[i].GetComponent<UIManager>();
+            if (uiManager != null)
+            {
+                stageDatas = uiManager.stageDatas;
+            }
+        }
+    }
+
+    public void LoadSceneToOrder(OrderList inOrder, Scene currentScene)
+    {
+        int sceneNum = currentScene.buildIndex;
+
         switch (inOrder)
         {
             case OrderList.MainMenu:
                 {
+                    SceneManager.UnloadSceneAsync(currentScene);
+                    SceneManager.LoadScene(1, LoadSceneMode.Additive);
                     break;
                 }
             case OrderList.Retry:
                 {
-                    SceneManager.LoadScene(0);
+                    SceneManager.UnloadSceneAsync(currentScene);
+                    SceneManager.LoadScene(sceneNum, LoadSceneMode.Additive);
                     break;
                 }
             case OrderList.NextStage:
                 {
-                    // 현재 Stage정보 가져와서 처리
+                    if(currentScene.buildIndex - 2 < stageDatas.Length)
+                    {
+                        SceneManager.UnloadSceneAsync(currentScene);
+                        SceneManager.LoadScene(sceneNum + 1, LoadSceneMode.Additive);
+                    }
                     break;
                 }
             case OrderList.ReturnGame:
@@ -40,6 +62,7 @@ public class UIManager : MonoBehaviour
                     break;
                 }
         }
+        Time.timeScale = 1.0f;
     }
 
     public enum ItemList
@@ -55,6 +78,32 @@ public class UIManager : MonoBehaviour
         Retry,
         NextStage,
         ReturnGame
+    }
+    
+    public enum StageList
+    {
+        Stage1,
+        Stage2,
+        Stage3
+    }
+
+    [System.Serializable]
+    public class UITransform
+    {
+        public float Width;
+        public float Height;
+        public Vector3 Pos;
+    }
+
+    [System.Serializable]
+    public class StageData
+    {
+        public Sprite stageImageSprite;
+        public Color imageColor = new Color(1, 1, 1, 1);
+        public string stageName;
+        public StageList stage;
+        public bool isActive = false;
+        public bool isClear = false;
     }
 
     [System.Serializable]

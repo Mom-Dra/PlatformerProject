@@ -110,6 +110,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6083552715689095452}
     m_Modifications:
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_text
+      value: Clear
+      objectReference: {fileID: 0}
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.8057229
+      objectReference: {fileID: 0}
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 155821735738235061, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278242815
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341885306545243971, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_text
+      value: Stage Name
+      objectReference: {fileID: 0}
     - target: {fileID: 1998322915884617903, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
       propertyPath: m_Name
       value: StageUI

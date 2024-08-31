@@ -1,45 +1,73 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageUI : MonoBehaviour
 {
+    private Scene gameManager;
+    private GameObject[] managers;
     private StagePiece stagePiece;
+    private Vector3 ScreenSize;
 
-    public StageData[] stageDatas;
     public ChangeButtonData nextButtonData;
     public ChangeButtonData prevButtonData;
-
     [HideInInspector]
     public int currentPiece = 0;
-    
+    [HideInInspector]
+    public int maxPiece = -1;
+    [HideInInspector]
+    public UIManager uiManager;
+
     private void Awake()
+    {
+        if(SceneManager.GetSceneByBuildIndex(0).isLoaded == false)
+        {
+            LoadSceneParameters sceneParameter = new LoadSceneParameters(LoadSceneMode.Additive);
+            gameManager = SceneManager.LoadScene(0, sceneParameter);
+        }
+        else
+        {
+            gameManager = SceneManager.GetSceneByBuildIndex(0);
+        }
+    }
+
+    private void Start()
     {
         Init();
     }
 
+    private void Update()
+    {
+        if (ScreenSize.x != Screen.width || ScreenSize.y != Screen.height)
+        {
+            transform.localScale = new Vector3(Screen.width, Screen.height);
+            stagePiece.UpdateUISize(Screen.width, Screen.height);
+        }
+        ScreenSize.x = Screen.width;
+        ScreenSize.y = Screen.height;
+    }
+
     void Init()
     {
-        stagePiece = GetComponentInChildren<StagePiece>();
-        
-        stagePiece.SetData(stageDatas[currentPiece]);
-
+        managers = gameManager.GetRootGameObjects();
+        for (int i = 0; i < managers.Length; i++)
+        {
+            uiManager = managers[i].GetComponent<UIManager>();
+            if (uiManager != null) break;
+        }
         ChangeButtonUI[] button = GetComponentsInChildren<ChangeButtonUI>();
+
+        stagePiece = GetComponentInChildren<StagePiece>();
+        uiManager.stageDatas[0].isActive = true;
+        stagePiece.SetData(uiManager.stageDatas[currentPiece]);
+        maxPiece = uiManager.stageDatas.Length;
 
         button[0].SetData(nextButtonData);
         button[1].SetData(prevButtonData);
     }
-
     public void UpdateStage()
     {
-        stagePiece.SetData(stageDatas[currentPiece]);
-    }
-
-    [System.Serializable]
-    public class StageData
-    {
-        public Sprite stageImageSprite;
-        public Color imageColor = new Color(1, 1, 1, 1);
-        public string stageName;
-        public StageList stage;
+        stagePiece.SetData(uiManager.stageDatas[currentPiece]);
     }
 
     [System.Serializable]
@@ -48,13 +76,6 @@ public class StageUI : MonoBehaviour
         public Sprite imageSprite;
         public Color imageColor = new Color(1, 1, 1, 1);
         public ButtonDirection direction;
-    }
-
-    public enum StageList
-    {
-        Stage1,
-        Stage2,
-        Stage3
     }
 
     public enum ButtonDirection
