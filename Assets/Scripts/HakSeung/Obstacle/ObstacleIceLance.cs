@@ -8,7 +8,7 @@ public class ObstacleIceLance : Obstacle
     public GameObject IceRance;
     public ParticleSystem Icicle;
 
-    public void Attack()
+    public void OnDrop()
     {
         Icicle.Play();
     }

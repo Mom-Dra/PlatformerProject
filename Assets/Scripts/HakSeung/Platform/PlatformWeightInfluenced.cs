@@ -25,9 +25,15 @@ public class PlatformWeightInfluenced : Platform
     [SerializeField]
     Vector3 maxFallPos;
 
-    protected override IEnumerator GetOnEvent()
+    public override IEnumerator GetOnEvent()
     {
-        
+
+        isGetOnPlatform = true;
+
+        if (isRunToGetOnEvent) yield break;
+
+        ridingTime = 0;
+
         isRunToGetOnEvent = true;
 
         do
@@ -45,6 +51,7 @@ public class PlatformWeightInfluenced : Platform
 
                
             }
+
             ridingTime = 0;
 
             while (!isGetOnPlatform)
@@ -59,6 +66,7 @@ public class PlatformWeightInfluenced : Platform
                     ridingTime += Time.fixedDeltaTime;
                 
             }
+
             ridingTime = 0;
 
             Debug.Log(ridingTime);
@@ -71,6 +79,13 @@ public class PlatformWeightInfluenced : Platform
         isRunToGetOnEvent = false;
     }
 
+    public override IEnumerator GetOutEvent()
+    {
+        if (isRunToGetOnEvent)
+            isGetOnPlatform = false;
+
+        yield break;
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -78,7 +93,7 @@ public class PlatformWeightInfluenced : Platform
         WaitForFixedUD = new WaitForFixedUpdate();
     }
 
-    private void OnCollisionEnter(Collision collision)
+/*    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -90,9 +105,9 @@ public class PlatformWeightInfluenced : Platform
                 StartCoroutine(GetOnEvent());
             }
         }
-    }
+    }*/
 
-    private void OnCollisionExit(Collision collision)
+/*    private void OnCollisionExit(Collision collision)
     {
 
         if (collision.gameObject.CompareTag("Player"))
@@ -100,5 +115,5 @@ public class PlatformWeightInfluenced : Platform
             if(isRunToGetOnEvent)
                 isGetOnPlatform = false;
         }
-    }
+    }*/
 }

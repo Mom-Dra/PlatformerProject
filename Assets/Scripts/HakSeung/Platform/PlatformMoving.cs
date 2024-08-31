@@ -14,7 +14,7 @@ public class PlatformMoving : Platform
     private const float trableWatingTime = 2.0f;
     private const float trableSpeed = 0.5f;
 
-    protected override  IEnumerator GetOnEvent()
+    private  IEnumerator OnMoving()
     {
         float ratio = 0f;
         bool increase = true;
@@ -37,13 +37,21 @@ public class PlatformMoving : Platform
             transform.position = Vector3.Lerp(InitPlatformPos, trablePos, ratio);
         }
     }
+    public override IEnumerator GetOnEvent()
+    {
+        yield break;
+    }
+    public override IEnumerator GetOutEvent()
+    {
+        yield break;
+    }
 
-    //protected override IEnumerator GetOnEvent()
+    //protected override IEnumerator GetOnEvent()ºù
     //{
     //    while (true)
     //    {
     //        yield return null;
-            
+
     //        base.transform.position = Vector3.MoveTowards(base.transform.position, trableTargetPos, Time.deltaTime * trableSpeed);
 
     //        if (trableTargetPos == InitPlatformPos) { yield return WaitForTrable; trableTargetPos = trablePos; }
@@ -61,6 +69,7 @@ public class PlatformMoving : Platform
 
     private void Start()
     {
-        StartCoroutine(GetOnEvent());
+        StartCoroutine(OnMoving());
     }
+
 }

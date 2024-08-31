@@ -19,7 +19,7 @@ public class ObstacleSnowball : DynamicObstacle
     [SerializeField]
     bool foundPlayer = false;
     [SerializeField]
-    float attackForce = 5f;
+    float attackSpeed = 100f;
     [SerializeField]
     float waitTime = 1f;
     public IEnumerator CheckObstacleIsInCamera()
@@ -58,12 +58,9 @@ public class ObstacleSnowball : DynamicObstacle
     public IEnumerator InvisibleTrap()
     {
         yield return new WaitForSeconds(waitTime);
-        rb.velocity = Vector3.forward * -1 * 100;
+        rb.velocity = Vector3.forward * -1 * attackSpeed;
     }
-    /*public void InvisibleTrap()
-    {
-        rb.AddForce(Vector3.forward * attackForce);
-    }*/
+
 
     private void Start()
     {

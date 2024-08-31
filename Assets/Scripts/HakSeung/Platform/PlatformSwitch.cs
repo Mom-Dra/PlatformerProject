@@ -6,10 +6,14 @@ public class PlatformSwitch : Platform
 {
     //플레이어 점프 하면 온 오프 될 플랫폼
 
-    protected override IEnumerator GetOnEvent()
+    public override IEnumerator GetOnEvent()
     {
         yield return null;
     }
 
-    
+    public override IEnumerator GetOutEvent()
+    {
+        yield return null;
+    }
+
 }

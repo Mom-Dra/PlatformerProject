@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,29 +7,28 @@ public class PlatformCollapsing : Platform
 {
     WaitForSeconds WaitForcollapisingTime;
 
+    [Header("Collapsing")]
     [SerializeField]
     float collapsingTime = 2.0f;
 
-    protected override IEnumerator GetOnEvent()
+    public override IEnumerator GetOnEvent()
     {
         yield return WaitForcollapisingTime;
         PlatformCollider.enabled = false;
         PlatformRb.isKinematic = false;
         PlatformRb.useGravity = true;
-
+        
         yield return WaitForcollapisingTime;
         PlatformCollider.enabled = true;
         PlatformRb.isKinematic = true;
         PlatformRb.useGravity = false;
-        this.transform.position = InitPlatformPos;
+        transform.position = InitPlatformPos;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public override IEnumerator GetOutEvent()
     {
-        if (collision.gameObject.CompareTag("Player"))
-            StartCoroutine(GetOnEvent());
+        yield break;
     }
-
 
 
     protected override void Awake()

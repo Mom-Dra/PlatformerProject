@@ -22,6 +22,7 @@ public abstract class Platform :MonoBehaviour
         PlatformCollider = GetComponent<Collider>();
         initPlatformPos = this.transform.position;
     }
-    protected abstract IEnumerator GetOnEvent();
+    public abstract IEnumerator GetOnEvent();
+    public abstract IEnumerator GetOutEvent();
 
 }
