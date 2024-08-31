@@ -15,8 +15,13 @@ public class AttackTargetAction : ActionNode
 
     protected override State OnUpdate()
     {
-        context.animator.SetTrigger("Attack");
+        Attack();
 
         return State.Success;
+    }
+
+    protected virtual void Attack()
+    {
+        context.animator.SetTrigger("Attack");
     }
 }

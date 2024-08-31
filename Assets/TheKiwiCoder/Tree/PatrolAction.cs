@@ -15,6 +15,8 @@ public class PatrolAction : ActionNode
     protected override void OnStart()
     {
         transform = context.transform;
+        waiting = false;
+        context.animator.SetBool("IsWalk", true);
     }
 
     protected override void OnStop()
