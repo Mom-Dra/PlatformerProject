@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class ObstacleSnowball : DynamicObstacle
 {
-    public Vector3 moveDir;
+    [Header("Snowball")]
+    //public Vector3 moveDir;
+    public bool isInvisibleBall;
     Camera mainCamera;
     Vector3 screenPoint;
-    
 
+    [Header("Snowball private")]
     [SerializeField]
     float deactiveTime =5.0f;
     [SerializeField]
@@ -22,6 +24,8 @@ public class ObstacleSnowball : DynamicObstacle
     float attackSpeed = 100f;
     [SerializeField]
     float waitTime = 1f;
+    [SerializeField]
+    bool isOnTrigger = false;
     public IEnumerator CheckObstacleIsInCamera()
     {
         while (activetimer >= 0)
@@ -61,6 +65,19 @@ public class ObstacleSnowball : DynamicObstacle
         rb.velocity = Vector3.forward * -1 * attackSpeed;
     }
 
+    public override void OnTriggerEnterEvent()
+    {
+        if (isOnTrigger) return;
+        isOnTrigger = true;
+        rb.isKinematic = false;
+        StartCoroutine(CheckObstacleIsInCamera());
+        StartCoroutine(CheckSnowballOnPlayerScreen());
+
+        if (isInvisibleBall)
+        {
+            StartCoroutine(InvisibleTrap());
+        }
+    }
 
     private void Start()
     {

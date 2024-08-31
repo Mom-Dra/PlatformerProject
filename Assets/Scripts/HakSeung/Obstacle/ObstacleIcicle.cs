@@ -10,14 +10,14 @@ public class ObstacleIcicle : DynamicObstacle
     {
         //플레이어에게 데미지 전달
         base.OnCollisionEnter(collision);
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Platform"))
-            obstaclePool.ObstacleDeactivation(this.gameObject, GetSpawnTime(), InitPos, rb);
+        /*if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Platform"))
+            obstaclePool.ObstacleDeactivation(this.gameObject, GetSpawnTime(), InitPos, rb);*/
     }
 
     protected override void Awake()
     {
         base.Awake();
-        SetSpawnTime(3.0f);
+        /*SetSpawnTime(3.0f);*/
     }
 
 }
