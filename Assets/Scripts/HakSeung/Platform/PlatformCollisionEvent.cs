@@ -7,7 +7,7 @@ public class PlatformCollisionEvent : MonoBehaviour
     public Platform platform;
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag(platform.PlayerName))
         {
             StartCoroutine(platform.GetOnEvent());
         }
@@ -15,7 +15,7 @@ public class PlatformCollisionEvent : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag(platform.PlayerName))
         {
             StartCoroutine(platform.GetOutEvent());
         }

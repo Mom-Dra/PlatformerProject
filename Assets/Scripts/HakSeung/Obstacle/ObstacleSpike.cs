@@ -8,7 +8,7 @@ public class ObstacleSpike : Obstacle
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag(PlayerName))
         {
             other.gameObject.GetComponent<PlayerControl>().hp.TakeDamage(1f);
         }

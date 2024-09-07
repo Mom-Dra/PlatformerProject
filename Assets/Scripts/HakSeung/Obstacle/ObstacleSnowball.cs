@@ -13,7 +13,7 @@ public class ObstacleSnowball : DynamicObstacle
 
     [Header("Snowball private")]
     [SerializeField]
-    float deactiveTime =5.0f;
+    string cameraName = "Main Camera";
     [SerializeField]
     float activetimer = 0;
     [SerializeField]
@@ -26,6 +26,12 @@ public class ObstacleSnowball : DynamicObstacle
     float waitTime = 1f;
     [SerializeField]
     bool isOnTrigger = false;
+    [SerializeField]
+    float snowballDeactiveTime = 1.0f;
+    [SerializeField]
+    float snowballSpawnTime = 0.0f;
+
+
     public IEnumerator CheckObstacleIsInCamera()
     {
         while (activetimer >= 0)
@@ -40,7 +46,7 @@ public class ObstacleSnowball : DynamicObstacle
 
     public IEnumerator CheckSnowballOnPlayerScreen()
     {
-        activetimer = deactiveTime;
+        activetimer = DeactiveTime;
         while (true)
         {
             yield return null;
@@ -50,13 +56,21 @@ public class ObstacleSnowball : DynamicObstacle
                 activetimer -= Time.deltaTime;
                 if (activetimer < 0)
                 {
-                    Debug.Log("ActiveFalseSnowball");
-                    obstaclePool.ObstacleDeactivation(this.gameObject);
+                    if (isRespawnObstacle)
+                    {
+                        obstaclePool.ObstacleDeactivation(this.gameObject, SpawnTime, InitPos, rb);
+                    }
+                    else
+                    {
+                        obstaclePool.ObstacleDeactivation(this.gameObject);
+                    }
+                    
                     yield break;
                 }
             }
-            activetimer = deactiveTime;
+           // activetimer = DeactiveTime;
         }
+       
     }
 
     public IEnumerator InvisibleTrap()
@@ -67,7 +81,7 @@ public class ObstacleSnowball : DynamicObstacle
 
     public override void OnTriggerEnterEvent()
     {
-        if (isOnTrigger) return;
+        if (isOnTrigger && !this.gameObject.activeSelf) return;
         isOnTrigger = true;
         rb.isKinematic = false;
         StartCoroutine(CheckObstacleIsInCamera());
@@ -79,9 +93,12 @@ public class ObstacleSnowball : DynamicObstacle
         }
     }
 
-    private void Start()
+    protected override void Awake()
     {
-        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        base.Awake();
+        mainCamera = GameObject.Find(cameraName).GetComponent<Camera>();
+        SpawnTime = snowballSpawnTime;
+        DeactiveTime = snowballDeactiveTime;
     }
 
 

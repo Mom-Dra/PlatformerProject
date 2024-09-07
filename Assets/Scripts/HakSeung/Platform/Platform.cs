@@ -6,6 +6,7 @@ public abstract class Platform :MonoBehaviour
 {
     protected Rigidbody PlatformRb { get; set; }
     protected Collider PlatformCollider { get; set; }
+    public string PlayerName { get; private set; } = "Player";
 
     [Header("DefaultPlatform")]
     [SerializeField]
