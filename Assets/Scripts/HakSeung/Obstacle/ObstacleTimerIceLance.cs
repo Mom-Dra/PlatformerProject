@@ -10,15 +10,25 @@ public class ObstacleTimerIceLance : ObstacleIceLance
 
     IEnumerator Raining()
     {
-        while (true)
-        {
-
-            yield return waitingRainingTime;
-        }
+        yield return waitingRainingTime;
+        Debug.Log("»Ð»Ð");
+        OnDrop();
     }
+
+    private void OnParticleSystemStopped()
+    {
+        StartCoroutine(Raining());
+    }
+
     protected override void Awake()
     {
         base.Awake();
         waitingRainingTime = new WaitForSeconds(waitingTime);
     }
+
+    private void Start()
+    {
+        StartCoroutine(Raining());
+    }
+
 }

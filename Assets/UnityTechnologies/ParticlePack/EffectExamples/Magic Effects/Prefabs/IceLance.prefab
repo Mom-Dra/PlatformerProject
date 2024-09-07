@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4572393023880310}
   - component: {fileID: 198549077654335888}
   - component: {fileID: 199141469417565000}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TinyShards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1292229952534652}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.44100004, y: 2.56, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4749,7 +4749,8 @@ GameObject:
   - component: {fileID: 4897860267909952}
   - component: {fileID: 198433943929519872}
   - component: {fileID: 199651061282982800}
-  m_Layer: 0
+  - component: {fileID: 4904375489844314516}
+  m_Layer: 7
   m_Name: IceLance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4766,7 +4767,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -62.92, y: 2.13, z: -6.89}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4572393023880310}
@@ -9594,6 +9595,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4904375489844314516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820680284854294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1cccc7ba0fb5c24699823ae3f5d3127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControl: {fileID: 0}
+  iceLance: {fileID: 198433943929519872}
 --- !u!1 &1877868098342330
 GameObject:
   m_ObjectHideFlags: 0
@@ -9605,7 +9620,7 @@ GameObject:
   - component: {fileID: 4805966615376588}
   - component: {fileID: 198224883181780174}
   - component: {fileID: 199981285287470642}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MistTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14442,7 +14457,7 @@ GameObject:
   - component: {fileID: 4534318803784408}
   - component: {fileID: 198563964752515286}
   - component: {fileID: 199437207930952974}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mist
   m_TagString: Untagged
   m_Icon: {fileID: 0}

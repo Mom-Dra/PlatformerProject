@@ -6,11 +6,11 @@ using UnityEngine;
 public class ObstacleIceLance : Obstacle
 {
     [Header("IceLance")]
-    public ParticleSystem Icicle;
+    public ParticleSystem iceLance;
     
     public void OnDrop()
     {
-        Icicle.Play();
+        iceLance.Play();
     }
 
     public override void OnTriggerEnterEvent()
