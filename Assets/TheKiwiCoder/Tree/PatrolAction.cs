@@ -3,8 +3,11 @@ using TheKiwiCoder;
 
 public class PatrolAction : ActionNode
 {
+    //[SerializeField]
+    //private Transform[] wayPoints;
+
     [SerializeField]
-    private Transform[] wayPoints;
+    private Vector3[] wayPoints;
 
     private int currentWayPointIndex = 0;
     private Transform transform;
@@ -43,11 +46,11 @@ public class PatrolAction : ActionNode
         }
         else
         {
-            Transform wp = wayPoints[currentWayPointIndex];
+            Vector3 wp = wayPoints[currentWayPointIndex];
 
-            if(Vector3.Distance(transform.position, wp.position) < 0.01f)
+            if(Vector3.Distance(transform.position, wp) < 0.01f)
             {
-                transform.position = wp.position;
+                transform.position = wp;
                 waitCounter = 0f;
                 waiting = true;
 
@@ -63,8 +66,8 @@ public class PatrolAction : ActionNode
             else
             {
                 // RigidBody·Î ¸ø¹Ù²Ü±î?
-                transform.position = Vector3.MoveTowards(transform.position, wp.position, blackboard.speed * Time.deltaTime);
-                transform.LookAt(wp.position);
+                transform.position = Vector3.MoveTowards(transform.position, wp, blackboard.speed * Time.deltaTime);
+                transform.LookAt(wp);
             }
         }
 

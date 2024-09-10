@@ -24,6 +24,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   duration: 1
@@ -51,6 +52,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 1
   fovRange: 3
@@ -89,6 +91,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   rushSpeed: 10
@@ -116,6 +119,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   children:
@@ -154,6 +158,7 @@ MonoBehaviour:
       m_Bits: 64
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
 --- !u!114 &3822053315652981660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +183,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   child: {fileID: -2472294450309708869}
@@ -207,6 +213,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   child: {fileID: 3822053315652981660}
@@ -225,7 +232,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 64c0dcf08cb03924b9398e0dbcc95fa9
-  position: {x: 227.99997, y: -128.6318}
+  position: {x: 227, y: -129}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -234,11 +241,12 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   wayPoints:
-  - {fileID: 5364834203900012931, guid: c560394e7f5837b4b802fb102e73d590, type: 3}
-  - {fileID: 5326268496535169086, guid: 043e4c376e5964442952263c64f6d28f, type: 3}
+  - {x: 0, y: 0.5, z: -4}
+  - {x: 0, y: 0.5, z: 4}
 --- !u!114 &5947369269493369980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +271,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   duration: 1
@@ -290,6 +299,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   rotationSpeed: 150
@@ -317,6 +327,7 @@ MonoBehaviour:
       m_Bits: 0
     targetTransform: {fileID: 0}
     detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
   children:

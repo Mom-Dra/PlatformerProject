@@ -365,5 +365,5 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   wayPoints:
-  - {fileID: 8004972249547481533, guid: 3ea11040328c6944ab37794d64818bc5, type: 3}
-  - {fileID: 3366317457149663641, guid: 484cdf946387973448a58bac1c21d6c6, type: 3}
+  - {x: 25, y: 4, z: 4}
+  - {x: 25, y: 4, z: 4}

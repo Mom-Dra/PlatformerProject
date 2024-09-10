@@ -360,8 +360,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   wayPoints:
-  - {fileID: 3805153278149659740, guid: 4fafe46f1f205504d8cff896f0c2cc13, type: 3}
-  - {fileID: 3656910674582548752, guid: d713f9bb983f3114d8f09cbef58c53d3, type: 3}
+  - {x: 50, y: 0.5, z: 4}
+  - {x: 50, y: 0.5, z: 4}
 --- !u!114 &8347328560628933144
 MonoBehaviour:
   m_ObjectHideFlags: 0
