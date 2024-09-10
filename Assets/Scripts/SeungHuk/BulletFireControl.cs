@@ -1,4 +1,5 @@
 using Player;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletFireControl : MonoBehaviour
@@ -7,6 +8,8 @@ public class BulletFireControl : MonoBehaviour
     public PlayerControl player;
     public GunController gun;
     public AmmoUI ammo;
+    public GameObject gunShot;
+    public GameObject fireBullet;
 
     private void Start()
     {
@@ -14,7 +17,7 @@ public class BulletFireControl : MonoBehaviour
     }
     public void FireBullet()
     {
-        if (bulletPrefab && gun.curBullet != 0)
+        if (gun.curBullet != 0)
         {
             gun.curBullet--;
             ammo.currentAmmo--;
@@ -27,9 +30,10 @@ public class BulletFireControl : MonoBehaviour
             if (bulletRb != null)
             {
                 player.Rebound(10f);
-                Vector3 direction = transform.right * 20f; 
-                bulletRb.velocity = direction;
-
+                //Vector3 direction = transform.forward * 20f; 
+                //bulletRb.velocity = direction;
+                gunShot.GetComponent<ParticleSystem>().Play();
+                fireBullet.GetComponent<AudioSource>().Play();
             }
         }
     }
@@ -38,5 +42,14 @@ public class BulletFireControl : MonoBehaviour
         gun.curBullet = gun.maxBullet;
         ammo.currentAmmo = gun.maxBullet;
         ammo.UpdateAmmo();
+        this.GetComponentInParent<AudioSource>().Play();
     }
+    //public void OnParticleCollision(GameObject other)
+    //{
+        //ParticleCollisionEvent[] collisionEvents = new ParticleCollisionEvent[other.GetComponent<ParticleSystem>().collision.GetSafeCollisionEvents(other, collisionEvents)];
+
+        //other.GetComponent<Rigidbody>().AddForce(0, 100, 0);
+        //ContactPoint contactPoint = other.GetComponent<Collision>().contacts[0];
+        //Instantiate(blood, contactPoint.point, Quaternion.identity);
+    //}
 }
