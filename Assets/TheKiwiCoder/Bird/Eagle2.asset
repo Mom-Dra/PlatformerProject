@@ -69,6 +69,34 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &-6940082502228162298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37c710827bfda340823f85f62df399e, type: 3}
+  m_Name: AttackTargetAction_Bird
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d968c577a16c6c74f8e43bd301223979
+  position: {x: 47.999977, y: 659.33344}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    speed: 2
+    targetLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    targetTransform: {fileID: 0}
+    detectedTargetPos: {x: 0, y: 0, z: 0}
+    attackParticle: {fileID: 0}
+  description: 
+  drawGizmos: 0
+  particleGameObjectPrefab: {fileID: 6667558196277456002, guid: 4860fff63f1f6c048a98535ab8aa7fd1, type: 3}
 --- !u!114 &-6839439581513329809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +112,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9fc980db6c7df1641bec27f943ca1c22
-  position: {x: 178, y: 645}
+  position: {x: 296.66675, y: 645.33344}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -207,8 +235,8 @@ MonoBehaviour:
   - {fileID: 818450964710836882}
   - {fileID: -2945653767677075847}
   - {fileID: 1705125840515966291}
-  - {fileID: 2725049765367720041}
   - {fileID: -6839439581513329809}
+  - {fileID: -6940082502228162298}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -278,7 +306,7 @@ MonoBehaviour:
   children:
   - {fileID: -7279274093178644582}
   - {fileID: 818450964710836882}
-  - {fileID: 2725049765367720041}
+  - {fileID: -6940082502228162298}
   - {fileID: -6839439581513329809}
 --- !u!114 &1705125840515966291
 MonoBehaviour:
@@ -310,33 +338,6 @@ MonoBehaviour:
   detectDistance: 10
   attackDistance: 4
   speed: 2
---- !u!114 &2725049765367720041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e875c916f8ab765409872e0ffbff609a, type: 3}
-  m_Name: AttackTargetAction
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 0e2f08e90fbcd6848ad5b3c4660082cf
-  position: {x: 5, y: 652}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    speed: 2
-    targetLayerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    targetTransform: {fileID: 0}
-    detectedTargetPos: {x: 0, y: 0, z: 0}
-    attackParticle: {fileID: 0}
-  description: 
-  drawGizmos: 0
 --- !u!114 &2874159349105810202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,5 +366,5 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   wayPoints:
-  - {x: 25, y: 4, z: 4}
+  - {x: 25, y: 4, z: -4}
   - {x: 25, y: 4, z: 4}

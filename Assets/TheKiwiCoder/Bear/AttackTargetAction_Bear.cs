@@ -22,5 +22,17 @@ public class AttackTargetAction_Bear : AttackTargetAction
         context.animator.SetTrigger($"Attack{randomNum}");
 
         // 공격한 위치에 공격 파티클 시스템 재생!
+        int a;
+        float b;
+
+        for(int i = 0; i < 30; ++i)
+        {
+            for (int j = 0; j < 100; ++j)
+            {
+                int nx, ny;
+
+
+            }
+        }
     }
 }

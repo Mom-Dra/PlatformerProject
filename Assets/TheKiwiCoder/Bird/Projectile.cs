@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using Player;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -8,12 +10,12 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float damage;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnParticleCollision(GameObject other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer(LayerEnum.Player.ToString()))
-        {
-            Debug.Log($"Projectile Triggered Player");
+        Debug.Log($"OnParticleCollision: {other.name}");
 
+        if(other.layer == LayerMask.NameToLayer(LayerEnum.Player.ToString()))
+        {
             other.GetComponent<PlayerControl>().hp.TakeDamage(damage);
         }
     }

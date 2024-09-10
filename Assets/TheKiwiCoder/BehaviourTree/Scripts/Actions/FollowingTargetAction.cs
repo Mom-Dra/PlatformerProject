@@ -47,7 +47,6 @@ public class FollowingTargetAction : ActionNode
         {
             Debug.Log("이동 완료!! Success!!!");
 
-            
             if (contextToTargetDistance > attackDistance)
             {
                 Debug.Log("공격 위치까지 왔지만 사거리가 되지 않음");
@@ -55,7 +54,6 @@ public class FollowingTargetAction : ActionNode
                 return State.Running;
             }
                 
-
             return State.Success;
         }
 

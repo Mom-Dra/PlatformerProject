@@ -347,7 +347,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 7e60706be4b43434cb3fb012d3bfb04b
-  position: {x: 297.1022, y: 452.40875}
+  position: {x: 296.31934, y: 452.66666}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -360,7 +360,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   wayPoints:
-  - {x: 50, y: 0.5, z: 4}
+  - {x: 50, y: 0.5, z: -4}
   - {x: 50, y: 0.5, z: 4}
 --- !u!114 &8347328560628933144
 MonoBehaviour:
