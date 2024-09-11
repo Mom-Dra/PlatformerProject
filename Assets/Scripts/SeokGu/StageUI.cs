@@ -38,13 +38,7 @@ public class StageUI : MonoBehaviour
 
     private void Update()
     {
-        if (ScreenSize.x != Screen.width || ScreenSize.y != Screen.height)
-        {
-            transform.localScale = new Vector3(Screen.width, Screen.height);
-            stagePiece.UpdateUISize(Screen.width, Screen.height);
-        }
-        ScreenSize.x = Screen.width;
-        ScreenSize.y = Screen.height;
+        
     }
 
     void Init()

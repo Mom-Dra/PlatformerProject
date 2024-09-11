@@ -31,6 +31,7 @@ public class ChangeButtonUI : MonoBehaviour
 
     void OnClicked()
     {
+        Debug.Log("ClickBtn");
         switch (buttonDir)
         {
             case ButtonDirection.NEXT:

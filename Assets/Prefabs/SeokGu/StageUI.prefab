@@ -117,7 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9fe1a08c81fec42abcc15ae56bfff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageDatas: []
   nextButtonData:
     imageSprite: {fileID: 21300000, guid: 0c18d517865e0c545bae4ade707e847e, type: 3}
     imageColor: {r: 1, g: 1, b: 1, a: 1}
@@ -127,6 +126,8 @@ MonoBehaviour:
     imageColor: {r: 1, g: 1, b: 1, a: 1}
     direction: 1
   currentPiece: 0
+  maxPiece: -1
+  uiManager: {fileID: 0}
 --- !u!1001 &3271727845778977769
 PrefabInstance:
   m_ObjectHideFlags: 0

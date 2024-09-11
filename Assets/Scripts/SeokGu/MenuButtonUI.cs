@@ -23,6 +23,8 @@ public class MenuButtonUI : MonoBehaviour
     public void SetData(MenuButtonData buttonData)
     {
         thisText.text = buttonData.text;
+        thisText.fontStyle = FontStyles.Bold;
+        thisText.fontSize = 36.0f;
         thisOrder = buttonData.order;
     }
 
