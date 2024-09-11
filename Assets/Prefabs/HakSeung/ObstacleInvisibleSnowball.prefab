@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8775937417938214655}
   - component: {fileID: 4664471538628975310}
   - component: {fileID: 4723797355586628942}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObstacleInvisibleSnowball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 8837999239906058346}
   - component: {fileID: 3958715121118174309}
   - component: {fileID: 8995902878461572929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 2949954089683361853}
   - component: {fileID: 5964151604477830288}
   - component: {fileID: 4691847966634988171}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Snowball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 1297726667803650386}
   - component: {fileID: 3208755504623232864}
   - component: {fileID: 8771461388115819956}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TrapWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

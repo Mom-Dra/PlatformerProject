@@ -5,8 +5,11 @@ using UnityEngine.UIElements;
 
 public class ObstaclePool : MonoBehaviour
 {
+    [Header("ObstaclePool")]
     public GameObject[] ObstacleArr;
     private DynamicObstacle dynamicObstacle;
+    [SerializeField]
+    private string obstacleName = "DynamicObstacle";
     float ObstacleSpawnTimer;
     
     
@@ -33,9 +36,9 @@ public class ObstaclePool : MonoBehaviour
         obstacleRb.isKinematic = true; //여기서 안하면 활성화 되면 바로 떨어진다.
         ObstacleActivation(obstacle);
     }
-    private void Start()
+    private void Awake()
     {
-        ObstacleArr = GameObject.FindGameObjectsWithTag("DynamicObstacle");
+        ObstacleArr = GameObject.FindGameObjectsWithTag(obstacleName);
     }
 
     

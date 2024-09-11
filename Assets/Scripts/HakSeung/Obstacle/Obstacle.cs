@@ -5,24 +5,26 @@ using UnityEngine;
 
 public abstract class Obstacle : MonoBehaviour
 {
-
+    [SerializeField]
+    public string PlayerName { get; private set; } = "Player";
     [SerializeField]
     protected int Damage { get; set; } = 1;
+    [SerializeField]
     private PlayerControl playerControl;
-    
+
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag(PlayerName))
         {
             collision.gameObject.GetComponent<PlayerControl>().hp.TakeDamage(1f);
         }
     }
 
     public virtual void OnTriggerEnterEvent() { }
+    
 
-
-    private void Start()
+    protected virtual void Awake()
     {
-        playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+        playerControl = GameObject.FindGameObjectWithTag(PlayerName).GetComponent<PlayerControl>();
     }
 }

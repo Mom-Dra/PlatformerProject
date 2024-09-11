@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 901052181581198991}
   - component: {fileID: 5795870289718675634}
   - component: {fileID: 1412349168974936164}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Snowball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 1493921343834435303}
   - component: {fileID: 7408198280524053707}
   - component: {fileID: 2392667977359547353}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObstacleSnowball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
