@@ -126,7 +126,7 @@ namespace Player
         public virtual void MoveInput()
         {
             cc.input.x = Input.GetAxis(horizontalInput);
-            cc.input.z = Input.GetAxis(verticallInput);
+            //cc.input.z = Input.GetAxis(verticallInput);
             if (Input.GetKeyDown(rolling) && cc.isGround && !cc.isRolling)
             {
                 cc.isRolling = true;
