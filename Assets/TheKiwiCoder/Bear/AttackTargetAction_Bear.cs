@@ -1,18 +1,30 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackTargetAction_Bear : AttackTargetAction
 {
+    [SerializeField]
+    private float damage;
+
+    [SerializeField]
+    private GameObject particleGameObejctPrefab;
     private GameObject particleGameObejct;
     private ParticleSystem particleSystem;
+    private Transform attackPos;
+    private PlayerControl playerControl;
 
     protected override void OnStart()
     {
-        if(particleGameObejct == null)
+        if(particleSystem == null)
         {
-            particleGameObejct = Instantiate(blackboard.attackParticle);
+            particleGameObejct = Instantiate(particleGameObejctPrefab);
             particleSystem = particleGameObejct.GetComponent<ParticleSystem>();
+            attackPos = context.transform.Find("AttackPos");
+
+            particleSystem.transform.localScale = context.transform.localScale;
+            playerControl = blackboard.targetTransform.GetComponent<PlayerControl>();
         }
     }
 
@@ -22,17 +34,9 @@ public class AttackTargetAction_Bear : AttackTargetAction
         context.animator.SetTrigger($"Attack{randomNum}");
 
         // 공격한 위치에 공격 파티클 시스템 재생!
-        int a;
-        float b;
+        particleGameObejct.transform.position = attackPos.transform.position;
+        particleSystem.Play();
 
-        for(int i = 0; i < 30; ++i)
-        {
-            for (int j = 0; j < 100; ++j)
-            {
-                int nx, ny;
-
-
-            }
-        }
+        playerControl.hp.TakeDamage(damage);
     }
 }

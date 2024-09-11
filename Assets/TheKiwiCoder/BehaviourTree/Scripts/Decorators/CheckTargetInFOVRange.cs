@@ -7,7 +7,6 @@ public class CheckTargetInFOVRange : ActionNode
     public const int maxColider = 10;
     public Collider[] colliders = new Collider[maxColider];
 
-
     protected override void OnStart()
     {
 
@@ -15,6 +14,7 @@ public class CheckTargetInFOVRange : ActionNode
 
     protected override void OnStop()
     {
+
     }
 
     protected override State OnUpdate()
