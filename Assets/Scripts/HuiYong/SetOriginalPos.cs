@@ -31,7 +31,7 @@ public class SetOriginalPos : MonoBehaviour
 
     private void Start()
     {
-        Invoke("StartCheckOutCameraCoroutine", 3f);
+        //Invoke("StartCheckOutCameraCoroutine", 3f);
     }
 
     private void StartCheckOutCameraCoroutine()
@@ -72,5 +72,15 @@ public class SetOriginalPos : MonoBehaviour
                 yield return waitForSeconds;
             }
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        Debug.Log("OnBecameInvisible");
+    }
+
+    private void OnBecameVisible()
+    {
+        Debug.Log("OnBecameVisible");
     }
 }
