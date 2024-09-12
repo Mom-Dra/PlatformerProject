@@ -10,13 +10,20 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float damage;
 
+    private PlayerControl playerControl;
+
     private void OnParticleCollision(GameObject other)
     {
         Debug.Log($"OnParticleCollision: {other.name}");
 
         if(other.layer == LayerMask.NameToLayer(LayerEnum.Player.ToString()))
         {
-            other.GetComponent<PlayerControl>().hp.TakeDamage(damage);
+            if(playerControl == null)
+            {
+                playerControl = other.GetComponent<PlayerControl>();
+            }
+
+            playerControl.hp.TakeDamage(damage);
         }
     }
 }
