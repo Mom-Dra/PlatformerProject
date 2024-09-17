@@ -49,13 +49,17 @@ MonoBehaviour:
     imageColor: {r: 1, g: 1, b: 1, a: 1}
     stageName: Stage 1
     stage: 0
+    isActive: 1
+    isClear: 0
   - stageImageSprite: {fileID: 21300000, guid: 93b5b28db06f8d2439c780ec3aeb28d2, type: 3}
     imageColor: {r: 1, g: 1, b: 1, a: 1}
     stageName: Stage 2
     stage: 1
+    isActive: 0
+    isClear: 0
   - stageImageSprite: {fileID: 21300000, guid: 08d5ec2d201ece949a5e428ba3ea0e63, type: 3}
     imageColor: {r: 1, g: 1, b: 1, a: 1}
     stageName: Stage 3
     stage: 2
-  currentOrder: 0
-  currentPiece: 0
+    isActive: 0
+    isClear: 0

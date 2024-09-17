@@ -24,7 +24,7 @@ public class ExitUI : MonoBehaviour
     public void Init()
     {
         TimeUIPrefab = GameObject.Find("TimeUI");
-        timeUI = TimeUIPrefab.GetComponent<TimeUI>();
+        timeUI = TimeUIPrefab.GetComponentInChildren<TimeUI>();
         thisText = GetComponentInChildren<TextMeshProUGUI>();
 
         for (int i = 0; i < buttonCount; i++)

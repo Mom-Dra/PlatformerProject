@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fe5f259a11272b048beb3070540f0229, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d1288e2b8fc506d4c8ea818432d3c78f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,8 +90,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultData:
-    imageSprite: {fileID: 21300000, guid: fe5f259a11272b048beb3070540f0229, type: 3}
+    imageSprite: {fileID: 21300000, guid: d1288e2b8fc506d4c8ea818432d3c78f, type: 3}
     imageColor: {r: 1, g: 1, b: 1, a: 1}
+    item: 0
 --- !u!114 &1122405395660023224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +133,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2099996262175800240}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []

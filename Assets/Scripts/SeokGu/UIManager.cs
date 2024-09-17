@@ -33,6 +33,9 @@ public class UIManager : MonoBehaviour
     public void LoadSceneToOrder(OrderList inOrder, Scene currentScene)
     {
         int sceneNum = currentScene.buildIndex;
+        Debug.Log(inOrder);
+        Debug.Log(currentScene);
+        Debug.Log(sceneNum);
 
         switch (inOrder)
         {
