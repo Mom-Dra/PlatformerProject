@@ -11,8 +11,8 @@ public class ObstacleTimerIceLance : ObstacleIceLance
     IEnumerator Raining()
     {
         yield return waitingRainingTime;
-        Debug.Log("»Ð»Ð");
-        OnDrop();
+        //OnDrop();
+        iceLance.Play();
     }
 
     private void OnParticleSystemStopped()

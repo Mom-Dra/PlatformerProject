@@ -27,10 +27,11 @@ public class ObstacleSnowball : DynamicObstacle
     [SerializeField]
     bool isOnTrigger = false;
     [SerializeField]
-    float snowballDeactiveTime = 1.0f;
+    const float snowballDeactiveTime = 10.0f;
     [SerializeField]
     float snowballSpawnTime = 0.0f;
 
+    AudioSource snowBallAudio;
 
     public IEnumerator CheckObstacleIsInCamera()
     {
@@ -56,6 +57,7 @@ public class ObstacleSnowball : DynamicObstacle
                 activetimer -= Time.deltaTime;
                 if (activetimer < 0)
                 {
+                    //rollingAudio.Stop();
                     if (isRespawnObstacle)
                     {
                         obstaclePool.ObstacleDeactivation(this.gameObject, SpawnTime, InitPos, rb);
@@ -67,15 +69,28 @@ public class ObstacleSnowball : DynamicObstacle
                     
                     yield break;
                 }
+
+               // if (!isInvisibleBall && !rollingAudio.isPlaying) rollingAudio.Play();
             }
            // activetimer = DeactiveTime;
         }
        
     }
 
+    IEnumerator RollingSounds()
+    {
+        while(activetimer >= 0)
+        {
+            if(!snowBallAudio.isPlaying) snowBallAudio.Play();
+            yield return null;
+        }
+        //rollingAudio.Stop();
+    }
+
     public IEnumerator InvisibleTrap()
     {
         yield return new WaitForSeconds(waitTime);
+        snowBallAudio.Play();
         rb.velocity = Vector3.forward * -1 * attackSpeed;
     }
 
@@ -88,9 +103,9 @@ public class ObstacleSnowball : DynamicObstacle
         StartCoroutine(CheckSnowballOnPlayerScreen());
 
         if (isInvisibleBall)
-        {
             StartCoroutine(InvisibleTrap());
-        }
+        else
+            StartCoroutine(RollingSounds());
     }
 
     protected override void Awake()
@@ -99,6 +114,7 @@ public class ObstacleSnowball : DynamicObstacle
         mainCamera = GameObject.Find(cameraName).GetComponent<Camera>();
         SpawnTime = snowballSpawnTime;
         DeactiveTime = snowballDeactiveTime;
+        snowBallAudio = GetComponent<AudioSource>();
     }
 
 
