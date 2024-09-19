@@ -29,7 +29,7 @@ public class BulletFireControl : MonoBehaviour
             Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
             if (bulletRb != null)
             {
-                player.Rebound(10f);
+                player.Rebound(10f, transform.position);
                 //Vector3 direction = transform.forward * 20f; 
                 //bulletRb.velocity = direction;
                 gunShot.GetComponent<ParticleSystem>().Play();
