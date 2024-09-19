@@ -11,6 +11,8 @@ public class PigMonster : MonoBehaviour
     [SerializeField]
     private float damage;
 
+    private PlayerControl playerControl;
+
     private void OnCollisionEnter(Collision collision)
     {
         // 플레이어 충돌하면 상대방을 날려준다!
@@ -23,8 +25,13 @@ public class PigMonster : MonoBehaviour
             addForce = addForce.normalized;
             addForce.y = power;
 
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(addForce, ForceMode.Impulse);
-            collision.gameObject.GetComponent<PlayerControl>().hp.TakeDamage(damage);
+            if(playerControl == null)
+            {
+                playerControl = collision.gameObject.GetComponent<PlayerControl>();
+            }
+
+            playerControl.Rebound(power);
+            playerControl.hp.TakeDamage(damage);
         }
     }
 }
