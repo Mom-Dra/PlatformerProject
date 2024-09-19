@@ -17,6 +17,8 @@ public abstract class Obstacle : MonoBehaviour
         if (collision.gameObject.CompareTag(PlayerName))
         {
             collision.gameObject.GetComponent<PlayerControl>().hp.TakeDamage(1f);
+            collision.gameObject.GetComponent<PlayerControl>().Rebound(10f);
+            Debug.Log("¿€µø");
         }
     }
 

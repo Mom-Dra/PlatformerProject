@@ -37,6 +37,7 @@ public class ObstacleIceLance : Obstacle
         if (other.gameObject.CompareTag(PlayerName))
         {
             other.gameObject.GetComponent<PlayerControl>().hp.TakeDamage(1f);
+            other.gameObject.GetComponent<PlayerControl>().Rebound(10f);
             collisionAudio.Play();
         }
     }
