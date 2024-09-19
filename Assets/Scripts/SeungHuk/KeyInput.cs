@@ -68,7 +68,7 @@ namespace Player
             JumpInput();
             FireInput();
             cam.CameraMove();
-            GunReLoad();
+            //GunReLoad();
             SlotChange();
             JumpKingMode();
         }
@@ -163,9 +163,9 @@ namespace Player
                 cc.ThrowStone();
             }
         }
-        void GunReLoad()
+        public void GunReLoad()
         {
-            if(Input.GetKeyDown(reloadGun) && gun.gameObject.activeSelf)
+            if(/*Input.GetKeyDown(reloadGun) && */gun.gameObject.activeSelf)
             {
                 Debug.Log("Bullets Reloading....");
                 bullet.Reload();

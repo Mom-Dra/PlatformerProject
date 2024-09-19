@@ -11,7 +11,7 @@ public class ObstacleSpike : Obstacle
         if (other.gameObject.CompareTag(PlayerName))
         {
             other.gameObject.GetComponent<PlayerControl>().hp.TakeDamage(1f);
-            other.gameObject.GetComponent<PlayerControl>().Rebound(10f);
+            other.gameObject.GetComponent<PlayerControl>().Rebound(10f, transform.position);
             Debug.Log("작동");
         }
         Debug.Log("작동2");

@@ -30,7 +30,7 @@ public class PigMonster : MonoBehaviour
                 playerControl = collision.gameObject.GetComponent<PlayerControl>();
             }
 
-            playerControl.Rebound(power);
+            playerControl.Rebound(power, transform.position);
             playerControl.hp.TakeDamage(damage);
         }
     }
