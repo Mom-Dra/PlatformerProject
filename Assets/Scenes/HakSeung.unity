@@ -2479,6 +2479,10 @@ PrefabInstance:
       value: Moving (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2734364824551288044, guid: 06b3f243274a42149b731d9d8d6cbaca, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2734364824551288044, guid: 06b3f243274a42149b731d9d8d6cbaca, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
@@ -2533,6 +2537,10 @@ PrefabInstance:
     - target: {fileID: 6406034546573572532, guid: 06b3f243274a42149b731d9d8d6cbaca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752732259982101976, guid: 06b3f243274a42149b731d9d8d6cbaca, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8752732259982101976, guid: 06b3f243274a42149b731d9d8d6cbaca, type: 3}
       propertyPath: m_TagString
@@ -8003,12 +8011,20 @@ PrefabInstance:
       value: Collapsing
       objectReference: {fileID: 0}
     - target: {fileID: 3254110197288211606, guid: b183223dc107a9940a04b63a2eacf561, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3254110197288211606, guid: b183223dc107a9940a04b63a2eacf561, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4624708221941298309, guid: b183223dc107a9940a04b63a2eacf561, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624708221941298309, guid: b183223dc107a9940a04b63a2eacf561, type: 3}
       propertyPath: m_TagString
-      value: Platform
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6155281152396567733, guid: b183223dc107a9940a04b63a2eacf561, type: 3}
       propertyPath: m_Size.x

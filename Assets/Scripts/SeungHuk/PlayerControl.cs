@@ -67,7 +67,7 @@ namespace Player
     #endregion
     public class PlayerControl : PlayerAnimator
     {
-
+        static Vector3 platformLen;
         #region InitilizeSetting 
 
         public int moveMod;
@@ -229,32 +229,50 @@ namespace Player
             Vector3 direction = input * Time.fixedDeltaTime * (speed + sprint);
 
             direction = Vector3.ProjectOnPlane(direction, hit.normal);
+            
             if(onPlatform)
             {
                 //platformDis = platform.transform.position.y + (transform.position.y - platform.transform.position.y)-0.08f;
-                playerRigidBody.MovePosition(new Vector3(playerRigidBody.position.x + direction.x, platform.transform.position.y, playerRigidBody.position.z + direction.z));
+                platformLen = platformLen - direction;
+                //playerRigidBody.MovePosition(new Vector3(playerRigidBody.position.x + direction.x, platform.transform.position.y, playerRigidBody.position.z + direction.z));
+                if(platform.transform.position.y < playerRigidBody.position.y)
+                    playerRigidBody.MovePosition(new Vector3(platform.transform.position.x - platformLen.x, platform.transform.position.y+0.1f, playerRigidBody.position.z));
+                else
+                    playerRigidBody.MovePosition(new Vector3(platform.transform.position.x - platformLen.x, playerRigidBody.position.y, playerRigidBody.position.z));
             }
             else
             {
                 playerRigidBody.MovePosition(playerRigidBody.position + direction);
             }
         }
+        int colcount = 0;
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.transform.CompareTag("Platform"))
+            colcount++;
+            if (collision.transform.CompareTag("Platform") && platform == null)
             {
                 platform = collision.transform.GetComponent<PlatformCollisionEvent>();
-                if (platform != null)
-                    onPlatform = true;
+                platformLen = platform.transform.position - playerRigidBody.position;
+                onPlatform = true;
+            }
+            else if (collision.transform.CompareTag("Platform") && platform != null)
+            {
+                platform = collision.transform.GetComponent<PlatformCollisionEvent>();
+                platformLen = platform.transform.position - playerRigidBody.position;
+                onPlatform = true;
             }
         }
 
         private void OnCollisionExit(Collision collision)
         {
-            if (collision.transform.CompareTag("Platform"))
+            if (collision.transform.CompareTag("Platform") && collision.transform.GetComponent<PlatformCollisionEvent>() == platform && colcount == 1)
             {
                 onPlatform = false;
                 platform = null;
+            }
+            else
+            {
+                colcount--;
             }
         }
 

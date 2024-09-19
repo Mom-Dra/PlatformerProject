@@ -166,7 +166,7 @@ namespace Player
         public void GunReLoad()
         {
             //if(/*Input.GetKeyDown(reloadGun) && */gun.gameObject.activeSelf)
-           // {
+            //{
                 Debug.Log("Bullets Reloading....");
                 bullet.Reload();
             //}
