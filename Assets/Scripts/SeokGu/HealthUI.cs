@@ -12,16 +12,11 @@ public class HealthUI : MonoBehaviour
 
     private float maxHealth = 3;
     private List<HealthPiece> healthPieces = new List<HealthPiece>();
+    private InGameUI inGameUI;
 
     void Start()
     {
         Init();
-    }
-
-    void Update()
-    {
-        if(bDebug == true)
-            UpdateCurrentHealth();
     }
 
     void Init()
@@ -38,7 +33,7 @@ public class HealthUI : MonoBehaviour
         }
     }
 
-    void UpdateCurrentHealth()
+    public void UpdateCurrentHealth()
     {
         float current = Mathf.Clamp(currentHealth, 0, maxHealth);
         for (int i = 0; i < pieceCount; i++)
@@ -55,6 +50,12 @@ public class HealthUI : MonoBehaviour
                 else if (current < 0)
                     healthPieces[i].SetImageFillAmount(0.5f);
             }
+        }
+
+        if(currentHealth <= 0)
+        {
+            inGameUI = GetComponentInParent<InGameUI>();
+            inGameUI.VisibleExitUI(true);
         }
     }
 }

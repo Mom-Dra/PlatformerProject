@@ -16,7 +16,7 @@ public class InGameUI : MonoBehaviour
     private PiUI piUI;
     private MenuUI menuUI;
     private ExitUI exitUI;
-    private bool bDebug = true;
+    private bool bDebug = false;
 
     void Start()
     {
@@ -37,7 +37,6 @@ public class InGameUI : MonoBehaviour
             else ShowPiUI(false);
 
             if (Input.GetKeyDown(KeyCode.Escape)) ShowMenuUI(!menuUIPrefab.activeSelf);
-            if (Input.GetKeyDown(KeyCode.T)) ShowExitUI(!exitUIPrefab.activeSelf);
 
             if (Input.GetKeyDown(KeyCode.V))
             {
@@ -83,13 +82,18 @@ public class InGameUI : MonoBehaviour
         SetTimeScale();
     }
 
-    public void ShowExitUI(bool bActive)
+    public void VisibleExitUI(bool isFailed)
+    {
+        ShowExitUI(!exitUIPrefab.activeSelf, isFailed);
+    }
+
+    public void ShowExitUI(bool bActive, bool isFailed)
     {
         if (menuUIPrefab.activeSelf == true) return;
 
         ShowPiUI(false);
         exitUIPrefab.SetActive(bActive);
-        exitUI.Show(false);
+        exitUI.Show(isFailed);
         SetTimeScale();
     }
 

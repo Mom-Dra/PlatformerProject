@@ -33,6 +33,7 @@ namespace Player
             {
                 health += heal;
                 healthUI.currentHealth = health;
+                healthUI.UpdateCurrentHealth();
                 Debug.Log("Already Healty!");
             }
             else
@@ -52,11 +53,13 @@ namespace Player
 
             health -= damage;
             healthUI.currentHealth = health;
+            healthUI.UpdateCurrentHealth();
             Debug.Log("Player Took Damage!");
 
             if (health <= 0)
             {
                 player.isDead = true;
+                
                 Debug.Log("Good bye, World!");
             }
         }
@@ -132,6 +135,7 @@ namespace Player
             SlotReset();
             hp = new Health();
             Physics.gravity = new Vector3(0, -9.81f * 5f, 0);
+            Physics.IgnoreLayerCollision(6, 7, false);
         }
 
         #endregion 
