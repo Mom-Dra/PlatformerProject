@@ -11,5 +11,7 @@ public enum LayerEnum
     UI,
     Player,
     Trap,
-    Platform
+    Platform,
+    Monster,
+    Projectile
 }

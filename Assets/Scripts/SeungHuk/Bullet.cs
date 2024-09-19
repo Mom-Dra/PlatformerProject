@@ -27,14 +27,30 @@ public class Bullet : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z);
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Trap")))
+        if (collision.gameObject.layer.Equals(LayerMask.NameToLayer(LayerEnum.Monster.ToString())))
         {
             ContactPoint contactPoint = collision.contacts[0];
             Scene curScene = SceneManager.GetSceneByBuildIndex(gameObject.scene.buildIndex);
             Object be = Instantiate(blood, curScene);
             be.GameObject().transform.SetLocalPositionAndRotation(contactPoint.point, Quaternion.identity);
+            be.GetComponent<ParticleSystem>().Play();
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer.Equals(LayerMask.NameToLayer(LayerEnum.Monster.ToString())))
+        {
+            other.GetComponent<Monster>().TakeDamage(1);
+
+            Vector3 contactPoint = other.transform.position;
+            Scene curScene = SceneManager.GetSceneByBuildIndex(gameObject.scene.buildIndex);
+            Object be = Instantiate(blood, curScene);
+            be.GameObject().transform.SetLocalPositionAndRotation(contactPoint, Quaternion.identity);
             be.GetComponent<ParticleSystem>().Play();
             Destroy(gameObject);
         }
