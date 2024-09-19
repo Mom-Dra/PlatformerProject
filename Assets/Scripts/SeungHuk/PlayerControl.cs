@@ -316,9 +316,10 @@ namespace Player
             IsEquipedGun = true;
         }
 
-        public void Rebound(float power)
+        public void Rebound(float power, Vector3 otherPos)
         {
-            if (isPlayerSeeLeft)
+            double data = otherPos.x - transform.position.x;
+            if (data < 0)
             {
                 playerRigidBody.velocity = new Vector3(1, 2.5f-(gun.normalizedY*5), 0) * power;
             }

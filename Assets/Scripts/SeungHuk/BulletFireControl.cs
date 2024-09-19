@@ -1,6 +1,7 @@
 using Player;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BulletFireControl : MonoBehaviour
 {
@@ -24,12 +25,14 @@ public class BulletFireControl : MonoBehaviour
             ammo.UpdateAmmo();
             Debug.Log("Shot!");
             Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            GameObject bullet = Instantiate(bulletPrefab, pos, transform.rotation);
+            Scene curScene = SceneManager.GetSceneByBuildIndex(gameObject.scene.buildIndex);
+            Object bullet = Instantiate(bulletPrefab, curScene);
+            bullet.GameObject().transform.SetLocalPositionAndRotation(pos, transform.rotation);
 
             Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
             if (bulletRb != null)
             {
-                player.Rebound(10f);
+                player.Rebound(10f, transform.position);
                 //Vector3 direction = transform.forward * 20f; 
                 //bulletRb.velocity = direction;
                 gunShot.GetComponent<ParticleSystem>().Play();

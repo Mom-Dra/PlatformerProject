@@ -58,7 +58,7 @@ public class InGameUI : MonoBehaviour
         menuUI = menuUIPrefab.GetComponent<MenuUI>();
         exitUI = exitUIPrefab.GetComponent<ExitUI>();
 
-        piUI.gameObject.SetActive(false);
+        piUI.gameObject.SetActive(true);
         menuUIPrefab.SetActive(false);
         exitUIPrefab.SetActive(false);
         OptionUI optionUI = optionUIPrefab.GetComponent<OptionUI>();

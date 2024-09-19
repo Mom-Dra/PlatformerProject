@@ -23,11 +23,11 @@ public class MenuButtonUI : MonoBehaviour
 
     private void Start()
     {
-        GameObject[] gameObjects = SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
-        for (int i = 0; i< gameObjects.Length;i++)
-        {
-            uiManager = gameObjects[i].GetComponent<UIManager>();
-        }
+        //GameObject[] gameObjects = SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
+        //for (int i = 0; i< gameObjects.Length;i++)
+        //{
+        //    uiManager = gameObjects[i].GetComponent<UIManager>();
+        //}
     }
 
     public void SetData(MenuButtonData buttonData)
@@ -40,6 +40,12 @@ public class MenuButtonUI : MonoBehaviour
 
     void OnClicked()
     {
+        GameObject[] gameObjects = SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
+        for (int i = 0; i < gameObjects.Length; i++)
+        {
+            if (uiManager != null) break;
+            uiManager = gameObjects[i].GetComponent<UIManager>();
+        }
         Debug.Log(uiManager);
         uiManager.LoadSceneToOrder(thisOrder, gameObject.scene);
         thisParent.gameObject.SetActive(false);

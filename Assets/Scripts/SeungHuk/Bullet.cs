@@ -2,6 +2,8 @@ using Player;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using static UnityEditor.PlayerSettings;
+using UnityEngine.SceneManagement;
 
 public class Bullet : MonoBehaviour
 {
@@ -30,7 +32,9 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Trap")))
         {
             ContactPoint contactPoint = collision.contacts[0];
-            GameObject be = Instantiate(blood, contactPoint.point, Quaternion.identity);
+            Scene curScene = SceneManager.GetSceneByBuildIndex(gameObject.scene.buildIndex);
+            Object be = Instantiate(blood, curScene);
+            be.GameObject().transform.SetLocalPositionAndRotation(contactPoint.point, Quaternion.identity);
             be.GetComponent<ParticleSystem>().Play();
             Destroy(gameObject);
         }
