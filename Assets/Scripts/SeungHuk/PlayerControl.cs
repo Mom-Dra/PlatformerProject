@@ -235,7 +235,7 @@ namespace Player
                 //platformDis = platform.transform.position.y + (transform.position.y - platform.transform.position.y)-0.08f;
                 platformLen = platformLen - direction;
                 //playerRigidBody.MovePosition(new Vector3(playerRigidBody.position.x + direction.x, platform.transform.position.y, playerRigidBody.position.z + direction.z));
-                if(platform.transform.position.y < playerRigidBody.position.y)
+               if(platform.transform.position.y < playerRigidBody.position.y)
                     playerRigidBody.MovePosition(new Vector3(platform.transform.position.x - platformLen.x, platform.transform.position.y+0.1f, playerRigidBody.position.z));
                 else
                     playerRigidBody.MovePosition(new Vector3(platform.transform.position.x - platformLen.x, playerRigidBody.position.y, playerRigidBody.position.z));

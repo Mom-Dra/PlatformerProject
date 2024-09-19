@@ -165,16 +165,8 @@ namespace Player
         }
         public void GunReLoad()
         {
-<<<<<<< HEAD
-            //if(/*Input.GetKeyDown(reloadGun) && */gun.gameObject.activeSelf)
-            //{
-=======
-            if(/*Input.GetKeyDown(reloadGun) && */gun.gameObject.activeSelf)
-            {
->>>>>>> dced89a89661a1bc82781c6c9398cd813ceea4bf
                 Debug.Log("Bullets Reloading....");
                 bullet.Reload();
-            //}
         }
     }
 }

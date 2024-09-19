@@ -36,7 +36,6 @@ public class PlatformWeightInfluenced : Platform
         {
             while (isGetOnPlatform )
             {
-                Debug.Log("Down");
                 yield return WaitForFixedUD;
                 if (transform.position.y <= maxFallPos.y) { yield return new WaitUntil(() => !isGetOnPlatform); }
 
@@ -52,7 +51,6 @@ public class PlatformWeightInfluenced : Platform
 
             while (!isGetOnPlatform)
             {
-                Debug.Log("Up");
                 yield return WaitForFixedUD;
                 if (transform.position.y >= InitPlatformPos.y) { break; }
 
@@ -70,7 +68,6 @@ public class PlatformWeightInfluenced : Platform
 
         } while (transform.position != InitPlatformPos);
 
-        Debug.Log("³¡");
 
         isRunToGetOnEvent = false;
     }
