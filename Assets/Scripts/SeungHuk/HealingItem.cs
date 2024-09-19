@@ -21,7 +21,18 @@ public class HealingItem : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision other)
+   /* private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            player = other.gameObject.GetComponent<PlayerControl>();
+            player.hp.Heal(heal);
+            // �浹�� ������Ʈ�� �ı�
+            Destroy(this.gameObject);
+        }
+    }*/
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
