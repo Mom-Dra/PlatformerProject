@@ -7,11 +7,24 @@ public class ObstacleIceLance : Obstacle
 {
     [Header("IceLance")]
     public ParticleSystem iceLance;
-    
+    public  AudioSource fallingAudio;
+    AudioSource collisionAudio;
     public void OnDrop()
     {
         iceLance.Play();
+        fallingAudio.Play();
+       // StartCoroutine(DestroyAudioEvent());
     }
+
+   /* IEnumerator DestroyAudioEvent()
+    {
+        while (iceLance.isPlaying)
+        {
+            yield return null;
+        }
+
+        collisionAudio.Play();
+    }*/
 
     public override void OnTriggerEnterEvent()
     {
@@ -24,6 +37,16 @@ public class ObstacleIceLance : Obstacle
         if (other.gameObject.CompareTag(PlayerName))
         {
             other.gameObject.GetComponent<PlayerControl>().hp.TakeDamage(1f);
+            other.gameObject.GetComponent<PlayerControl>().Rebound(10f);
+            collisionAudio.Play();
         }
+    }
+
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+        collisionAudio = GetComponent<AudioSource>();
     }
 }
