@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UIManager;
 
@@ -10,6 +11,7 @@ public class ExitUI : MonoBehaviour
     private TimeUI timeUI;
     private TextMeshProUGUI thisText;
     private List<Button> buttons = new List<Button>();
+    private UIManager uiManager;
 
     public int buttonCount = 3;
     public GameObject baseButton;
@@ -66,6 +68,16 @@ public class ExitUI : MonoBehaviour
         {
             for (int i = 0; i < buttonCount; i++)
             {
+                GameObject[] gameObjects = SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
+                for (int j = 0; j < gameObjects.Length; j++)
+                {
+                    uiManager = gameObjects[j].GetComponent<UIManager>();
+                }
+                int index = gameObject.scene.buildIndex - 2;
+                uiManager.stageDatas[index].isClear = true;
+                if (index + 1 < uiManager.stageDatas.Length)
+                    uiManager.stageDatas[index + 1].isActive = true;
+
                 if (i < clearData.Length)
                 {
                     buttons[i].gameObject.SetActive(true);
