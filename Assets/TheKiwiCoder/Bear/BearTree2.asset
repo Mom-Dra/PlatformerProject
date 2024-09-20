@@ -75,7 +75,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9cdc64996176c37439bf82837a182c44
-  position: {x: -445.74777, y: 953.0001}
+  position: {x: -301, y: 941}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -390,7 +390,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   damage: 1
-  particleGameObejctPrefab: {fileID: 5933602760919840800, guid: fcb74f28d107e284e80af037bfec14ca, type: 3}
+  particleGameObjectPrefab: {fileID: 0}
+  attackSound: {fileID: 0}
 --- !u!114 &8418326731917729202
 MonoBehaviour:
   m_ObjectHideFlags: 0
