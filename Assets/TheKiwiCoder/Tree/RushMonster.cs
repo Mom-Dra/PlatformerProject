@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PigMonster : Monster
+public class RushMonster : Monster
 {
     [SerializeField]
     private float power;
@@ -33,5 +33,10 @@ public class PigMonster : Monster
             audioSource ??= GetComponent<AudioSource>();
             audioSource?.Play();
         }
+    }
+
+    protected override void Dead()
+    {
+        animator.SetBool("IsWalk", false);
     }
 }
