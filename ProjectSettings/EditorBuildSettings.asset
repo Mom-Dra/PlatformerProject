@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 9f0d5e2afcce139408b4f930b2e44f74
   - enabled: 1
-    path: Assets/Scenes/Stage1.unity
+    path: Assets/Scenes/HakSeung.unity
     guid: e8a4dbfeec2438c43ac4fea37cada4bd
   - enabled: 1
-    path: Assets/Scenes/Stage2.unity
+    path: Assets/Scenes/Stage1.unity
     guid: 6db04770705937b40b08b73cc604acef
   m_configObjects: {}
