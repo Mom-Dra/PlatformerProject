@@ -59,7 +59,7 @@ MonoBehaviour:
     attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
-  attackDistance: 3
+  attackDistance: 8
 --- !u!114 &-6259110330137246686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,9 +269,9 @@ MonoBehaviour:
     attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
-  detectDistance: 10
-  attackDistance: 3
-  speed: 2
+  detectDistance: 18
+  attackDistance: 8
+  speed: 6
 --- !u!114 &3412283152574351576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,8 +360,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   wayPoints:
-  - {x: 50, y: 0.5, z: -4}
-  - {x: 50, y: 0.5, z: 4}
+  - {x: -20, y: 0, z: 0}
+  - {x: 30, y: 0, z: 0}
 --- !u!114 &8347328560628933144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +418,7 @@ MonoBehaviour:
     attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
-  fovRange: 10
+  fovRange: 18
   colliders:
   - {fileID: 0}
   - {fileID: 0}

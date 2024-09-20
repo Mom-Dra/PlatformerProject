@@ -12,7 +12,7 @@ public class PlatformMoving : Platform
     public Vector3 trablePos; //이동 위치
 
     private const float trableWatingTime = 2.0f;
-    private const float trableSpeed = 0.5f;
+    public  float trableSpeed = 0.5f;
 
     private  IEnumerator OnMoving()
     {

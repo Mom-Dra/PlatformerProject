@@ -366,5 +366,5 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   wayPoints:
-  - {x: -4, y: 140, z: 0}
-  - {x: 21.8, y: 140, z: 0}
+  - {x: 57, y: 85, z: 0}
+  - {x: 57, y: 60, z: 0}
