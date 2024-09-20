@@ -390,7 +390,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   damage: 1
-  particleGameObejctPrefab: {fileID: 5933602760919840800, guid: fcb74f28d107e284e80af037bfec14ca, type: 3}
+  particleGameObjectPrefab: {fileID: 5933602760919840800, guid: fcb74f28d107e284e80af037bfec14ca, type: 3}
 --- !u!114 &8418326731917729202
 MonoBehaviour:
   m_ObjectHideFlags: 0

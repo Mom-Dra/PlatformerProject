@@ -17,9 +17,6 @@ public class AttackTargetAction_Bear : AttackTargetAction
 
     private AudioSource audioSource;
 
-    [SerializeField]
-    private AudioClip attackSound;
-
     protected override void OnStart()
     {
         if(particleSystem == null)
