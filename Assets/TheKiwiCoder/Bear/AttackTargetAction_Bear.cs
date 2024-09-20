@@ -9,8 +9,8 @@ public class AttackTargetAction_Bear : AttackTargetAction
     private float damage;
 
     [SerializeField]
-    private GameObject particleGameObejctPrefab;
-    private GameObject particleGameObejct;
+    private GameObject particleGameObjectPrefab;
+    private GameObject particleGameObject;
     private ParticleSystem particleSystem;
     private Transform attackPos;
     private PlayerControl playerControl;
@@ -24,8 +24,8 @@ public class AttackTargetAction_Bear : AttackTargetAction
     {
         if(particleSystem == null)
         {
-            particleGameObejct = Instantiate(particleGameObejctPrefab);
-            particleSystem = particleGameObejct.GetComponent<ParticleSystem>();
+            particleGameObject = Instantiate(particleGameObjectPrefab);
+            particleSystem = particleGameObject.GetComponent<ParticleSystem>();
             attackPos = context.transform.Find("AttackPos");
 
             particleSystem.transform.localScale = context.transform.localScale;
@@ -41,7 +41,7 @@ public class AttackTargetAction_Bear : AttackTargetAction
         context.animator.SetTrigger($"Attack{randomNum}");
 
         // 공격한 위치에 공격 파티클 시스템 재생!
-        particleGameObejct.transform.position = attackPos.transform.position;
+        particleGameObject.transform.position = attackPos.transform.position;
         particleSystem?.Play();
 
         playerControl?.hp.TakeDamage(damage);
