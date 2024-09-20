@@ -99,15 +99,9 @@ MonoBehaviour:
   - imageSprite: {fileID: 21300000, guid: 583675a75bcb2a941ac555b9ccd513a9, type: 3}
     imageColor: {r: 1, g: 1, b: 1, a: 1}
     item: 1
-  - imageSprite: {fileID: 21300000, guid: 8f908a0041a1aee4c8b02d9449ebd224, type: 3}
+  - imageSprite: {fileID: 21300000, guid: 1c5c824c50bee384fa1a9f44e00fab0d, type: 3}
     imageColor: {r: 1, g: 1, b: 1, a: 1}
     item: 2
-  - imageSprite: {fileID: 21300000, guid: 0edcb30428af9c34b9114c75ee984bf2, type: 3}
-    imageColor: {r: 1, g: 1, b: 1, a: 1}
-    item: 0
-  - imageSprite: {fileID: 21300000, guid: 93b5b28db06f8d2439c780ec3aeb28d2, type: 3}
-    imageColor: {r: 1, g: 1, b: 1, a: 1}
-    item: 0
   currentPieceNum: 0
 --- !u!223 &-8340175903462343744
 Canvas:
