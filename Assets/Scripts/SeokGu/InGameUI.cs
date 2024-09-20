@@ -85,6 +85,7 @@ public class InGameUI : MonoBehaviour
 
     public void VisibleExitUI(bool isFailed)
     {
+        Debug.Log(exitCanvas);
         ShowExitUI(!exitCanvas.enabled, isFailed);
     }
 

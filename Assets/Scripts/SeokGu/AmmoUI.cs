@@ -22,7 +22,28 @@ public class AmmoUI : MonoBehaviour
 
     public void UpdateAmmo()
     {
-        thisText.text = string.Format("{0:00} / {1:00}", currentAmmo, maxAmmo);
+        if (currentAmmo < 10)
+        {
+            if (maxAmmo < 10)
+            {
+                thisText.text = string.Format("{0:0} / {1:0}", currentAmmo, maxAmmo);
+            }
+            else
+            {
+                thisText.text = string.Format("{0:0} / {1:00}", currentAmmo, maxAmmo);
+            }
+        }
+        else
+        {
+            if (maxAmmo < 10)
+            {
+                thisText.text = string.Format("{0:00} / {1:0}", currentAmmo, maxAmmo);
+            }
+            else
+            {
+                thisText.text = string.Format("{0:00} / {1:00}", currentAmmo, maxAmmo);
+            }
+        }
     }
 
     public void ShowUI(bool bActive)

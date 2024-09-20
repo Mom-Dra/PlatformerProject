@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4278242815
       objectReference: {fileID: 0}
+    - target: {fileID: 892403586200999134, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 1341885306545243971, guid: 8e8c75707d992ac49b0aa44e141a7e29, type: 3}
       propertyPath: m_text
       value: Stage Name
