@@ -20,7 +20,7 @@ public class EquipUI : MonoBehaviour
 
         ammoUI = GetComponentInChildren<AmmoUI>();
         if (currentItem != ItemList.Gun)
-            ShowAmmoUI(false);
+            ammoUI.ShowUI(false);
     }
 
     public void ChangeIcon(PiData piData)
@@ -30,13 +30,8 @@ public class EquipUI : MonoBehaviour
         currentItem = piData.item;
 
         if (piData.item == ItemList.Gun)
-            ShowAmmoUI(true);
+            ammoUI.ShowUI(true);
         else
-            ShowAmmoUI(false);
-    }
-
-    void ShowAmmoUI(bool bActive)
-    {
-        ammoUI.gameObject.SetActive(bActive);
+            ammoUI.ShowUI(false);
     }
 }

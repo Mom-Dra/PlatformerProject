@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class StageUI : MonoBehaviour
 {
     private Scene gameManager;
-    private GameObject[] managers;
+    //private GameObject[] managers;
+    private GameObject manager;
     private StagePiece stagePiece;
     private Vector3 ScreenSize;
 
@@ -20,15 +21,15 @@ public class StageUI : MonoBehaviour
 
     private void Awake()
     {
-        if(SceneManager.GetSceneByBuildIndex(0).isLoaded == false)
-        {
-            LoadSceneParameters sceneParameter = new LoadSceneParameters(LoadSceneMode.Additive);
-            gameManager = SceneManager.LoadScene(0, sceneParameter);
-        }
-        else
-        {
-            gameManager = SceneManager.GetSceneByBuildIndex(0);
-        }
+        //if(SceneManager.GetSceneByBuildIndex(0).isLoaded == false)
+        //{
+        //    LoadSceneParameters sceneParameter = new LoadSceneParameters(LoadSceneMode.Additive);
+        //    gameManager = SceneManager.LoadScene(0, sceneParameter);
+        //}
+        //else
+        //{
+        //    gameManager = SceneManager.GetSceneByBuildIndex(0);
+        //}
     }
 
     private void Start()
@@ -43,12 +44,14 @@ public class StageUI : MonoBehaviour
 
     void Init()
     {
-        managers = gameManager.GetRootGameObjects();
-        for (int i = 0; i < managers.Length; i++)
-        {
-            uiManager = managers[i].GetComponent<UIManager>();
-            if (uiManager != null) break;
-        }
+        //managers = gameManager.GetRootGameObjects();
+        //for (int i = 0; i < managers.Length; i++)
+        //{
+        //    uiManager = managers[i].GetComponent<UIManager>();
+        //    if (uiManager != null) break;
+        //}
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+
         ChangeButtonUI[] button = GetComponentsInChildren<ChangeButtonUI>();
 
         stagePiece = GetComponentInChildren<StagePiece>();

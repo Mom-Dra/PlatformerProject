@@ -3,14 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    private Scene gameManager;
-
     public StageData[] stageDatas;
-
-    private void Awake()
-    {
-        gameManager = SceneManager.GetSceneByBuildIndex(0);
-    }
 
     private void Start()
     {
@@ -19,44 +12,30 @@ public class UIManager : MonoBehaviour
 
     void Init()
     {
-        GameObject[] managers = gameManager.GetRootGameObjects();
-        for (int i = 0; i < managers.Length; i++)
-        {
-            UIManager uiManager = managers[i].GetComponent<UIManager>();
-            if (uiManager != null)
-            {
-                stageDatas = uiManager.stageDatas;
-            }
-        }
+        DontDestroyOnLoad(gameObject);
     }
 
     public void LoadSceneToOrder(OrderList inOrder, Scene currentScene)
     {
         int sceneNum = currentScene.buildIndex;
-        Debug.Log(inOrder);
-        Debug.Log(currentScene);
-        Debug.Log(sceneNum);
 
         switch (inOrder)
         {
             case OrderList.MainMenu:
                 {
-                    SceneManager.UnloadSceneAsync(currentScene);
-                    SceneManager.LoadScene(1, LoadSceneMode.Additive);
+                    SceneManager.LoadScene(0);
                     break;
                 }
             case OrderList.Retry:
                 {
-                    SceneManager.UnloadSceneAsync(currentScene);
-                    SceneManager.LoadScene(sceneNum, LoadSceneMode.Additive);
+                    SceneManager.LoadScene(sceneNum);
                     break;
                 }
             case OrderList.NextStage:
                 {
-                    if(currentScene.buildIndex - 2 < stageDatas.Length)
+                    if (currentScene.buildIndex - 1 < stageDatas.Length)
                     {
-                        SceneManager.UnloadSceneAsync(currentScene);
-                        SceneManager.LoadScene(sceneNum + 1, LoadSceneMode.Additive);
+                        SceneManager.LoadScene(sceneNum + 1);
                     }
                     break;
                 }

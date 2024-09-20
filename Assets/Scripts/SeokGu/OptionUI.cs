@@ -6,7 +6,8 @@ public class OptionUI : MonoBehaviour
 {
     private Image thisImage;
     private Button thisButton;
-    private GameObject menuUIPrefab;
+    //private GameObject menuUIPrefab;
+    private Canvas menuCanvas;
     private InGameUI inGameUI;
 
     public PiData defaultData;
@@ -27,13 +28,15 @@ public class OptionUI : MonoBehaviour
         thisButton.navigation = navi;
     }
 
-    public void Init(GameObject inGameObject)
+    public void Init(Canvas inMenuCanvas)
     {
-        menuUIPrefab = inGameObject;
+        //menuUIPrefab = inGameObject;
+        menuCanvas = inMenuCanvas;
     }
 
     void OnClicked()
     {
-        inGameUI.ShowMenuUI(!menuUIPrefab.activeSelf);
+        //inGameUI.ShowMenuUI(!menuUIPrefab.activeSelf);
+        inGameUI.ShowMenuUI(!menuCanvas.enabled);
     }
 }

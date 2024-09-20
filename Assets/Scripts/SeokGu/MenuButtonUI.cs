@@ -10,7 +10,7 @@ public class MenuButtonUI : MonoBehaviour
     private Button thisButton;
     private TextMeshProUGUI thisText;
     private OrderList thisOrder;
-    private Transform thisParent;
+    private Canvas parentCanvas;
 
     private void Awake()
     {
@@ -18,16 +18,12 @@ public class MenuButtonUI : MonoBehaviour
         thisText = GetComponentInChildren<TextMeshProUGUI>();
 
         thisButton.onClick.AddListener(OnClicked);
-        thisParent = transform.parent;
+        parentCanvas = transform.parent.GetComponent<Canvas>();
     }
 
     private void Start()
     {
-        //GameObject[] gameObjects = SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
-        //for (int i = 0; i< gameObjects.Length;i++)
-        //{
-        //    uiManager = gameObjects[i].GetComponent<UIManager>();
-        //}
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     public void SetData(MenuButtonData buttonData)
@@ -40,14 +36,7 @@ public class MenuButtonUI : MonoBehaviour
 
     void OnClicked()
     {
-        GameObject[] gameObjects = SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
-        for (int i = 0; i < gameObjects.Length; i++)
-        {
-            if (uiManager != null) break;
-            uiManager = gameObjects[i].GetComponent<UIManager>();
-        }
-        Debug.Log(uiManager);
         uiManager.LoadSceneToOrder(thisOrder, gameObject.scene);
-        thisParent.gameObject.SetActive(false);
+        parentCanvas.enabled = false;
     }
 }
