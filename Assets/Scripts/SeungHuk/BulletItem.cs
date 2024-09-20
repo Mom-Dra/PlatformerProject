@@ -20,13 +20,15 @@ public class BulletItem : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             player = other.gameObject.GetComponent<KeyInput>();
             player.GunReLoad();
-            Destroy(this.gameObject);
+            this.GetComponentInParent<AudioSource>().Play();
+            transform.position = new Vector3(-999, - 999, - 999);
+            Destroy(this.gameObject, 3.0f);
         }
     }
 

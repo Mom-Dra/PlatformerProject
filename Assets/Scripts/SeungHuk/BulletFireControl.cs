@@ -43,9 +43,7 @@ public class BulletFireControl : MonoBehaviour
     public void Reload()
     {
         gun.curBullet = gun.maxBullet;
-        ammo.currentAmmo = gun.maxBullet;
-        ammo.UpdateAmmo();
-        this.GetComponentInParent<AudioSource>().Play();
+        gun.GunCheck();
     }
     //public void OnParticleCollision(GameObject other)
     //{

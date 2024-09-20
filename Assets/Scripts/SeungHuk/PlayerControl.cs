@@ -23,7 +23,7 @@ namespace Player
             healthUI.currentHealth = health;
             player = GameObject.Find("Guy").GetComponent<PlayerControl>();
             isInvincible = false;
-            invincibilityDuration = 1.0f;
+            invincibilityDuration = 3.0f;
             Debug.Log("Health Setting Ok");
         }
 
@@ -201,6 +201,7 @@ namespace Player
                     break;
                 case ItemList.Gun:
                     Debug.Log("No.2 Slot Set! You have a gun Now!");
+                    //if(gun.curBullet == 0)
                     TakeGun();
                     break;
             }

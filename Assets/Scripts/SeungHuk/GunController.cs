@@ -7,6 +7,7 @@ public class GunController : MonoBehaviour
     public float maxAngle;
     public int maxBullet;
     public int curBullet;
+    public AmmoUI ammo;
 
     public BulletFireControl Bullet;
     public GameObject gunBody;
@@ -23,10 +24,16 @@ public class GunController : MonoBehaviour
         sensitivity = 500f;
 
         mainCamera = Camera.main; 
-        screenHeight = Screen.height; 
+        screenHeight = Screen.height;
+        ammo = GameObject.Find("AmmoUI").GetComponent<AmmoUI>();
     }
     public void GunCheck()
-    { 
+    {
+        if (ammo != null)
+        {
+            ammo.currentAmmo = curBullet;
+            ammo.UpdateAmmo();
+        }
         float mouseY = Input.mousePosition.y;
         normalizedY = mouseY / screenHeight;
         float targetPitch = Mathf.Lerp(minAngle, maxAngle, normalizedY);

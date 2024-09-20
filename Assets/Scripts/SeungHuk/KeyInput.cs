@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UIManager;
 
 namespace Player
 {
@@ -153,6 +154,12 @@ namespace Player
             if (Input.GetButtonDown("Fire1") && gun.gameObject.activeSelf)
             {
                 Debug.Log("Try Shot");
+                if (gun.curBullet == 0)
+                {
+                    cc.SlotReset();
+                    //equipUI.ChangeIcon();
+                    return;
+                }
                 bullet.FireBullet();
             }
 
