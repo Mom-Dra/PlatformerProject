@@ -45,7 +45,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b77261ab6fbfd9747be3011fd0c31b4e
-  position: {x: -412, y: 656}
+  position: {x: -600.43036, y: 647.2549}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -84,7 +84,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d968c577a16c6c74f8e43bd301223979
-  position: {x: 47.999977, y: 659.33344}
+  position: {x: -74.43042, y: 650.25494}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -97,6 +97,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   particleGameObjectPrefab: {fileID: 6667558196277456002, guid: 4860fff63f1f6c048a98535ab8aa7fd1, type: 3}
+  particleSound1: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  particleSound2: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
 --- !u!114 &-6839439581513329809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +172,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 1a3033e315626a147bb1e9ff53270d0a
-  position: {x: -360.60236, y: 836.9885}
+  position: {x: -483.43033, y: 828.25494}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -261,7 +263,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6fe34861a116acd4da63dd9ecaeb440a
-  position: {x: -198.2611, y: 691.9204}
+  position: {x: -320.43042, y: 683.2549}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -323,7 +325,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e5d1a096764acaf4d880b72e40d73ccf
-  position: {x: -153.0794, y: 841.8068}
+  position: {x: -275.43033, y: 833.25494}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2

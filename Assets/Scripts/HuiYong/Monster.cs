@@ -32,12 +32,10 @@ public class Monster : MonoBehaviour
             isDead = true;
             runner.enabled = false;
 
-            // 죽는 애니메이션!
             animator.SetTrigger("IsDead");
         }
         else
         {
-            // 피격 애니메이션!
             animator.SetTrigger("IsHit");
         }
     }
