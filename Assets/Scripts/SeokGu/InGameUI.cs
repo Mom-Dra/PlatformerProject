@@ -18,7 +18,7 @@ public class InGameUI : MonoBehaviour
     private Canvas piCanvas;
     private Canvas menuCanvas;
     private Canvas exitCanvas;
-    private bool bDebug = true;
+    private bool bDebug = false;
 
     void Start()
     {
