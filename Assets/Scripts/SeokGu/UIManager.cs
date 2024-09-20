@@ -3,16 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    private static UIManager instance;
     public StageData[] stageDatas;
 
-    private void Start()
+    private void Awake()
     {
         Init();
     }
 
     void Init()
     {
-        DontDestroyOnLoad(gameObject);
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void LoadSceneToOrder(OrderList inOrder, Scene currentScene)
