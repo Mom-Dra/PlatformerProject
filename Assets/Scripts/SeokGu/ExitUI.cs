@@ -1,17 +1,15 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UIManager;
 
 public class ExitUI : MonoBehaviour
 {
-    private GameObject TimeUIPrefab;
     private TimeUI timeUI;
+    private InGameUI inGameUI;
     private TextMeshProUGUI thisText;
     private List<Button> buttons = new List<Button>();
-    private UIManager uiManager;
 
     public int buttonCount = 3;
     public GameObject baseButton;
@@ -23,15 +21,10 @@ public class ExitUI : MonoBehaviour
         Init();
     }
 
-    private void Start()
-    {
-        
-    }
-
     public void Init()
     {
-        TimeUIPrefab = GameObject.Find("TimeUI");
-        timeUI = TimeUIPrefab.GetComponentInChildren<TimeUI>();
+        timeUI = transform.parent.GetComponentInChildren<TimeUI>();
+        inGameUI = transform.parent.GetComponent<InGameUI>();
         thisText = GetComponentInChildren<TextMeshProUGUI>();
 
         for (int i = 0; i < buttonCount; i++)
@@ -53,7 +46,6 @@ public class ExitUI : MonoBehaviour
 
     public void Show(bool isFailed)
     {
-        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         if (isFailed == true)
         {
             for (int i = 0; i < buttonCount; i++)
@@ -75,9 +67,9 @@ public class ExitUI : MonoBehaviour
             for (int i = 0; i < buttonCount; i++)
             {
                 int index = gameObject.scene.buildIndex - 1;
-                uiManager.stageDatas[index].isClear = true;
-                if (index + 1 < uiManager.stageDatas.Length)
-                    uiManager.stageDatas[index + 1].isActive = true;
+                inGameUI.uiManager.stageDatas[index].isClear = true;
+                if (index + 1 < inGameUI.uiManager.stageDatas.Length)
+                    inGameUI.uiManager.stageDatas[index + 1].isActive = true;
 
                 if (i < clearData.Length)
                 {

@@ -3,7 +3,6 @@ using static UIManager;
 
 public class EquipUI : MonoBehaviour
 {
-    private GameObject itemPiecePrefab;
     private ItemPiece itemPiece;
     private AmmoUI ammoUI;
 
@@ -13,8 +12,7 @@ public class EquipUI : MonoBehaviour
 
     void Start()
     {
-        itemPiecePrefab = GameObject.Find("ItemPiece");
-        itemPiece = itemPiecePrefab.GetComponent<ItemPiece>();
+        itemPiece = GetComponentInChildren<ItemPiece>();
         itemPiece.itemIcon.sprite = defaultData.imageSprite;
         itemPiece.itemIcon.color = defaultData.imageColor;
 

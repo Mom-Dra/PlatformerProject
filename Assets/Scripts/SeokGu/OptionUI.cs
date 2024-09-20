@@ -6,7 +6,6 @@ public class OptionUI : MonoBehaviour
 {
     private Image thisImage;
     private Button thisButton;
-    //private GameObject menuUIPrefab;
     private Canvas menuCanvas;
     private InGameUI inGameUI;
 
@@ -30,13 +29,11 @@ public class OptionUI : MonoBehaviour
 
     public void Init(Canvas inMenuCanvas)
     {
-        //menuUIPrefab = inGameObject;
         menuCanvas = inMenuCanvas;
     }
 
     void OnClicked()
     {
-        //inGameUI.ShowMenuUI(!menuUIPrefab.activeSelf);
         inGameUI.ShowMenuUI(!menuCanvas.enabled);
     }
 }

@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using static UIManager;
 
 public class InGameUI : MonoBehaviour
@@ -9,7 +7,9 @@ public class InGameUI : MonoBehaviour
     public OrderList currentOrder;
     [HideInInspector]
     public StageList thisStage;
-
+    [HideInInspector]
+    public UIManager uiManager;
+    
     private PiUI piUI;
     private MenuUI menuUI;
     private ExitUI exitUI;
@@ -23,6 +23,7 @@ public class InGameUI : MonoBehaviour
     void Start()
     {
         Init();
+
     }
 
     void Update()
@@ -47,6 +48,8 @@ public class InGameUI : MonoBehaviour
 
     void Init()
     {
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+
         piUI = GetComponentInChildren<PiUI>();
         menuUI = GetComponentInChildren<MenuUI>();
         exitUI = GetComponentInChildren<ExitUI>();

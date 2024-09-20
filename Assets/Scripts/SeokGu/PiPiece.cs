@@ -7,7 +7,6 @@ public class PiPiece : MonoBehaviour
     public GameObject itemPiecePrefab;
 
     private Image thisImage;
-    private GameObject equipUiPrefab;
     private ItemPiece itemPiece;
     private EquipUI equipUI;
     private PiData thisData;
@@ -24,8 +23,7 @@ public class PiPiece : MonoBehaviour
     public void Init()
     {
         thisImage = GetComponent<Image>();
-        equipUiPrefab = GameObject.Find("EquipUI");
-        equipUI = equipUiPrefab.GetComponent<EquipUI>();
+        equipUI = transform.parent.parent.GetComponentInChildren<EquipUI>();
 
         itemPiece = itemPiecePrefab.GetComponent<ItemPiece>();
         itemPiece = Instantiate(itemPiece, transform);

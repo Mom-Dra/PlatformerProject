@@ -1,8 +1,6 @@
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using static StageUI;
-using static UIManager;
 
 public class ChangeButtonUI : MonoBehaviour
 {
@@ -31,7 +29,6 @@ public class ChangeButtonUI : MonoBehaviour
 
     void OnClicked()
     {
-        Debug.Log("ClickBtn");
         switch (buttonDir)
         {
             case ButtonDirection.NEXT:
@@ -60,11 +57,5 @@ public class ChangeButtonUI : MonoBehaviour
         thisImage.color = inData.imageColor;
         buttonDir = inData.direction;
     }
-
-    void Update()
-    {
-
-    }
-
     
 }
