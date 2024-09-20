@@ -157,6 +157,7 @@ namespace Player
                 if (gun.curBullet == 0)
                 {
                     cc.SlotReset();
+                    inGameUI.SetUnarmed();
                     //equipUI.ChangeIcon();
                     return;
                 }
