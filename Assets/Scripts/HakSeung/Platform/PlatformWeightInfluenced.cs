@@ -8,7 +8,7 @@ public class PlatformWeightInfluenced : Platform
     
 
     [Header("WeightInflueneced")]
-    const float maxFallYlen = 5.0f;
+    public float maxFallYlen = 5.0f;
     const float fallingSpeed = 5.0f;
     const float minRidingTime = 0.1f;
 

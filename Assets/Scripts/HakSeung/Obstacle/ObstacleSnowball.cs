@@ -27,7 +27,7 @@ public class ObstacleSnowball : DynamicObstacle
     [SerializeField]
     bool isOnTrigger = false;
     [SerializeField]
-    const float snowballDeactiveTime = 10.0f;
+    const float snowballDeactiveTime = 5.0f;
     [SerializeField]
     float snowballSpawnTime = 0.0f;
 

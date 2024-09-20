@@ -57,7 +57,7 @@ MonoBehaviour:
     attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
-  fovRange: 10
+  fovRange: 20
   colliders:
   - {fileID: 0}
   - {fileID: 0}
@@ -170,7 +170,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 1a3033e315626a147bb1e9ff53270d0a
-  position: {x: -360.60236, y: 836.9885}
+  position: {x: -363, y: 867.5595}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     speed: 2
@@ -182,7 +182,7 @@ MonoBehaviour:
     attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
-  attackDistance: 4
+  attackDistance: 10
 --- !u!114 &-2375262768433735788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   - {fileID: -6940082502228162298}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-    speed: 2
+    speed: 5
     targetLayerMask:
       serializedVersion: 2
       m_Bits: 64
@@ -335,9 +335,9 @@ MonoBehaviour:
     attackParticle: {fileID: 0}
   description: 
   drawGizmos: 0
-  detectDistance: 10
-  attackDistance: 4
-  speed: 2
+  detectDistance: 20
+  attackDistance: 10
+  speed: 5
 --- !u!114 &2874159349105810202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,5 +366,5 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   wayPoints:
-  - {x: 25, y: 4, z: -4}
-  - {x: 25, y: 4, z: 4}
+  - {x: 57, y: 85, z: 0}
+  - {x: 57, y: 60, z: 0}
