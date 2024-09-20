@@ -4562,6 +4562,38 @@ PrefabInstance:
       propertyPath: m_CullTransparentMesh
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1340317494908150594, guid: eb14e510b1c9da14ca3687faf4794eff, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340519087295763632, guid: eb14e510b1c9da14ca3687faf4794eff, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340688892920921508, guid: eb14e510b1c9da14ca3687faf4794eff, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340700101578683296, guid: eb14e510b1c9da14ca3687faf4794eff, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361226496611053972, guid: eb14e510b1c9da14ca3687faf4794eff, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361285368852132026, guid: eb14e510b1c9da14ca3687faf4794eff, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361287994174324690, guid: eb14e510b1c9da14ca3687faf4794eff, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361315698423639766, guid: eb14e510b1c9da14ca3687faf4794eff, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2096245131319594741, guid: eb14e510b1c9da14ca3687faf4794eff, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0

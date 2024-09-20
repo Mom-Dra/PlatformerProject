@@ -17,7 +17,7 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         maxBullet = 6;
-        curBullet = 0;
+        curBullet = 6;
         //currentPitch = 0f;
         maxAngle = 30f;
         minAngle = -180f;

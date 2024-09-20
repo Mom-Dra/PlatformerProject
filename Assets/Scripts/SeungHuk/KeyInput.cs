@@ -85,6 +85,8 @@ namespace Player
             if (Input.GetMouseButtonUp(0) && useUi)
             {
                 piUI.SelectItem();
+                if (cc.canGunEquip == 0 && equipUI.currentItem == ItemList.Gun)
+                    inGameUI.SetUnarmed();
                 cc.SlotCheck(equipUI.currentItem);
             }
 
@@ -151,7 +153,7 @@ namespace Player
         }
         void FireInput()
         {
-            if (Input.GetButtonDown("Fire1") && gun.gameObject.activeSelf)
+            if (Input.GetButtonDown("Fire1") && gun.gameObject.activeSelf && !useUi)
             {
                 Debug.Log("Try Shot");
                 if (gun.curBullet == 0)
@@ -164,7 +166,7 @@ namespace Player
                 bullet.FireBullet();
             }
 
-            if (Input.GetButtonDown("Fire1") && cc.handStone.gameObject.activeSelf)
+            if (Input.GetButtonDown("Fire1") && cc.handStone.gameObject.activeSelf && !useUi)
             {
                 Debug.Log("Throw Stone");
 
@@ -173,8 +175,9 @@ namespace Player
         }
         public void GunReLoad()
         {
-                Debug.Log("Bullets Reloading....");
-                bullet.Reload();
+            cc.canGunEquip = 1;
+            Debug.Log("Bullets Reloading....");
+            bullet.Reload();
         }
     }
 }

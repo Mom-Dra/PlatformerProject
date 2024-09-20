@@ -105,8 +105,10 @@ namespace Player
         public float platformDis;
         //public Platform platform;
         public PlatformCollisionEvent platform;
+        public int canGunEquip;
         protected virtual void InitilizeController() 
         {
+            canGunEquip=0;
             jumpKingPower = 0f;
             moveMod = 0;
             rollingTimer = 0f;
@@ -200,9 +202,12 @@ namespace Player
                     StoneSet();
                     break;
                 case ItemList.Gun:
-                    Debug.Log("No.2 Slot Set! You have a gun Now!");
-                    //if(gun.curBullet == 0)
-                    TakeGun();
+                    if (canGunEquip == 1)
+                    {
+                        Debug.Log("No.2 Slot Set! You have a gun Now!");
+                        //if(gun.curBullet == 0)
+                        TakeGun();
+                    }
                     break;
             }
         }
