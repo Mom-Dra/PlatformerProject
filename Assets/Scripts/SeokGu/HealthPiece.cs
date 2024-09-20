@@ -5,7 +5,6 @@ public class HealthPiece : MonoBehaviour
 {
     private Image thisImage;
 
-    // Start is called before the first frame update
     void Awake()
     {
         Init();

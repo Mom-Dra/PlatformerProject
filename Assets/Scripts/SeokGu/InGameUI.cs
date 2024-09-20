@@ -1,26 +1,29 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using static UIManager;
 
 public class InGameUI : MonoBehaviour
 {
-    public GameObject menuUIPrefab;
-    public GameObject exitUIPrefab;
     [HideInInspector]
     public OrderList currentOrder;
     [HideInInspector]
     public StageList thisStage;
-
-    //private GameObject piUIPrefab;
-    private GameObject optionUIPrefab;
+    [HideInInspector]
+    public UIManager uiManager;
+    
     private PiUI piUI;
     private MenuUI menuUI;
     private ExitUI exitUI;
+    private EquipUI equipUI;
+    private OptionUI optionUI;
+    private Canvas piCanvas;
+    private Canvas menuCanvas;
+    private Canvas exitCanvas;
     private bool bDebug = false;
 
     void Start()
     {
         Init();
+
     }
 
     void Update()
@@ -29,81 +32,84 @@ public class InGameUI : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0))
             {
-                if (piUI.gameObject.activeSelf == true)
+                if (piCanvas.enabled == true)
                     piUI.SelectItem();
             }
 
             if (Input.GetKey(KeyCode.Tab)) ShowPiUI(true);
             else ShowPiUI(false);
 
-            if (Input.GetKeyDown(KeyCode.Escape)) ShowMenuUI(!menuUIPrefab.activeSelf);
+            if (Input.GetKeyDown(KeyCode.Escape)) ShowMenuUI(!menuCanvas.enabled);
 
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
-            }
+            if (Input.GetKeyDown(KeyCode.Z)) ShowExitUI(!exitCanvas.enabled, false);
+            if (Input.GetKeyDown(KeyCode.X)) SetUnarmed();
         }
     }
 
     void Init()
     {
-        //piUIPrefab = GameObject.Find("PiUI");
-        optionUIPrefab = GameObject.Find("OptionUI");
-        menuUIPrefab = Instantiate(menuUIPrefab, transform);
-        exitUIPrefab = Instantiate(exitUIPrefab, transform);
-        menuUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        exitUIPrefab.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
 
         piUI = GetComponentInChildren<PiUI>();
-        menuUI = menuUIPrefab.GetComponent<MenuUI>();
-        exitUI = exitUIPrefab.GetComponent<ExitUI>();
+        menuUI = GetComponentInChildren<MenuUI>();
+        exitUI = GetComponentInChildren<ExitUI>();
+        equipUI = GetComponentInChildren<EquipUI>();
+        optionUI = GetComponentInChildren<OptionUI>();
 
-        piUI.gameObject.SetActive(true);
-        menuUIPrefab.SetActive(false);
-        exitUIPrefab.SetActive(false);
-        OptionUI optionUI = optionUIPrefab.GetComponent<OptionUI>();
-        optionUI.Init(menuUIPrefab);
+        piCanvas = piUI.gameObject.GetComponent<Canvas>();
+        menuCanvas = menuUI.gameObject.GetComponent<Canvas>();
+        exitCanvas = exitUI.gameObject.GetComponent<Canvas>();
+
+        piCanvas.enabled = false;
+        menuCanvas.enabled = false;
+        exitCanvas.enabled = false;
+        optionUI.Init(menuCanvas);
     }
 
     public void ShowPiUI(bool bActive)
     {
-        if (menuUIPrefab.activeSelf == true || exitUIPrefab.activeSelf == true) return;
+        if (menuCanvas.enabled == true || exitCanvas.enabled == true) return;
 
-        piUI.gameObject.SetActive(bActive);
+        piCanvas.enabled = bActive;
     }
 
     public void ShowMenuUI(bool bActive)
     {
-        if (exitUIPrefab.activeSelf == true) return;
+        if (exitCanvas.enabled == true) return;
 
         ShowPiUI(false);
-        menuUIPrefab.SetActive(bActive);
+        menuCanvas.enabled = bActive;
         menuUI.Show();
         SetTimeScale();
     }
 
     public void VisibleExitUI(bool isFailed)
     {
-        ShowExitUI(!exitUIPrefab.activeSelf, isFailed);
+        ShowExitUI(!exitCanvas.enabled, isFailed);
     }
 
     public void ShowExitUI(bool bActive, bool isFailed)
     {
-        if (menuUIPrefab.activeSelf == true) return;
+        if (menuCanvas.enabled == true) return;
 
         ShowPiUI(false);
-        exitUIPrefab.SetActive(bActive);
+        exitCanvas.enabled = bActive;
         exitUI.Show(isFailed);
         SetTimeScale();
     }
 
     void SetTimeScale()
     {
-        if (exitUIPrefab.activeSelf == false && menuUIPrefab.activeSelf == false)
+        if (menuCanvas.enabled == false && exitCanvas.enabled == false)
         {
             Time.timeScale = 1.0f;
         }
         else
             Time.timeScale = 0.0f;
+    }
+
+    public void SetUnarmed()
+    {
+        equipUI.ChangeIcon(piUI.defaultData);
     }
 }

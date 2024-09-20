@@ -1,33 +1,24 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UIManager;
 
 public class MenuButtonUI : MonoBehaviour
 {
-    private UIManager uiManager;
+    private InGameUI inGameUI;
     private Button thisButton;
     private TextMeshProUGUI thisText;
     private OrderList thisOrder;
-    private Transform thisParent;
+    private Canvas parentCanvas;
 
     private void Awake()
     {
         thisButton = GetComponent<Button>();
         thisText = GetComponentInChildren<TextMeshProUGUI>();
+        inGameUI = transform.parent.parent.GetComponent<InGameUI>();
 
         thisButton.onClick.AddListener(OnClicked);
-        thisParent = transform.parent;
-    }
-
-    private void Start()
-    {
-        //GameObject[] gameObjects = SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
-        //for (int i = 0; i< gameObjects.Length;i++)
-        //{
-        //    uiManager = gameObjects[i].GetComponent<UIManager>();
-        //}
+        parentCanvas = transform.parent.GetComponent<Canvas>();
     }
 
     public void SetData(MenuButtonData buttonData)
@@ -40,14 +31,7 @@ public class MenuButtonUI : MonoBehaviour
 
     void OnClicked()
     {
-        GameObject[] gameObjects = SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
-        for (int i = 0; i < gameObjects.Length; i++)
-        {
-            if (uiManager != null) break;
-            uiManager = gameObjects[i].GetComponent<UIManager>();
-        }
-        Debug.Log(uiManager);
-        uiManager.LoadSceneToOrder(thisOrder, gameObject.scene);
-        thisParent.gameObject.SetActive(false);
+        inGameUI.uiManager.LoadSceneToOrder(thisOrder, gameObject.scene);
+        parentCanvas.enabled = false;
     }
 }

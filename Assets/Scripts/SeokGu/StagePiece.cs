@@ -34,8 +34,7 @@ public class StagePiece : MonoBehaviour
 
     void OnClicked()
     {
-        SceneManager.UnloadSceneAsync(gameObject.scene);
-        SceneManager.LoadScene((int)thisStage + 2, LoadSceneMode.Additive);
+        SceneManager.LoadScene((int)thisStage + 1);
     }
 
     public void SetData(UIManager.StageData inStageData)
