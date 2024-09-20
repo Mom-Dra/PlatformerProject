@@ -3760,7 +3760,7 @@ GameObject:
   - component: {fileID: 913383749}
   m_Layer: 8
   m_Name: Platform2 (2)
-  m_TagString: Platform
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4320,6 +4320,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirdMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 7345258414002698962, guid: 49f12fc36e225a14492dcbb59e0157af, type: 3}
+      propertyPath: tree
+      value: 
+      objectReference: {fileID: 11400000, guid: a221b58c8b382e440a0d1442ca6b91b4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
