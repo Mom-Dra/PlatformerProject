@@ -32,6 +32,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer(LayerEnum.Monster.ToString())))
         {
+            collision.gameObject.GetComponent<Monster>().TakeDamage(1);
+
             ContactPoint contactPoint = collision.contacts[0];
             Scene curScene = SceneManager.GetSceneByBuildIndex(gameObject.scene.buildIndex);
             Object be = Instantiate(blood, curScene);

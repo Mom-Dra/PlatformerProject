@@ -249,7 +249,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7897685555268523847}
+      - m_Target: {fileID: 386525629}
         m_TargetAssemblyTypeName: Monster, Assembly-CSharp
         m_MethodName: TakeDamage
         m_Mode: 3
@@ -696,6 +696,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &386525629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5732463307713016492, guid: 537e72d20ce23a748bcdfa66ca86e38e, type: 3}
+  m_PrefabInstance: {fileID: 5888557239282398679}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06b2085c990db94f9b75308474a0cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &591281993
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,6 +929,7 @@ MonoBehaviour:
   maxAngle: 0
   maxBullet: 0
   curBullet: 0
+  ammo: {fileID: 0}
   Bullet: {fileID: 0}
   gunBody: {fileID: 0}
   normalizedY: 0
@@ -1973,6 +1985,7 @@ MonoBehaviour:
   maxAngle: 0
   maxBullet: 0
   curBullet: 0
+  ammo: {fileID: 0}
   Bullet: {fileID: 1739639508}
   gunBody: {fileID: 749441747}
   normalizedY: 0
@@ -3257,17 +3270,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 873e5538dd374fa48bf6a07a0583625e, type: 3}
---- !u!114 &7897685555268523847 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2898771054672846416, guid: 873e5538dd374fa48bf6a07a0583625e, type: 3}
-  m_PrefabInstance: {fileID: 7897685555268523845}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b92a7fe22e82e14fae08148e888b350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8004972249434296335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3805153278149659740, guid: 4fafe46f1f205504d8cff896f0c2cc13, type: 3}

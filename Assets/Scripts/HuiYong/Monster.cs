@@ -6,10 +6,10 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     [SerializeField]
-    private int hp = 3;
+    private int hp = 2;
 
     private BehaviourTreeRunner runner;
-    private Animator animator;
+    protected Animator animator;
 
     private bool isDead;
 
@@ -33,10 +33,19 @@ public class Monster : MonoBehaviour
             runner.enabled = false;
 
             animator.SetTrigger("IsDead");
+
+            Dead();
+
+            Destroy(gameObject, 4f);
         }
         else
         {
             animator.SetTrigger("IsHit");
         }
+    }
+
+    protected virtual void Dead()
+    {
+
     }
 }
